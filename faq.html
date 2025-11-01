@@ -106,7 +106,7 @@
       text-align: center;
       font-size: 1.1rem;
       border-bottom: 1px solid #333;
-      text-decoration: none; /* ✅ keep underline on mobile */
+      text-decoration: none;
       text-underline-offset: 4px;
     }
 
@@ -114,7 +114,6 @@
       border-bottom: none;
     }
 
-    /* ✅ Hide logo when menu open */
     header.menu-open img {
       opacity: 0;
       pointer-events: none;
@@ -125,9 +124,27 @@
   .hero {
     position: relative;
     height: 42vh;
-    min-height: 300px;
-    background: url('F.png') center/cover no-repeat;
+    min-height: 200px;
+    background: url('Untitled.png') center/cover no-repeat;
     display: block;
+  }
+
+  /* ✅ DESKTOP VIEW - 900px and above */
+  @media (min-width: 900px) {
+    .hero {
+      height: 480px;              /* desktop height */
+      background-position: center top; 
+      object-fit: cover;
+    }
+  }
+
+  /* ✅ MOBILE VIEW - 768px and below */
+  @media (max-width: 768px) {
+    .hero {
+      height: 100px;              /* smaller for mobile */
+      background-position: center center;
+      object-fit: cover;
+    }
   }
 
   /* ---------- FAQ SECTION ---------- */
@@ -204,7 +221,6 @@
     <img src="trancz-white-logo.png" alt="Trancz Fashion Logo">
   </a>
 
-  <!-- ✅ Hamburger menu -->
   <div class="menu-toggle" id="menu-toggle">
     <span></span>
     <span></span>
@@ -214,13 +230,10 @@
   <nav id="navbar">
     <a href="index.html">Home</a>
     <a href="services.html">Services</a>
-    <a href="contact.html">Contact Us</a>
     <a href="faq.html">FAQ</a>
-    
   </nav>
 </header>
 
-<!-- ✅ HERO IMAGE -->
 <div class="hero" role="img" aria-label="FAQ hero image"></div>
 
 <section>
@@ -300,4 +313,3 @@ document.addEventListener("DOMContentLoaded", function() {
 
 </body>
 </html>
-
