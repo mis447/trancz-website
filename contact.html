@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Trancz Fashion - Contact Us</title>
 
+  <!-- ✅ Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+
   <style>
     body {
       font-family: "Poppins", Roboto, serif;
@@ -13,50 +19,107 @@
       line-height: 1.7;
     }
 
-    /* HEADER */
+    /* ✅ SAME HEADER AS FAQ PAGE */
     header {
       background: #000;
       color: #fff;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 50px;
+      padding: 15px 30px;
       position: sticky;
       top: 0;
       z-index: 1000;
+      transition: opacity 0.3s ease;
     }
 
     header img {
       height: 30px;
       cursor: pointer;
+      transition: opacity 0.3s ease;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
     }
 
     nav a {
-      margin-left: 20px;
+      margin-left: 25px;
       color: #fff;
-      font-weight: bold;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      text-decoration: none;
+      text-underline-offset: 4px;
     }
 
     nav a:hover {
       color: #ccc;
     }
 
-    /* Hamburger icon */
+    /* ---------- HAMBURGER MENU ---------- */
     .menu-toggle {
       display: none;
-      font-size: 30px;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 25px;
       cursor: pointer;
-      color: white;
       position: absolute;
-      top: 20px;
+      top: 18px;
       right: 25px;
       z-index: 1100;
     }
 
-    /* SECTION */
+    .menu-toggle span {
+      display: block;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    /* ---------- MOBILE MENU ---------- */
+    @media (max-width: 900px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #000;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        padding: 20px 0;
+        text-align: center;
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      nav a {
+        margin: 10px 0;
+        text-align: center;
+        font-size: 1.1rem;
+        border-bottom: 1px solid #333;
+        text-decoration: none;
+        text-underline-offset: 4px;
+      }
+
+      nav a:last-child {
+        border-bottom: none;
+      }
+
+      header.menu-open img {
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
+
+    /* ---------- CONTACT PAGE STYLES (UNCHANGED) ---------- */
     .section {
       padding: 80px 20px;
       max-width: 1200px;
@@ -86,7 +149,6 @@
       justify-content: stretch;
     }
 
-    /* FORM BOX */
     form {
       flex: 1;
       display: flex;
@@ -126,13 +188,13 @@
       background: #333;
     }
 
-    /* Inline message below button */
     #formMessage {
       text-align: center;
       font-size: 0.9rem;
       margin-top: 8px;
       min-height: 20px;
     }
+
     .success { color: #00c851; }
     .error { color: #ff4444; }
 
@@ -164,41 +226,11 @@
       color: #ccc;
     }
 
+    .footer-email {
+      margin-top: 10px;
+    }
+
     @media(max-width: 900px) {
-      nav {
-        display: none;
-        flex-direction: column;
-        background: #000;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        width: 100%;
-        text-align: center;
-        padding: 20px 0;
-      }
-
-      nav.active {
-        display: flex;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-
-      nav a {
-        padding: 12px 0;
-        border-bottom: 1px solid #333;
-      }
-
-      nav a:last-child {
-        border-bottom: none;
-      }
-
-      header.menu-open img {
-        opacity: 0;
-        pointer-events: none;
-      }
-
       .contact-container {
         flex-direction: column;
       }
@@ -213,8 +245,16 @@
 <body>
 
   <header id="header">
-    <a href="index.html"><img src="trancz-white-logo.png" alt="Trancz Fashion Logo"></a>
-    <div class="menu-toggle" id="mobile-menu">☰</div>
+    <a href="index.html">
+      <img src="trancz-white-logo.png" alt="Trancz Fashion Logo">
+    </a>
+
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
     <nav id="navbar">
       <a href="index.html">Home</a>
       <a href="services.html">Services</a>
@@ -224,21 +264,21 @@
   </header>
 
   <script>
-    const menuToggle = document.getElementById("mobile-menu");
-    const nav = document.getElementById("navbar");
-    const header = document.getElementById("header");
+    document.addEventListener("DOMContentLoaded", function() {
+      const menuToggle = document.getElementById("menu-toggle");
+      const navMenu = document.getElementById("navbar");
+      const header = document.getElementById("header");
 
-    menuToggle.addEventListener("click", () => {
-      nav.classList.toggle("active");
-      header.classList.toggle("menu-open");
-      menuToggle.textContent = menuToggle.textContent === "☰" ? "✖" : "☰";
-    });
+      menuToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+        header.classList.toggle("menu-open");
+      });
 
-    document.querySelectorAll("#navbar a").forEach(link => {
-      link.addEventListener("click", () => {
-        nav.classList.remove("active");
-        header.classList.remove("menu-open");
-        menuToggle.textContent = "☰";
+      navMenu.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+          navMenu.classList.remove("active");
+          header.classList.remove("menu-open");
+        });
       });
     });
   </script>
@@ -247,7 +287,6 @@
     <h2>Contact Us</h2>
 
     <div class="contact-container">
-      <!-- Contact Form -->
       <div class="contact-form">
         <form id="contactForm">
           <input type="text" name="name" placeholder="Your Name" required>
@@ -256,11 +295,10 @@
           <input type="email" name="email" placeholder="Email ID">
           <textarea name="requirements" placeholder="Your Requirements" rows="6"></textarea>
           <button type="submit">Send Message</button>
-          <p id="formMessage"></p> <!-- ✅ Message below button -->
+          <p id="formMessage"></p>
         </form>
       </div>
 
-      <!-- Map -->
       <div class="contact-info">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d6035.251823428639!2d73.096828!3d19.192336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1708700000000!5m2!1sen!2sin"
@@ -272,8 +310,19 @@
   </section>
 
   <footer>
-    <a href="https://instagram.com/tranczfashion" target="_blank">🅾 @tranczfashion</a> |
-    <a href="https://wa.me/918097283931" target="_blank">💬 WhatsApp: 8097283931</a>
+    <div class="footer-links">
+      <a href="https://instagram.com/tranczfashion" target="_blank">
+        <i class="fa-brands fa-instagram"></i> @tranczfashion
+      </a> |
+      <a href="https://wa.me/918097283931" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i> 8097283931
+      </a> |
+    </div>
+    <div class="footer-email">
+      <a href="mailto:rohit@trancz.com" target="_blank">
+        <i class="fa-regular fa-envelope"></i> rohit@trancz.com
+      </a>
+    </div>
   </footer>
 
   <script>
@@ -314,5 +363,3 @@
 
 </body>
 </html>
-
-
