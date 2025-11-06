@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trancz Fashion - Services</title>
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trancz Fashion - Home</title>
+
+  <!-- ✅ Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+
+  <style>
   body {
-    font-family: "Poppins",  Roboto, serif;
+    font-family: "Poppins", Roboto, serif;
     margin: 0;
     color: #333;
     line-height: 1.7;
@@ -17,14 +24,14 @@
     color: inherit;
   }
 
-  /* ---------- HEADER ---------- */
+  /* ✅ SAME HEADER AS FAQ/CONTACT */
   header {
     background: #000;
     color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 40px;
+    padding: 15px 30px;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -37,7 +44,6 @@
     transition: opacity 0.3s ease;
   }
 
-  /* ---------- NAVIGATION ---------- */
   nav {
     display: flex;
     align-items: center;
@@ -48,6 +54,7 @@
     color: #fff;
     font-weight: 700;
     text-transform: uppercase;
+    letter-spacing: 0.5px;
     text-underline-offset: 4px;
   }
 
@@ -60,11 +67,11 @@
     display: none;
     flex-direction: column;
     justify-content: space-between;
-    width: 25px;
-    height: 20px;
+    width: 30px;
+    height: 25px;
     cursor: pointer;
     position: absolute;
-    top: 20px;
+    top: 18px;
     right: 25px;
     z-index: 1100;
   }
@@ -74,6 +81,47 @@
     height: 3px;
     background: white;
     border-radius: 2px;
+  }
+
+  /* ---------- MOBILE MENU ---------- */
+  @media (max-width: 900px) {
+    nav {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      background: #000;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    nav.active {
+      display: flex;
+    }
+
+    .menu-toggle {
+      display: flex;
+    }
+
+    nav a {
+      margin: 10px 0;
+      text-align: center;
+      font-size: 1.1rem;
+      border-bottom: 1px solid #333;
+      text-decoration: none;
+      text-underline-offset: 4px;
+    }
+
+    nav a:last-child {
+      border-bottom: none;
+    }
+
+    header.menu-open img {
+      opacity: 0;
+      pointer-events: none;
+    }
   }
 
   /* ---------- HERO SECTION ---------- */
@@ -143,7 +191,6 @@
     margin: 0;
   }
 
-  /* ---------- FOOTER ---------- */
   footer {
     background: #000;
     color: #fff;
@@ -162,62 +209,16 @@
   footer a:hover {
     color: #ccc;
   }
-
-  /* ---------- MOBILE RESPONSIVE ---------- */
-  @media (max-width: 900px) {
-    nav {
-      display: none;
-      flex-direction: column;
-      width: 100%;
-      background: #000;
-      position: absolute;
-      top: 60px;
-      left: 0;
-      padding: 20px 0;
-      text-align: center;
-    }
-
-    nav.active {
-      display: flex;
-    }
-
-    .menu-toggle {
-      display: flex;
-    }
-
-    nav a {
-      margin: 10px 0;
-      text-align: center;
-      font-size: 1.1rem;
-      border-bottom: 1px solid #333;
-      text-decoration: none;
-      text-underline-offset: 4px;
-    }
-
-    nav a:last-child {
-      border-bottom: none;
-    }
-
-    header.menu-open img {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .hero h2 {
-      font-size: 2rem;
-      padding: 10px 20px;
-    }
-  }
-</style>
+  </style>
 </head>
 <body>
 
+<!-- ✅ Uniform Header -->
 <header id="header">
   <a href="index.html">
     <img src="trancz-white-logo.png" alt="Trancz Fashion Logo">
   </a>
 
-  <!-- ✅ Hamburger Icon (3 lines) -->
   <div class="menu-toggle" id="menu-toggle">
     <span></span>
     <span></span>
@@ -299,30 +300,41 @@
 </section>
 
 <footer>
-  <a href="https://instagram.com/tranczfashion" target="_blank">🅾 @tranczfashion</a> |
-  <a href="https://wa.me/918097283931" target="_blank">💬 WhatsApp: 8097283931</a>
+  <div class="footer-links">
+    <a href="https://instagram.com/tranczfashion" target="_blank">
+      <i class="fa-brands fa-instagram"></i> @tranczfashion
+    </a> |
+    <a href="https://wa.me/918097283931" target="_blank">
+      <i class="fa-brands fa-whatsapp"></i> 8097283931
+    </a> |
+  </div>
+  <div class="footer-email">
+    <a href="mailto:rohit@trancz.com" target="_blank">
+      <i class="fa-regular fa-envelope"></i> rohit@trancz.com
+    </a>
+  </div>
 </footer>
 
-<!-- ✅ Script -->
+<!-- ✅ Header Script -->
 <script>
-  const menuToggle = document.getElementById("menu-toggle");
-  const nav = document.getElementById("navbar");
-  const header = document.getElementById("header");
+  document.addEventListener("DOMContentLoaded", function() {
+    const menuToggle = document.getElementById("menu-toggle");
+    const navMenu = document.getElementById("navbar");
+    const header = document.getElementById("header");
 
-  menuToggle.addEventListener("click", () => {
-    nav.classList.toggle("active");
-    header.classList.toggle("menu-open");
-  });
+    menuToggle.addEventListener("click", () => {
+      navMenu.classList.toggle("active");
+      header.classList.toggle("menu-open");
+    });
 
-  document.querySelectorAll("#navbar a").forEach(link => {
-    link.addEventListener("click", () => {
-      nav.classList.remove("active");
-      header.classList.remove("menu-open");
+    navMenu.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navMenu.classList.remove("active");
+        header.classList.remove("menu-open");
+      });
     });
   });
 </script>
 
 </body>
 </html>
-
-
