@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trancz Fashion - Home</title>
+  <title>Trancz Fashion - Services</title>
 
   <!-- ✅ Font Awesome -->
   <link
@@ -12,17 +12,26 @@
   />
 
   <style>
-  body {
-    font-family: "Poppins", Roboto, serif;
-    margin: 0;
-    color: #333;
-    line-height: 1.7;
-  }
+    /* ✅ Load your Roboto Condensed font file */
+    @font-face {
+      font-family: "Roboto Condensed";
+      src: url("Roboto-Condensed.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal; /* 👈 this ensures text won’t appear italic */
+    }
 
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
+    html, body {
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Roboto Condensed", sans-serif;
+      color: #222;
+      line-height: 1.7;
+      background-color: #fff;
+    }
 
   /* ✅ SAME HEADER AS FAQ/CONTACT */
   header {
@@ -50,13 +59,19 @@
   }
 
   nav a {
-    margin-left: 25px;
-    color: #fff;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    text-underline-offset: 4px;
-  }
+  margin-left: 25px;
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-decoration: none; /* 👈 removes underline */
+}
+
+nav a:hover {
+  color: #ccc;
+  text-decoration: none; /* 👈 also prevents underline on hover */
+}
+
 
   nav a:hover {
     color: #ccc;
@@ -111,7 +126,7 @@
       font-size: 1.1rem;
       border-bottom: 1px solid #333;
       text-decoration: none;
-      text-underline-offset: 4px;
+     
     }
 
     nav a:last-child {
