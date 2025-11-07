@@ -12,12 +12,27 @@
   />
 
   <style>
-    body {
-      font-family: "Poppins", Roboto, serif;
-      margin: 0;
-      color: #333;
-      line-height: 1.7;
+    /* ✅ Load your Roboto Condensed font file */
+    @font-face {
+      font-family: "Roboto Condensed";
+      src: url("Roboto-Condensed.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal; /* 👈 this ensures text won’t appear italic */
     }
+
+    html, body {
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Roboto Condensed", sans-serif;
+      color: #222;
+      line-height: 1.7;
+      background-color: #fff;
+    }
+	
 
     /* ✅ SAME HEADER AS FAQ PAGE */
     header {
@@ -44,14 +59,19 @@
       align-items: center;
     }
 
-    nav a {
-      margin-left: 25px;
-      color: #fff;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      text-underline-offset: 4px;
-    }
+  nav a {
+  margin-left: 25px;
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-decoration: none; /* 👈 removes underline */
+}
+
+nav a:hover {
+  color: #ccc;
+  text-decoration: none; /* 👈 also prevents underline on hover */
+}
 
     nav a:hover {
       color: #ccc;
@@ -290,12 +310,12 @@
       <div class="contact-form">
         <form id="contactForm">
           <input type="text" name="name" placeholder="Your Name" required>
-          <input type="text" name="brand" placeholder="Brand Name">
-          <input type="tel" name="mobile" placeholder="Mobile Number" required>
-          <input type="email" name="email" placeholder="Email ID">
-          <textarea name="requirements" placeholder="Your Requirements" rows="6"></textarea>
-          <button type="submit">Send Message</button>
-          <p id="formMessage"></p>
+  <input type="text" name="brand" placeholder="Brand Name">
+  <input type="tel" name="mobile" placeholder="Mobile Number" required>
+  <input type="email" name="email" placeholder="Email ID">
+  <textarea name="requirements" placeholder="Your Requirements" rows="6" style="font-family: 'Roboto Condensed', sans-serif;"></textarea>
+  <button type="submit">Send Message</button>
+  <p id="formMessage"></p>
         </form>
       </div>
 
