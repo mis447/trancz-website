@@ -5,28 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Trancz Fashion - FAQ</title>
 
-  <!-- ✅ Font Awesome (added correctly) -->
+  <!-- ✅ Font Awesome -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
   />
 
   <style>
-    body {
-      font-family: "Poppins", Roboto, serif;
-      margin: 0;
-      color: #333;
-      line-height: 1.7;
-	  
+    /* ✅ Load your Roboto Condensed font file */
+    @font-face {
+      font-family: "Roboto Condensed";
+      src: url("Roboto-Condensed.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal; /* 👈 this ensures text won’t appear italic */
+    }
 
-<style>
-  body {
-    font-family: "Poppins",  Roboto, serif;
-    margin: 0;
-    color: #222;
-    line-height: 1.7;
-    background-color: #fff;
-  }
+    html, body {
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Roboto Condensed", sans-serif;
+      color: #222;
+      line-height: 1.7;
+      background-color: #fff;
+    }
+	
 
   a {
     text-decoration: none;
