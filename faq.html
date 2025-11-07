@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trancz Fashion - FAQ</title>
+  <title>Trancz Fashion - Contact Us</title>
 
   <!-- ✅ Font Awesome -->
   <link
@@ -34,316 +34,352 @@
     }
 	
 
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
+    /* ✅ SAME HEADER AS FAQ PAGE */
+    header {
+      background: #000;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: opacity 0.3s ease;
+    }
 
-  /* ---------- HEADER ---------- */
-  header {
-    background: #000;
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    transition: opacity 0.3s ease;
-  }
+    header img {
+      height: 30px;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+    }
 
-  header img {
-    height: 30px;
-    cursor: pointer;
-    transition: opacity 0.3s ease;
-  }
-
-  /* ---------- NAVIGATION ---------- */
-  nav {
-    display: flex;
-    align-items: center;
-  }
+    nav {
+      display: flex;
+      align-items: center;
+    }
 
   nav a {
-    margin-left: 25px;
-    color: #fff;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    text-underline-offset: 4px;
-  }
+  margin-left: 25px;
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-decoration: none; /* 👈 removes underline */
+}
 
-  nav a:hover {
-    color: #ccc;
-  }
+nav a:hover {
+  color: #ccc;
+  text-decoration: none; /* 👈 also prevents underline on hover */
+}
 
-  /* ---------- HAMBURGER MENU ---------- */
-  .menu-toggle {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 25px;
-    cursor: pointer;
-    position: absolute;
-    top: 18px;
-    right: 25px;
-    z-index: 1100;
-  }
+    nav a:hover {
+      color: #ccc;
+    }
 
-  .menu-toggle span {
-    display: block;
-    height: 3px;
-    background: white;
-    border-radius: 2px;
-  }
-
-  /* ---------- MOBILE MENU ---------- */
-  @media (max-width: 900px) {
-    nav {
+    /* ---------- HAMBURGER MENU ---------- */
+    .menu-toggle {
       display: none;
       flex-direction: column;
-      width: 100%;
-      background: #000;
+      justify-content: space-between;
+      width: 30px;
+      height: 25px;
+      cursor: pointer;
       position: absolute;
-      top: 60px;
-      left: 0;
-      padding: 20px 0;
+      top: 18px;
+      right: 25px;
+      z-index: 1100;
+    }
+
+    .menu-toggle span {
+      display: block;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    /* ---------- MOBILE MENU ---------- */
+    @media (max-width: 900px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #000;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        padding: 20px 0;
+        text-align: center;
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      nav a {
+        margin: 10px 0;
+        text-align: center;
+        font-size: 1.1rem;
+        border-bottom: 1px solid #333;
+        text-decoration: none;
+        text-underline-offset: 4px;
+      }
+
+      nav a:last-child {
+        border-bottom: none;
+      }
+
+      header.menu-open img {
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
+
+    /* ---------- CONTACT PAGE STYLES (UNCHANGED) ---------- */
+    .section {
+      padding: 80px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h2 {
       text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 50px;
     }
 
-    nav.active {
+    .contact-container {
       display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: space-between;
+      align-items: stretch;
     }
 
-    .menu-toggle {
+    .contact-form,
+    .contact-info {
+      flex: 1 1 45%;
+      min-width: 300px;
       display: flex;
+      flex-direction: column;
+      justify-content: stretch;
     }
 
-    nav a {
-      margin: 10px 0;
+    form {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      background: #3f3f3f;
+      padding: 30px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      height: 100%;
+    }
+
+    input,
+    textarea {
+      padding: 15px;
+      border: 1px solid #ccc;
+      width: 100%;
+      box-sizing: border-box;
+      background: #fff;
+      color: #000;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #555;
+    }
+
+    button {
+      padding: 15px;
+      border: none;
+      background: #000;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #333;
+    }
+
+    #formMessage {
       text-align: center;
-      font-size: 1.1rem;
-      border-bottom: 1px solid #333;
+      font-size: 0.9rem;
+      margin-top: 8px;
+      min-height: 20px;
+    }
+
+    .success { color: #00c851; }
+    .error { color: #ff4444; }
+
+    iframe {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    footer {
+      background: #000;
+      color: #fff;
+      text-align: center;
+      padding: 25px 10px;
+      font-size: 0.95rem;
+      margin-top: 50px;
+    }
+
+    footer a {
+      color: #fff;
       text-decoration: none;
-      text-underline-offset: 4px;
+      font-weight: 600;
+      margin: 0 8px;
     }
 
-    nav a:last-child {
-      border-bottom: none;
+    footer a:hover {
+      color: #ccc;
     }
 
-    header.menu-open img {
-      opacity: 0;
-      pointer-events: none;
+    .footer-email {
+      margin-top: 10px;
     }
-  }
 
-  /* ---------- HERO IMAGE ---------- */
-  .hero {
-    position: relative;
-    height: 42vh;
-    min-height: 200px;
-    background: url('Untitled.png') center/cover no-repeat;
-    display: block;
-  }
+    @media(max-width: 900px) {
+      .contact-container {
+        flex-direction: column;
+      }
 
-  /* ✅ DESKTOP VIEW - 900px and above */
-  @media (min-width: 900px) {
-    .hero {
-      height: 480px;              /* desktop height */
-      background-position: center top; 
-      object-fit: cover;
+      iframe {
+        height: 400px;
+      }
     }
-  }
-
-  /* ✅ MOBILE VIEW - 768px and below */
-  @media (max-width: 768px) {
-    .hero {
-      height: 100px;              /* smaller for mobile */
-      background-position: center center;
-      object-fit: cover;
-    }
-  }
-
-  /* ---------- FAQ SECTION ---------- */
-  section {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 20px;
-  }
-
-  h2 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 40px;
-    font-weight: 700;
-  }
-
-  details {
-    background: #f7f7f7;
-    margin-bottom: 10px;
-    padding: 15px 20px;
-    border-radius: 5px;
-    border: 1px solid #e0e0e0;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-
-  details:hover {
-    background: #f1f1f1;
-  }
-
-  summary {
-    font-weight: 600;
-    font-size: 1rem;
-    outline: none;
-  }
-
-  details[open] summary {
-    color: #000;
-  }
-
-  details p {
-    margin-top: 10px;
-    font-size: 1rem;
-    color: #444;
-    line-height: 1.6;
-  }
-
-  /* ---------- FOOTER ---------- */
-  footer {
-    background: #000;
-    color: #fff;
-    text-align: center;
-    padding: 25px 10px;
-    font-size: 0.95rem;
-  }
-
-  footer a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    margin: 0 8px;
-  }
-
-  footer a:hover {
-    color: #ccc;
-  }
-</style>
+  </style>
 </head>
 
 <body>
 
-<header id="header">
-  <a href="index.html">
-    <img src="trancz-white-logo.png" alt="Trancz Fashion Logo">
-  </a>
-
-  <div class="menu-toggle" id="menu-toggle">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-
-  <nav id="navbar">
-    <a href="index.html">Home</a>
-    <a href="services.html">Services</a>
-    <a href="contact.html">Contact Us</a>
-    <a href="faq.html">FAQ</a>
-  </nav>
-</header>
-
-<div class="hero" role="img" aria-label="FAQ hero image"></div>
-
-<section>
-  <h2>Frequently Asked Questions</h2>
-
-  <details>
-    <summary>Do we provide samples before commencing production?</summary>
-    <p>Absolutely. We initiate the process by developing 10–12 sample designs to ensure quality and design accuracy. This approach allows us to showcase our capabilities and align with your expectations before moving into full-scale production.</p>
-  </details>
-
-  <details>
-    <summary>Why is full payment required for sample development?</summary>
-    <p>Sample development is a cost-intensive process. The 100% advance payment covers the expenses incurred by our team, including materials and labor. This practice ensures that we can dedicate the necessary resources to bring your designs to life.</p>
-  </details>
-
-  <details>
-    <summary>What is the minimum order quantity (MOQ) for production?</summary>
-    <p>Our standard MOQ is 1,000 pieces per project, with a minimum of 70–100 pieces per style. This quantity is essential to optimize production efficiency and manage costs effectively.</p>
-  </details>
-
-  <details>
-    <summary>What is the typical lead time for project delivery?</summary>
-    <p>The delivery timeline varies based on project specifics. Generally, we require a minimum of one month after finalizing designs, samples, and approvals to ensure timely and quality production.</p>
-  </details>
-
-  <details>
-    <summary>Do we handle fabric sourcing?</summary>
-    <p>Yes, we can source fabrics for your project. While we recommend providing sample fabrics during the sampling phase, we also offer bulk fabric sourcing at competitive rates. Please note that sourcing specialized fabrics may involve additional time and costs.</p>
-  </details>
-
-  <details>
-    <summary>Do we offer credit facilities?</summary>
-    <p>No, we operate on a 50% advance and 50% upon delivery payment structure. This policy applies to all projects, regardless of size, to maintain transparency and trust in our business relationships.</p>
-  </details>
-
-  <details>
-    <summary>Do we provide private label manufacturing services?</summary>
-    <p>Absolutely. We offer comprehensive private label solutions, including custom tags, labels, and branding, to help establish and promote your brand identity.</p>
-  </details>
-
-  <details>
-    <summary>Can we assist with fabric customization?</summary>
-    <p>Yes, we specialize in developing custom fabrics. Whether it's knit or woven, we can create fabrics tailored to your specifications, including yarn composition and weaving patterns, subject to minimum order quantities.</p>
-  </details>
-
-  <details>
-    <summary>Why might you choose not to work with us?</summary>
-    <p>We value confidentiality and professionalism. We do not disclose client information or share complete portfolios publicly. Our work is exclusive and can be viewed only at our studio. Additionally, we do not offer free services or credit facilities, ensuring that our business practices remain transparent and mutually respectful.</p>
-  </details>
-
-</section>
-
-<footer>
-  <div class="footer-links">
-    <a href="https://instagram.com/tranczfashion" target="_blank">
-      <i class="fa-brands fa-instagram"></i> @tranczfashion
-    </a> |
-    <a href="https://wa.me/918097283931" target="_blank">
-      <i class="fa-brands fa-whatsapp"></i> 8097283931
-    </a> |
-  </div>
-  <div class="footer-email">
-    <a href="mailto:rohit@trancz.com" target="_blank">
-      <i class="fa-regular fa-envelope"></i> rohit@trancz.com
+  <header id="header">
+    <a href="index.html">
+      <img src="trancz-white-logo.png" alt="Trancz Fashion Logo">
     </a>
-  </div>
-</footer>
 
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  const menuToggle = document.getElementById("menu-toggle");
-  const navMenu = document.getElementById("navbar");
-  const header = document.getElementById("header");
+    <nav id="navbar">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+  </header>
 
-  menuToggle.addEventListener("click", () => {
-    navMenu.classList.toggle("active");
-    header.classList.toggle("menu-open");
-  });
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const menuToggle = document.getElementById("menu-toggle");
+      const navMenu = document.getElementById("navbar");
+      const header = document.getElementById("header");
 
-  navMenu.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-      navMenu.classList.remove("active");
-      header.classList.remove("menu-open");
+      menuToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+        header.classList.toggle("menu-open");
+      });
+
+      navMenu.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+          navMenu.classList.remove("active");
+          header.classList.remove("menu-open");
+        });
+      });
     });
-  });
-});
-</script>
+  </script>
+
+  <section class="section">
+    <h2>Contact Us</h2>
+
+    <div class="contact-container">
+      <div class="contact-form">
+        <form id="contactForm">
+          <input type="text" name="name" placeholder="Your Name" required>
+  <input type="text" name="brand" placeholder="Brand Name">
+  <input type="tel" name="mobile" placeholder="Mobile Number" required>
+  <input type="email" name="email" placeholder="Email ID">
+  <textarea name="requirements" placeholder="Your Requirements" rows="6" style="font-family: 'Roboto Condensed', sans-serif;"></textarea>
+  <button type="submit">Send Message</button>
+  <p id="formMessage"></p>
+        </form>
+      </div>
+
+      <div class="contact-info">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d6035.251823428639!2d73.096828!3d19.192336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1708700000000!5m2!1sen!2sin"
+          allowfullscreen=""
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+      <a href="https://instagram.com/tranczfashion" target="_blank">
+        <i class="fa-brands fa-instagram"></i> @tranczfashion
+      </a> |
+      <a href="https://wa.me/918097283931" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i> 8097283931
+      </a> |
+    </div>
+    <div class="footer-email">
+      <a href="mailto:rohit@trancz.com" target="_blank">
+        <i class="fa-regular fa-envelope"></i> rohit@trancz.com
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const msg = document.getElementById('formMessage');
+      msg.textContent = '';
+      msg.className = '';
+
+      const formData = {
+        name: e.target.name.value,
+        brand: e.target.brand.value,
+        mobile: e.target.mobile.value,
+        email: e.target.email.value,
+        requirements: e.target.requirements.value
+      };
+
+      try {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbzDwzq5-l-cpU55_cDOlJGilvpFNSS2cuyRsJAitrBwT3_79T96NmfytWD0djAUxNb4Aw/exec', {
+          method: 'POST',
+          body: JSON.stringify(formData)
+        });
+
+        if (response.ok) {
+          msg.textContent = '✅ Message sent successfully!';
+          msg.classList.add('success');
+          e.target.reset();
+        } else {
+          msg.textContent = '❌ Error sending message. Please try again.';
+          msg.classList.add('error');
+        }
+      } catch (error) {
+        msg.textContent = '❌ Network error. Please check your connection.';
+        msg.classList.add('error');
+      }
+    });
+  </script>
 
 </body>
 </html>
-
