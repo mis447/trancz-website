@@ -12,19 +12,26 @@
   />
 
   <style>
+    @font-face {
+      font-family: "Roboto Condensed";
+      src: url("Roboto-Condensed.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+    }
+
     html, body {
       overflow-x: hidden;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      font-family: "Poppins", Roboto, serif;
-      margin: 0;
+      font-family: "Roboto Condensed", sans-serif;
       color: #222;
-      line-height: 1.7;
+      line-height: 1.4;
       background-color: #fff;
     }
 
-    /* ✅ SAME HEADER AS CONTACT/FAQ */
     header {
       background: #000;
       color: #fff;
@@ -55,7 +62,6 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      text-underline-offset: 4px;
       text-decoration: none;
     }
 
@@ -63,7 +69,6 @@
       color: #ccc;
     }
 
-    /* ---------- HAMBURGER MENU ---------- */
     .menu-toggle {
       display: none;
       flex-direction: column;
@@ -84,7 +89,6 @@
       border-radius: 2px;
     }
 
-    /* ---------- MOBILE MENU ---------- */
     @media (max-width: 900px) {
       nav {
         display: none;
@@ -111,7 +115,6 @@
         text-align: center;
         font-size: 1.1rem;
         border-bottom: 1px solid #333;
-        text-decoration: none;
       }
 
       nav a:last-child {
@@ -127,7 +130,7 @@
     /* ---------- PAGE CONTENT STYLES ---------- */
     .hero {
       position: relative;
-      height: 90vh;
+      height: 70vh; /* reduced banner height */
       background: url('banner.jpg') center/cover no-repeat;
       display: flex;
       justify-content: center;
@@ -163,32 +166,37 @@
     }
 
     section {
-      padding: 60px 10%;
+      padding: 40px 10%;
     }
 
     section h2 {
       text-align: center;
       font-size: 2.4rem;
-      margin-bottom: 40px;
+      margin-top: 0;
+      margin-bottom: 25px;
       letter-spacing: 1px;
     }
 
     section p {
-      text-align: justify;
+      text-align: center;
       font-size: 1.05rem;
       color: #444;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
     }
 
     .split {
       display: flex;
       align-items: flex-start;
-      gap: 50px;
+      gap: 40px;
       flex-wrap: wrap;
     }
 
+    /* ✅ Desktop image widths (different for each section) */
+    .split img.process-img { width: 30%; }
+    .split img.facility-img { width: 30%; }
+    .split img.fashion-img { width: 30%; }
+
     .split img {
-      width: 48%;
       border-radius: 0;
       box-shadow: 0 5px 20px rgba(0,0,0,0.1);
     }
@@ -224,20 +232,42 @@
       color: #ccc;
     }
 
+    /* ✅ Mobile image widths (unique per section) */
     @media(max-width: 900px) {
+      .split {
+        flex-direction: column;
+        text-align: center;
+      }
+
       .split img {
-        width: 100%;
+        margin: 0 auto;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      }
+
+      .split img.process-img { width: 80%; }
+      .split img.facility-img { width: 80%; }
+      .split img.fashion-img { width: 70%; }
+
+      .hero {
+        height: 55vh;
       }
 
       .hero-content h1 {
         font-size: 2rem;
+      }
+
+      section {
+        padding: 30px 8%;
+      }
+
+      section h2 {
+        margin-bottom: 20px;
       }
     }
   </style>
 </head>
 
 <body>
-
   <header id="header">
     <a href="index.html">
       <img src="trancz-white-logo.png" alt="Trancz Fashion Logo">
@@ -279,51 +309,51 @@
 
   <section class="hero">
     <div class="hero-content">
-      <h1>PREMIUM GARMENT MANUFACTURING & PRIVATE LABEL SOLUTIONS</h1>
-      <p class="hero-subtext">DELIVERING QUALITY, STYLE, AND RELIABILITY — END-TO-END FASHION PRODUCTION BUILT FOR MODERN BRANDS.</p>
+      <h1>PREMIUM GARMENT & LABEL SOLUTIONS</h1>
+      <p class="hero-subtext">Quality, style, and relaibility from concept to creation.</p>
     </div>
   </section>
 
   <section>
+ 
     <h2>Know About Us</h2>
     <p>Trancz Fashion, based in Mumbai, India, is a <b>leading garment manufacturing company</b> specializing in premium apparel production, fabric sourcing, and private label solutions. Founded by <b>Rohit Jain</b>, Trancz Fashion is a <b>GST-registered</b> Indian manufacturer delivering high-quality, design-driven clothing for domestic brands and businesses. We specialize in end-to-end garment development — from concept and pattern design to stitching, finishing, and packaging — offering complete FOB and DDP solutions for fashion, lifestyle, and corporate clients.</p>
-
-    <p>With a focus on quality, speed, and ethical production, we ensure every garment reflects excellence — from fabric selection to final delivery. At Trancz Fashion, we believe in long-term partnerships built on trust, transparency, and performance. Whether you’re a growing label or an established brand, we are here to bring your fashion ideas to life with reliability and style.</p>
-
-    <p>Let’s collaborate and create something remarkable together.</p>
   </section>
 
   <section class="split">
-    <img src="process.jpg" alt="Process Image">
+    <img src="process.jpg" alt="Process Image" class="process-img">
     <div class="text">
-      <h2>Trancz's Vision & Mission</h2>
-      <p>Trancz Fashion is focused on providing our customers with quality, fashion garments through hassle-free processes at the best possible turnaround time. Our systems, processes, management team, and expertise make us a <b>one-stop solution</b> for brands, meeting their requirements right from sourcing, pattern making, sampling, and production to finalizing delivery partners.</p>
-      <p>At Trancz Fashion, we understand that brands need a manufacturing partner who is reliable, efficient, and aligned with their creative vision. Delays, miscommunication, or inconsistent quality can slow down a brand’s growth and impact its reputation. That’s why we have built <b>robust management structures, streamlined systems, and a culture of on-time delivery</b> — ensuring every project runs smoothly from concept to final product.</p>
-      <p>By leveraging these strengths, our goal is to become a brand-friendly manufacturer, where working with us is simple, predictable, and productive. We are committed to creating long-term partnerships that let brands focus on growth while we handle operational excellence.</p>
-    </div>
+	 <div style="flex: 0 0 45%; max-width: 600px;">
+      <h2>Trancz's Vision and Mission</h2>
+	  <p style="text-align: justify;">
+      <p> Trancz Fashion  is focused on providing our customers with quality, fashion garments through hassle free process  at best possible Turn around time. Our systems, processes, management team, expertise makes us  ONE-STOP Solutions for  brands meeting their requierments right from sourcing, pattern making , sampling and production to finalizing delivery partners.
+	  <p>At Trancz Fashion, we understand that brands need a manufacturing partner who is reliable, efficient, and aligned with their creative vision. Delays, miscommunication, or inconsistent quality can slow down a brand’s growth and impact its reputation. That’s why we have built robust management structures, streamlined systems, and a culture of on-time delivery — ensuring every project runs smoothly from concept to final product.</p>
+	  </div>
   </section>
 
   <section class="split reverse">
-    <img src="facility.jpg" alt="Facility Image">
+    <img src="facility.jpg" alt="Facility Image" class="facility-img">
     <div class="text">
+	 <div style="flex: 0 0 45%; max-width: 600px;">
       <h2>Our Facility</h2>
-      <p>Over the years, Trancz Fashion has collaborated with a wide range of streetwear and fast-fashion brands, providing end-to-end services including fabric and textile sourcing, design development, size chart finalization, and pattern making.</p>
-      <p>We operate from a <b>4,500 sq. ft. office space, equipped with 35 modern machines</b> and a <b>dedicated team of 32 skilled professionals</b>, organized into Onboarding, Sampling, and Production departments to ensure seamless workflow.</p>
-      <p>Our Production Team, comprising experienced karigars and bulk-cutting masters, delivers fast, efficient, and large-scale manufacturing without compromising on quality.</p>
-      <p>To maintain high standards and smooth client coordination, we have implemented a <b>5-level Quality Control Process</b> along with a dedicated Follow-Up Team, minimizing errors and ensuring clear, consistent communication at every stage.</p>
+	  <p style="text-align: justify;">
+      <p>Over the years, Trancz Fashion has collaborated with a wide range of streetwear and fast-fashion brandss, providing end-to-end services including fabric and textile sourcing, design development, size chart finalization, and pattern making.</p> 
+	  <p>We operate from a <b>4,500 sq. ft. office space, equipped with 35 modern machines</b> and a <b>dedicated team of 32 skilled professionals</b>, organized into Onboarding, Sampling, and Production departments to ensure seamless workflow.</p>
+	  <p>Our Production Team, comprising experienced karigars and bulk-cutting masters, delivers fast, efficient, and large-scale manufacturing without compromising on quality.</p>
     </div>
   </section>
 
   <section class="split">
-    <img src="fashion.jpg" alt="Fashion Image">
+    <img src="fashion.jpg" alt="Fashion Image" class="fashion-img">
     <div class="text">
-      <h2>We Know Fashion Inside Out</h2>
-      <p>At Trancz Fashion, we have spent years mastering the intricacies of the clothing industry, understanding what it truly takes to build and grow a successful brand. We know how to turn a vision into a tangible, profitable reality.</p>
-      <p>From strategic planning to seamless production, we support brands at every stage — helping them launch, expand, or reposition in a fast-changing market. By combining market research, trend insights, and operational expertise, we ensure that every decision — from design and sourcing to production and delivery — contributes to a brand’s long-term success.</p>
-      <p><b>Our structured approach, experienced team, and streamlined systems</b> make working with us efficient, reliable, and brand-friendly, so our clients can focus on growth while we handle execution.</p>
-    </div>
+		 <div style="flex: 0 0 45%; max-width: 600px;">
+      <h2>We Know Fashion<br>Inside Out</h2>
+	    <p style="text-align: justify;">
+      <p>At Trancz Fashion, we have spent years mastering the intricacies of the clothing industry, understanding what it truly takes to build and grow a successful brand. We know how to turn a vision into a tangible, profitable reality.</p> 
+	  <p><b>Our structured approach, experienced team, and streamlined systems</b> make working with us efficient, reliable, and brand-friendly, so our clients can focus on growth while we handle execution. <p> 
+	  </div>
   </section>
-  
+
   <footer>
     <div class="footer-links">
       <a href="https://instagram.com/tranczfashion" target="_blank">
