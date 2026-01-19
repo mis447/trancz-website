@@ -315,9 +315,15 @@ nav a:hover {
   <input type="tel" name="mobile" placeholder="Mobile Number" required>
   <input type="email" name="email" placeholder="Email ID">
   <textarea name="requirements" placeholder="Your Requirements" rows="6" style="font-family: 'Roboto Condensed', sans-serif;"></textarea>
-  <button type="submit">Send Message</button>
-  <p id="formMessage"></p>
-        </form>
+ <!-- Google reCAPTCHA -->
+<div class="g-recaptcha" data-sitekey="6LdqSk8sAAAAAPlWjGXcaQlOK79zigZ1gjuBQxFh"></div>
+
+<!-- Optional honeypot -->
+<input type="text" name="company_website" style="display:none">
+
+<button type="submit">Send Message</button>
+<p id="formMessage"></p>
+	 </form>
       </div>
 
       <div class="contact-info">
@@ -384,4 +390,5 @@ nav a:hover {
 
 </body>
 </html>
+
 
