@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Gallery | Trancz Fashion – Garment Manufacturer Mumbai</title>
+<meta name="description" content="A running record of work from Trancz Fashion — hoodies, pants, tshirts, shirts and jackets. Private label pieces, sampling runs and client collaborations from Dombivli, Mumbai."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --white:#FFFFFF;
+      --cream:#FAF7F2;
+      --stone:#F2EDE6;
+      --pebble:#EDE8E0;
+      --lgrey:#F5F4F3;
+      --mgrey:#E6E2DD;
+      --nude:#B89A74;
+      --nude2:#CEAF88;
+      --nude3:#E8D8C4;
+      --black:#111111;
+      --text:#1E1E1E;
+      --body:#3A3A3A;
+      --muted:#888880;
+      --border:#E2DDD7;
+      --font-serif:'Playfair Display',serif;
+      --font-sans:'Outfit',sans-serif;
+      --tr:all .3s cubic-bezier(.4,0,.2,1);
+    }
+    html{scroll-behavior:smooth}
+    body{background:var(--white);color:var(--text);font-family:var(--font-sans);font-size:16px;line-height:1.7;overflow-x:hidden}
+    ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--lgrey)}::-webkit-scrollbar-thumb{background:var(--nude);border-radius:4px}
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;transition:var(--tr);background:var(--white)}
+    nav.scrolled{background:rgba(255,255,255,.97);height:56px;border-bottom:1px solid var(--border)}
+    .logo{font-family:var(--font-serif);font-size:1.4rem;font-weight:700;color:var(--black);letter-spacing:3px;text-decoration:none;line-height:1}
+    .logo em{color:var(--nude);font-style:normal}
+    .nav-logo{display:flex;align-items:center;height:100%;text-decoration:none}
+    .nav-logo img{height:30px;width:auto;display:block}
+    @media(max-width:580px){.nav-logo img{height:22px}}
+    .nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+    .nav-links a{color:var(--body);text-decoration:none;font-size:.8rem;font-weight:400;letter-spacing:1.5px;text-transform:uppercase;transition:var(--tr);position:relative}
+    .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--nude);transition:var(--tr)}
+    .nav-links a:hover{color:var(--black)}.nav-links a:hover::after{width:100%}
+    .nav-links a.current{color:var(--black)}.nav-links a.current::after{width:100%}
+    .nav-cta{background:var(--black)!important;color:var(--white)!important;padding:.48rem 1.3rem!important;font-weight:500!important;letter-spacing:1px!important;font-size:.75rem!important;text-transform:uppercase!important}
+    .nav-cta::after{display:none!important}.nav-cta:hover{background:var(--nude)!important;color:var(--black)!important}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:1001}
+    .hamburger span{display:block;width:22px;height:1.5px;background:var(--black);transition:var(--tr)}
+    /* TICKER */
+    .ticker-wrap{background:var(--black);overflow:hidden;padding:.65rem 0;white-space:nowrap;position:sticky;top:var(--nav-h,58px);z-index:999}
+    .ticker{display:inline-flex;animation:ticker 40s linear infinite}
+    .ticker-item{display:inline-flex;align-items:center;gap:.7rem;color:var(--white);font-size:.72rem;font-weight:400;letter-spacing:2px;text-transform:uppercase;padding:0 2.5rem}
+    .ticker-dot{width:4px;height:4px;background:var(--nude);border-radius:50%;flex-shrink:0}
+    @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    /* SECTION BASE */
+    section{padding:2.5rem 5%}
+    /* BUTTONS */
+    .btn-black{background:var(--black);color:var(--white);padding:.8rem 2rem;border:none;font-family:var(--font-sans);font-size:.8rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:var(--tr);display:inline-block}
+    .btn-black:hover{background:var(--nude);color:var(--black)}
+    .btn-outline{background:transparent;color:var(--black);padding:.8rem 2rem;border:1px solid var(--black);font-family:var(--font-sans);font-size:.8rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:var(--tr);display:inline-block}
+    .btn-outline:hover{background:var(--black);color:var(--white)}
+    .hero-btn-row{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.8rem}
+    /* FOOTER */
+    footer{background:var(--black);padding:2.5rem 5% 2rem}
+    .footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3rem;max-width:1200px;margin:0 auto 1.5rem}
+    .footer-brand .logo{color:var(--white);display:block;margin-bottom:1rem}
+    .footer-brand .logo em{color:var(--nude)}
+    .footer-logo{display:inline-block;margin-bottom:1rem}
+    .footer-logo img{height:60px;width:auto;display:block}
+    .footer-desc{font-size:.8rem;color:rgba(255,255,255,.35);line-height:1.8;margin-bottom:1.5rem;font-weight:300}
+    .social-links{display:flex;gap:.6rem}
+    .social-link{width:36px;height:36px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.35);text-decoration:none;font-size:.75rem;transition:var(--tr)}
+    .social-link:hover{background:var(--nude);color:var(--black);border-color:var(--nude)}
+    .footer-col h4{font-size:.68rem;font-weight:500;color:var(--white);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:1.2rem}
+    .footer-links{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+    .footer-links a{color:rgba(255,255,255,.32);text-decoration:none;font-size:.8rem;transition:var(--tr);font-weight:300}
+    .footer-links a:hover{color:var(--nude);padding-left:4px}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.07);padding-top:1.8rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;max-width:1200px;margin:0 auto}
+    .footer-bottom p{font-size:.74rem;color:rgba(255,255,255,.25);font-weight:300}
+    .footer-btm-links{display:flex;gap:1.5rem}
+    .footer-btm-links a{font-size:.74rem;color:rgba(255,255,255,.25);text-decoration:none;transition:var(--tr)}
+    .footer-btm-links a:hover{color:var(--nude)}
+    /* WHATSAPP */
+    .wa-float{position:fixed;bottom:2rem;right:2rem;z-index:999;background:#25d366;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:var(--tr);animation:bounceIn 1s 2s ease both}
+    .wa-float:hover{transform:scale(1.12);box-shadow:0 6px 28px rgba(37,211,102,.55)}
+    .wa-float svg{width:28px;height:28px;fill:white}
+    @keyframes bounceIn{0%{opacity:0;transform:scale(.3)}50%{opacity:1;transform:scale(1.08)}70%{transform:scale(.95)}100%{transform:scale(1)}}
+    /* ANIMATIONS */
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    /* RESPONSIVE (shared) */
+    @media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:680px){section{padding:4rem 5%}.nav-links{display:none}.nav-links.open{display:flex;flex-direction:column;position:fixed;inset:0;background:var(--white);align-items:center;justify-content:center;gap:2.5rem;z-index:1000}.nav-links.open a{font-size:1rem}.hamburger{display:flex}.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4px,5px)}.hamburger.open span:nth-child(2){opacity:0}.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-5px)}.footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column;text-align:center}.hero-btn-row a{flex:0 0 auto;text-align:center;padding:.55rem 1.3rem;font-size:.7rem}}
+
+    /* ---- page hero ---- */
+    .page-hero{background:linear-gradient(rgba(17,17,17,.55),rgba(17,17,17,.55)),url("gh.png") center/cover no-repeat;padding:5.5rem 5% 2rem;border-bottom:1px solid var(--border)}
+.page-hero .page-hero-title{color:#fff}
+.page-hero .page-hero-sub{color:rgba(255,255,255,.85)}
+.page-hero .page-hero-tag{color:var(--nude2)}
+.page-hero .btn-outline{color:#fff;border-color:#fff}
+.page-hero .btn-outline:hover{background:#fff;color:var(--black)}
+    .page-hero-tag{color:var(--nude);font-size:.68rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;display:block;margin-bottom:.6rem}
+    .page-hero-title{font-family:var(--font-serif);font-size:clamp(2.2rem,5vw,4rem);color:var(--black);font-weight:700;line-height:1.1;margin-bottom:.6rem;letter-spacing:-1px}
+    .page-hero-title em{font-style:italic;color:var(--nude)}
+    .page-hero-sub{color:var(--muted);font-size:.95rem;max-width:520px;line-height:1.8;font-weight:300}
+
+    /* ---- category heading ---- */
+    .category-heading{
+      padding:4rem 5% 2rem;
+      background:var(--cream);
+      border-bottom:1px solid var(--border);
+    }
+    .category-heading .page-hero-title{font-size:clamp(2rem,4vw,3.2rem);margin-bottom:.5rem}
+    .category-heading .page-hero-sub{max-width:620px}
+
+    /* ---- filters ---- */
+    .filters{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      padding:22px 5%;
+      border-bottom:1px solid var(--border);
+      position:sticky;
+      top:calc(var(--nav-h, 58px) + var(--ticker-h, 40px));
+      background:var(--white);
+      z-index:900;
+    }
+    .filters button{
+      font-family:var(--font-sans);
+      font-size:.78rem;
+      letter-spacing:.5px;
+      padding:9px 18px;
+      background:transparent;
+      border:1px solid var(--border);
+      border-radius:100px;
+      color:var(--black);
+      cursor:pointer;
+      transition:var(--tr);
+    }
+    .filters button:hover{ border-color:var(--nude); }
+    .filters button.active{
+      background:var(--black);
+      border-color:var(--black);
+      color:var(--white);
+    }
+
+    /* ---- masonry gallery ---- */
+    .gallery{
+      padding:36px 5% 90px;
+      column-count:4;
+      column-gap:18px;
+      background:var(--nude3);
+    }
+    @media (max-width:1100px){ .gallery{column-count:3;} }
+    @media (max-width:760px){ .gallery{column-count:2; padding:28px 5% 70px;} .filters{gap:6px;padding:12px 5%} .filters button{padding:6px 12px;font-size:.7rem} }
+    @media (max-width:480px){ .gallery{column-count:1;} }
+
+    .card{
+      break-inside:avoid;
+      margin-bottom:18px;
+      position:relative;
+      overflow:hidden;
+      border-radius:14px;
+      background:var(--white);
+      box-shadow:0 1px 3px rgba(17,17,17,.06);
+      cursor:default;
+    }
+    .card .frame{ width:100%; display:block; position:relative; border-radius:14px 14px 0 0; overflow:hidden; }
+    .card img{ width:100%; display:block; object-fit:cover; }
+    .card .tint{ width:100%; display:block; }
+    .card .info{
+      padding:12px 14px 14px;
+      background:var(--stone);
+      border-radius:0 0 14px 14px;
+    }
+    .card:hover img, .card:hover .tint{ transform:scale(1.035); }
+    .card img, .card .tint{ transition:transform .4s ease; }
+    .info .name{ font-family:var(--font-sans); font-size:15px; color:var(--black); margin:0 0 2px; font-weight:500; }
+    .info .meta{ font-size:11.5px; color:var(--muted); letter-spacing:.02em; }
+    .card.hidden{ display:none; }
+
+</style>
+</head>
+<body>
+<nav id="navbar">
+<a href="index.html" class="nav-logo" aria-label="Trancz Fashion - Home"><img src="logo.png" alt="Trancz Fashion"></a>  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="corporate.html">Corporate Gifting</a></li>
+    <li><a href="gallery.html" class="current">Gallery</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="page-hero">
+  <span class="page-hero-tag">Portfolio</span>
+  <h1 class="page-hero-title">Our <em>Work</em></h1>
+  <p class="page-hero-sub">A running record of what's come off the floor at TRANCZ — private label pieces, sampling runs and client collaborations, straight from Dombivli.</p>
+  <div class="hero-btn-row">
+    <a href="https://wa.me/918097283931?text=Hi+Rohit%2C+I+would+like+to+enquire+about+Trancz+Fashion" target="_blank" class="btn-black">WhatsApp Us</a>
+    <a href="https://instagram.com/tranczfashion" target="_blank" class="btn-outline">Follow Us</a>
+  </div>
+</div>
+
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker">
+    <span class="ticker-item"><span class="ticker-dot"></span>Premium Garment Manufacturer</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Private Label Solutions</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Low MOQ</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Pattern Making</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Fabric Sourcing</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>HD Print &middot; DTF &middot; Puff &middot; Foil</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>On-Time Delivery</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>GST Registered &middot; Mumbai, India</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Corporate Gifting Solutions</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Premium Garment Manufacturer</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Private Label Solutions</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Low MOQ</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Pattern Making</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Fabric Sourcing</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>HD Print &middot; DTF &middot; Puff &middot; Foil</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>On-Time Delivery</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>GST Registered &middot; Mumbai, India</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Corporate Gifting Solutions</span>
+  </div>
+</div>
+
+<div class="filters" id="filters">
+  <button class="active" data-filter="all">All</button>
+</div>
+
+<section class="gallery" id="gallery" style="padding-top:36px"></section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="footer-logo" aria-label="Trancz Fashion - Home"><img src="wt.png" alt="Trancz Fashion"></a>
+      <p class="footer-desc">A leading garment manufacturing company based in Mumbai, India. Specializing in premium apparel production, fabric sourcing, and private label solutions.</p>
+      <div class="social-links">
+        <a href="https://instagram.com/tranczfashion" target="_blank" class="social-link" title="Instagram">ig</a>
+        <a href="https://wa.me/918097283931" target="_blank" class="social-link" title="WhatsApp">wa</a>
+        <a href="mailto:rohit@trancz.com" class="social-link" title="Email">✉</a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Quick Links</h4><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="corporate.html">Corporate Gifting</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="contact.html">Contact Us</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+    <div class="footer-col"><h4>Services</h4><ul class="footer-links"><li><a href="services.html#sampling">Sampling &amp; Prototypes</a></li><li><a href="services.html#pattern-making">Pattern Making</a></li><li><a href="services.html#private-label">Private Label</a></li><li><a href="services.html#fabric-sourcing">Fabric Sourcing</a></li><li><a href="services.html#printing-services">Printing Services</a></li></ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul class="footer-links"><li><a href="https://wa.me/918097283931">+91 80972 83931</a></li><li><a href="mailto:rohit@trancz.com">rohit@trancz.com</a></li><li><a href="contact.html">Dombivli, Mumbai</a></li><li><a href="https://instagram.com/tranczfashion" target="_blank">@tranczfashion</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Trancz Fashion, Mumbai &mdash; GST Registered &mdash; Garment Manufacturer India</p>
+    <div class="footer-btm-links"><a href="#">Privacy</a><a href="#">Terms</a></div>
+  </div>
+</footer>
+
+<a href="https://wa.me/918097283931?text=Hi+Rohit%2C+I+would+like+to+enquire+about+Trancz+Fashion" target="_blank" class="wa-float" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+  const nb=document.getElementById('navbar');
+  const tickerWrap=document.querySelector('.ticker-wrap');
+  const root=document.documentElement;
+
+  // Nav height changes when the .scrolled class shrinks its padding, so we
+  // re-measure on every scroll (rAF-throttled) instead of hardcoding a top
+  // offset. This is what keeps the ticker flush under the nav with no gap.
+  let ticking=false;
+  function syncOffsets(){
+    root.style.setProperty('--nav-h', nb.offsetHeight+'px');
+    root.style.setProperty('--ticker-h', tickerWrap.offsetHeight+'px');
+    ticking=false;
+  }
+  function onScroll(){
+    nb.classList.toggle('scrolled',scrollY>60);
+    if(!ticking){ requestAnimationFrame(syncOffsets); ticking=true; }
+  }
+  window.addEventListener('scroll',onScroll);
+  window.addEventListener('resize',syncOffsets);
+  window.addEventListener('load',syncOffsets);
+  syncOffsets(); // run once immediately so it's correct before first scroll/paint
+
+  const hb=document.getElementById('hamburger'),nl=document.getElementById('navLinks');
+  hb.addEventListener('click',()=>{hb.classList.toggle('open');nl.classList.toggle('open')});
+  nl.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{hb.classList.remove('open');nl.classList.remove('open')}));
+</script>
+
+<script>
+/* ------------------------------------------------------------------
+   PRODUCTS — the source of truth. Each item's `category` MUST match
+   its actual image folder/type — this is what filtering reads.
+   Folder layout:
+     Hoodies  -> Gallary/H/H{n}.jpeg
+     Pants    -> Gallary/P/P{n}.jpeg
+     Tshirts  -> Gallary/T{n}.jpeg   (flat, no subfolder)
+     Shirts   -> Gallary/S/S{n}.jpeg
+     Jackets  -> Gallary/J/J{n}.webp
+   `ratio` sets the tile's height (w:h) for the masonry look.
+   `img: null` falls back to a labelled placeholder swatch.
+
+   Visual randomness (mixing categories in the "All" view) is handled
+   separately below by shuffling DISPLAY ORDER only — never touch
+   `category` to fake variety, or filtering breaks.
+------------------------------------------------------------------- */
+const PRODUCTS = [
+  { name:"Printed Hoodie", category:"Hoodies", ratio:"4/5", img:"Gallary/H/H1.png", tone:"#c9b291" },
+  { name:"Printed Oversized/Boxy fit hoodie", category:"Hoodies", ratio:"1/1", img:"Gallary/H/H2.jpeg", tone:"#1c1a17" },
+  { name:"400 gsm Embroidered Hoodie", category:"Hoodies", ratio:"3/4", img:"Gallary/H/H3.jpeg", tone:"#e4dcd0" },
+  { name:"Hoodie 4", category:"Hoodies", ratio:"5/4", img:"Gallary/H/H4.jpeg", tone:"#b79a78" },
+  { name:"Normal 400 gsm Hoodie", category:"Hoodies", ratio:"6/7", img:"Gallary/H/H5.jpeg", tone:"#241f1a" },
+  { name:"Nylon Hoodie", category:"Hoodies", ratio:"790/372", img:"Gallary/H/H6.jpeg", tone:"#d9c4ac" },
+  { name:"Normal 400 gsm Hoodie", category:"Hoodies", ratio:"977/421", img:"Gallary/H/H7.jpeg", tone:"#8a7458" },
+  { name:"400 gsm Embroidered Hoodie", category:"Hoodies", ratio:"842/467", img:"Gallary/H/H8.jpeg", tone:"#8a7458" },
+
+  { name:"Baggy Cargos", category:"Pants", ratio:"4/6", img:"Gallary/P/P1.jpeg", tone:"#141210" },
+  { name:"Parachute Pant", category:"Pants", ratio:"4/7", img:"Gallary/P/P2.jpeg", tone:"#c9b291" },
+  { name:"Pant 3", category:"Pants", ratio:"1/1", img:"Gallary/P/P3.jpeg", tone:"#1c1a17" },
+  { name:"Baggy Shorts", category:"Pants", ratio:"4/5", img:"Gallary/P/P4.jpeg", tone:"#e4dcd0" },
+  { name:"Baggy Track Pant", category:"Pants", ratio:"1/1", img:"Gallary/P/P5.jpeg", tone:"#b79a78" },
+  { name:"Pant 6", category:"Pants", ratio:"4/6", img:"Gallary/P/P6.jpeg", tone:"#241f1a" },
+  { name:"Pant 7", category:"Pants", ratio:"3/6", img:"Gallary/P/P7.jpeg", tone:"#d9c4ac" },
+  { name:"Pant 8", category:"Pants", ratio:"3/6", img:"Gallary/P/P8.jpeg", tone:"#8a7458" },
+
+  { name:"Printed Round neck Tshirt", category:"Tshirts", ratio:"1/1", img:"Gallary/T/T1.jpeg", tone:"#1c1a17" },
+  { name:"Flared Sleeve Boxy Full Sleeve Tshirt", category:"Tshirts", ratio:"413/400", img:"Gallary/T/T2.jpeg", tone:"#e4dcd0" },
+  { name:"All over printed (AOP) Round neck Tshirt", category:"Tshirts", ratio:"6/6", img:"Gallary/T/T4.jpeg", tone:"#241f1a" },
+  { name:"AOP Round neck Tshirt", category:"Tshirts", ratio:"2/3", img:"Gallary/T/T5.jpeg", tone:"#d9c4ac" },
+  { name:"AOP Round neck Tshirt", category:"Tshirts", ratio:"587/295", img:"Gallary/T/T6.jpeg", tone:"#8a7458" },
+  { name:"Printed Tshirt", category:"Tshirts", ratio:"440/663", img:"Gallary/T/T13.jpeg", tone:"#e4dcd0" },
+  
+    { name:"Printed Shirt", category:"Shirts", ratio:"598/305", img:"Gallary/T/T3.jpeg", tone:"#b79a78" },
+  { name:"Stripped Printed Shirt", category:"Shirts", ratio:"3/4", img:"Gallary/S/S1.jpg", tone:"#b79a78" },
+  { name:"Brushed Checks Boxy Shirt", category:"Shirts", ratio:"4/6", img:"Gallary/S/S2.png", tone:"#241f1a" },
+  { name:"Yarned Dyed Striped Boxy Shirt", category:"Shirts", ratio:"3/4", img:"Gallary/S/S3.jpeg", tone:"#d9c4ac" },
+  { name:"Brushed Checks Boxy Shirt", category:"Shirts", ratio:"497/577", img:"Gallary/S/S.png", tone:"#8a7458" },
+  { name:"Boxy Linen Shirt", category:"Shirts", ratio:"3/4", img:"Gallary/S/S5.png", tone:"#141210" },
+  { name:"Stripped Printed Shirt", category:"Shirts", ratio:"4/5", img:"Gallary/S/S6.jpeg", tone:"#c9b291" },
+  { name:"Printed Shirt", category:"Shirts", ratio:"1/1", img:"Gallary/S/S7.jpeg", tone:"#1c1a17" },
+  { name:"Placement Printed Shirt", category:"Shirts", ratio:"526/355", img:"Gallary/S/S8.jpeg", tone:"#e4dcd0" },
+  { name:"Stripped Shirt", category:"Shirts", ratio:"5/4", img:"Gallary/S/S4.png", tone:"#b79a78" },
+  { name:"Boxy Printed Shirt", category:"Shirts", ratio:"597/270", img:"Gallary/S/S10.jpeg", tone:"#241f1a" },
+  { name:"Boxy Half Sleeve Shirt", category:"Shirts", ratio:"515/213", img:"Gallary/S/S11.jpeg", tone:"#b79a78" },
+  { name:"Boxy Doctor Sleeve Shirt", category:"Shirts", ratio:"3/4", img:"Gallary/S/S12.jpeg", tone:"#d9c4ac" },
+  { name:"Brushed Checks Boxy Shirt", category:"Shirts", ratio:"3/4", img:"Gallary/S/S13.png", tone:"#d9c4ac" },
+  { name:"Brushed Checks Boxy Shirt", category:"Shirts", ratio:"505/267", img:"Gallary/S/S14.jpeg", tone:"#8a7458" },
+
+  { name:"Relaxed Fit Utility Jacket", category:"Jackets", ratio:"2/3", img:"Gallary/J/J1.webp", tone:"#d9c4ac" },
+  { name:"Oversized Versatile Jacket", category:"Jackets", ratio:"3/5", img:"Gallary/J/J2.webp", tone:"#8a7458" },
+  { name:"Oversized Versatile Jacket", category:"Jackets", ratio:"6/5", img:"Gallary/J/J3.webp", tone:"#141210" },
+  { name:"Relaxed Fit Utility Jacket", category:"Jackets", ratio:"4/5", img:"Gallary/J/J4.webp", tone:"#c9b291" },
+  { name:"Leather Collar Jacket", category:"Jackets", ratio:"1/1", img:"Gallary/J/J5.jpeg", tone:"#1c1a17" },
+  { name:"Oversized Versatile Jacket", category:"Jackets", ratio:"3/4", img:"Gallary/J/J6.webp", tone:"#e4dcd0" },
+  { name:"Oversized Versatile Jacket", category:"Jackets", ratio:"5/6", img:"Gallary/J/J7.webp", tone:"#b79a78" },
+  { name:"Leather Collar Jacket", category:"Jackets", ratio:"4/6", img:"Gallary/J/J8.webp", tone:"#241f1a" },
+  { name:"Oversized Versatile Jacket", category:"Jackets", ratio:"2/3", img:"Gallary/J/J9.webp", tone:"#d9c4ac" },
+  { name:"Anti-Pill Fleece Jacket", category:"Jackets", ratio:"3/4", img:"Gallary/J/J10.jpeg", tone:"#8a7458" },
+  
+    { name:"Polo Tshirt", category:"Polo Tshirts", ratio:"405/197", img:"Gallary/T/T7.jpeg", tone:"#141210" },
+  { name:"Painted V neck Polo Tshirt", category:"Polo Tshirts", ratio:"4/5", img:"Gallary/T/T8.jpeg", tone:"#c9b291" },
+  { name:"Regular fit Zipper Polo Tshirt", category:"Polo Tshirts", ratio:"1/1", img:"Gallary/T/T9.jpeg", tone:"#1c1a17" },
+  { name:"All Over Printed (AOP) Polo Tshirt", category:"Polo Tshirts", ratio:"3/4", img:"Gallary/T/T10.jpeg", tone:"#e4dcd0" },
+  { name:"AOP Half Sleeve Henley Waffled Tshirt", category:"Polo Tshirts", ratio:"448/677", img:"Gallary/T/T.jpeg", tone:"#1c1a17" },
+  { name:"Regular fit Polo Tshirt", category:"Polo Tshirts", ratio:"3/4", img:"Gallary/T/T12.jpeg", tone:"#e4dcd0" },
+
+  
+];
+
+// Shuffle DISPLAY ORDER only — category stays correct on every card,
+// so filtering always works no matter how mixed up the "All" view looks.
+function shuffle(arr){
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+const DISPLAY_PRODUCTS = shuffle(PRODUCTS);
+
+const gallery = document.getElementById('gallery');
+const filtersEl = document.getElementById('filters');
+
+const categories = ["All", ...new Set(PRODUCTS.map(p => p.category))];
+categories.forEach(cat => {
+  if (cat === "All") return;
+  const btn = document.createElement('button');
+  btn.textContent = cat;
+  btn.dataset.filter = cat;
+  filtersEl.appendChild(btn);
+});
+
+function render(){
+  gallery.innerHTML = "";
+  DISPLAY_PRODUCTS.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.dataset.category = p.category;
+
+    const frame = document.createElement('div');
+    frame.className = 'frame';
+    frame.style.aspectRatio = p.ratio;
+
+    if (p.img){
+      const img = document.createElement('img');
+      img.src = p.img;
+      img.alt = p.name;
+      img.style.height = "100%";
+      img.style.position = "absolute";
+      img.style.inset = "0";
+      frame.appendChild(img);
+    } else {
+      const tint = document.createElement('div');
+      tint.className = 'tint';
+      tint.style.height = "100%";
+      tint.style.position = "absolute";
+      tint.style.inset = "0";
+      tint.style.background = p.tone;
+      frame.appendChild(tint);
+    }
+
+    const info = document.createElement('div');
+    info.className = 'info';
+    info.innerHTML = `<p class="name">${p.name}</p><p class="meta">${p.category}</p>`;
+
+    card.appendChild(frame);
+    card.appendChild(info);
+    gallery.appendChild(card);
+  });
+}
+render();
+
+filtersEl.addEventListener('click', e => {
+  if (e.target.tagName !== 'BUTTON') return;
+  filtersEl.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  const f = e.target.dataset.filter;
+  document.querySelectorAll('.card').forEach(card => {
+    card.classList.toggle('hidden', f !== 'all' && card.dataset.category !== f);
+  });
+});
+</script>
+
+</body>
+</html>

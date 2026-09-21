@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Corporate Gifting | Trancz Fashion – Branded Apparel Mumbai</title>
+  <meta name="description" content="Premium customized corporate gifting by Trancz Fashion — hoodies, track pants, T-shirts, polo shirts for companies, teams, and events. Mumbai garment manufacturer."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&family=Fraunces:ital,wght@0,600;1,500&display=swap" rel="stylesheet"/>
+<style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --white:#FFFFFF;
+      --cream:#FAF7F2;
+      --stone:#F2EDE6;
+      --pebble:#EDE8E0;
+      --lgrey:#F5F4F3;
+      --mgrey:#E6E2DD;
+      --nude:#B89A74;
+      --nude2:#CEAF88;
+      --nude3:#E8D8C4;
+      --black:#111111;
+      --text:#1E1E1E;
+      --body:#3A3A3A;
+      --muted:#888880;
+      --border:#E2DDD7;
+      --font-serif:'Playfair Display',serif;
+      --font-sans:'Outfit',sans-serif;
+      --tr:all .3s cubic-bezier(.4,0,.2,1);
+    }
+    html{scroll-behavior:smooth}
+    body{background:var(--white);color:var(--text);font-family:var(--font-sans);font-size:16px;line-height:1.7;overflow-x:hidden}
+    ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--lgrey)}::-webkit-scrollbar-thumb{background:var(--nude);border-radius:4px}
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;transition:var(--tr)}
+    nav.scrolled{background:#FFFFFF;height:56px;border-bottom:1px solid var(--border)}
+    .logo{font-family:var(--font-serif);font-size:1.4rem;font-weight:700;color:var(--black);letter-spacing:3px;text-decoration:none;line-height:1}
+    .logo em{color:var(--nude);font-style:normal}
+    .nav-logo{display:flex;align-items:center;height:100%;text-decoration:none}
+    .nav-logo img{height:29px;width:auto;display:block}
+    @media(max-width:580px){.nav-logo img{height:22px}}
+    .nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+    .nav-links a{color:var(--body);text-decoration:none;font-size:.8rem;font-weight:400;letter-spacing:1.5px;text-transform:uppercase;transition:var(--tr);position:relative}
+    .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--nude);transition:var(--tr)}
+    .nav-links a:hover{color:var(--black)}.nav-links a:hover::after{width:100%}
+    .nav-links a.current{color:var(--black)}.nav-links a.current::after{width:100%}
+    .nav-cta{background:var(--black)!important;color:var(--white)!important;padding:.48rem 1.3rem!important;font-weight:500!important;letter-spacing:1px!important;font-size:.75rem!important;text-transform:uppercase!important}
+    .nav-cta::after{display:none!important}.nav-cta:hover{background:var(--nude)!important;color:var(--black)!important}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:1001}
+    .hamburger span{display:block;width:22px;height:1.5px;background:var(--black);transition:var(--tr)}
+    /* TICKER */
+    .ticker-wrap{
+      background:var(--black);
+      overflow:hidden;
+      padding:.65rem 0;
+      white-space:nowrap;
+      position:sticky;
+      top:52px;
+      z-index:999;
+    }
+    .ticker{display:inline-flex;animation:ticker 40s linear infinite}
+    .ticker-item{display:inline-flex;align-items:center;gap:.7rem;color:var(--white);font-size:.72rem;font-weight:400;letter-spacing:2px;text-transform:uppercase;padding:0 2.5rem}
+    .ticker-dot{width:4px;height:4px;background:var(--nude);border-radius:50%;flex-shrink:0}
+    @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    /* SECTION BASE */
+    section{padding:6rem 5%}
+    .sec-tag{display:inline-block;color:var(--nude);font-size:.68rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;margin-bottom:.8rem}
+    .sec-title{font-family:var(--font-serif);font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--black);font-weight:700;line-height:1.2;margin-bottom:.9rem}
+    .sec-title em{color:var(--nude);font-style:italic}
+    .sec-sub{color:var(--muted);font-size:.93rem;max-width:540px;line-height:1.8;font-weight:300}
+    .divider{width:40px;height:1px;background:var(--nude);margin:1.2rem 0}
+    /* BUTTONS */
+    .btn-black{background:var(--black);color:var(--white);padding:.8rem 2rem;border:none;font-family:var(--font-sans);font-size:.8rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:var(--tr);display:inline-block}
+    .btn-black:hover{background:var(--nude);color:var(--black)}
+    .btn-outline{background:transparent;color:var(--black);padding:.8rem 2rem;border:1px solid var(--black);font-family:var(--font-sans);font-size:.8rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:var(--tr);display:inline-block}
+    .btn-outline:hover{background:var(--black);color:var(--white)}
+    .btn-nude{background:var(--nude);color:var(--black);padding:.8rem 2rem;border:none;font-family:var(--font-sans);font-size:.8rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:var(--tr);display:inline-block}
+    .btn-nude:hover{background:var(--nude2);color:var(--black)}
+    .btn-white-out{background:transparent;color:var(--white);padding:.8rem 2rem;border:1px solid rgba(255,255,255,.4);font-family:var(--font-sans);font-size:.8rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:var(--tr);display:inline-block}
+    .btn-white-out:hover{background:rgba(255,255,255,.1);border-color:var(--white)}
+    /* FOOTER */
+    footer{background:var(--black);padding:1.8rem 5% 1.5rem}
+    .footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:2.5rem;max-width:1200px;margin:0 auto 1.2rem}
+    .footer-brand .logo{color:var(--white);display:block;margin-bottom:1rem}
+    .footer-brand .logo em{color:var(--nude)}
+	.footer-logo{display:inline-block;margin-bottom:.6rem}
+.footer-logo img{height:60px;width:auto;display:block}
+    .footer-desc{font-size:.8rem;color:rgba(255,255,255,.35);line-height:1.7;margin-bottom:1.1rem;font-weight:300}
+    .social-links{display:flex;gap:.6rem}
+    .social-link{width:36px;height:36px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.35);text-decoration:none;font-size:.75rem;transition:var(--tr)}
+    .social-link:hover{background:var(--nude);color:var(--black);border-color:var(--nude)}
+    .footer-col h4{font-size:.68rem;font-weight:500;color:var(--white);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:1.2rem}
+    .footer-links{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+    .footer-links a{color:rgba(255,255,255,.32);text-decoration:none;font-size:.8rem;transition:var(--tr);font-weight:300}
+    .footer-links a:hover{color:var(--nude);padding-left:4px}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.07);padding-top:1.2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;max-width:1200px;margin:0 auto}
+    .footer-bottom p{font-size:.74rem;color:rgba(255,255,255,.25);font-weight:300}
+    .footer-btm-links{display:flex;gap:1.5rem}
+    .footer-btm-links a{font-size:.74rem;color:rgba(255,255,255,.25);text-decoration:none;transition:var(--tr)}
+    .footer-btm-links a:hover{color:var(--nude)}
+    /* WHATSAPP */
+    .wa-float{position:fixed;bottom:2rem;right:2rem;z-index:999;background:#25d366;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:var(--trans);animation:bounceIn 1s 2s ease both}
+    .wa-float:hover{transform:scale(1.12);box-shadow:0 6px 28px rgba(37,211,102,.55)}
+    .wa-float svg{width:28px;height:28px;fill:white}
+    /* ANIMATIONS */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    /* RESPONSIVE */
+    @media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:680px){section{padding:4rem 5%}.nav-links{display:none}.nav-links.open{display:flex;flex-direction:column;position:fixed;inset:0;background:var(--white);align-items:center;justify-content:center;gap:2.5rem;z-index:1000}.nav-links.open a{font-size:1rem}.hamburger{display:flex}.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4px,5px)}.hamburger.open span:nth-child(2){opacity:0}.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-5px)}.footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column;text-align:center}.btn-black,.btn-outline{padding:.55rem 1.3rem;font-size:.7rem}}
+</style>
+<style>
+.page-hero{background:var(--cream);padding:5.5rem 5% 2rem;border-bottom:1px solid var(--border)}
+.page-hero-inner{max-width:1200px;margin:0 auto}
+.page-hero-tag{display:inline-block;color:var(--nude);font-size:.68rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;margin-bottom:.8rem}
+.page-hero-title{font-family:var(--font-serif);font-size:clamp(2.2rem,5vw,4rem);color:var(--black);font-weight:700;line-height:1.1;margin-bottom:.5rem;letter-spacing:-1px}
+.page-hero-title em{font-style:italic;color:var(--nude)}
+.page-hero-sub{color:var(--muted);font-size:.95rem;max-width:500px;line-height:1.8;margin-bottom:2rem;font-weight:300}
+.page-hero-line{width:40px;height:1px;background:var(--nude);margin:.8rem 0 1.5rem}
+.page-hero.has-bg{position:relative;background-size:cover;background-position:center;background-repeat:no-repeat;padding:5.5rem 5% 2rem}
+.page-hero.has-bg::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,17,17,.55) 0%,rgba(17,17,17,.75) 100%)}
+.page-hero.has-bg .page-hero-inner{position:relative;z-index:1}
+.page-hero.has-bg .page-hero-tag{color:var(--nude2)}
+.page-hero.has-bg .page-hero-title{color:var(--white)}
+.page-hero.has-bg .page-hero-title em{color:var(--nude2)}
+.page-hero.has-bg .page-hero-sub{color:rgba(255,255,255,.85);margin-bottom:1.2rem}
+.page-hero.has-bg .btn-outline{color:var(--white);border-color:rgba(255,255,255,.7);background:rgba(0,0,0,.3)}
+nav.solid-nav{background:#FFFFFF!important;border-bottom:1px solid var(--border)}
+.page-hero.has-bg .btn-outline:hover{background:rgba(255,255,255,.15);border-color:var(--white)}
+</style>
+<style>
+.gift-big-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);max-width:1200px;margin:2rem auto 0}
+.gift-big-card{background:var(--white);position:relative;overflow:hidden;transition:var(--tr)}
+.gift-big-card:hover{background:var(--cream)}
+.gift-card-img{aspect-ratio:16/9;overflow:hidden}
+.gift-card-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(30%);transition:transform .6s ease,filter .4s}
+.gift-big-card:hover .gift-card-img img{transform:scale(1.04);filter:grayscale(10%)}
+.gift-card-body{padding:1.3rem 2.2rem 1.5rem}
+.gift-card-num{font-family:var(--font-serif);font-size:.78rem;color:var(--nude);display:block;margin-bottom:.8rem;letter-spacing:1px;font-weight:700}
+.gift-card-title{font-size:1.1rem;font-weight:600;color:var(--black);margin-bottom:.5rem}
+.gift-card-desc{font-size:.84rem;color:var(--muted);line-height:1.7;font-weight:300}
+.gift-tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.9rem}
+.gift-tag{border:1px solid var(--border);color:var(--muted);font-size:.68rem;padding:.18rem .55rem;letter-spacing:.5px}
+
+/* ---- masonry gallery ---- */
+.mgal-filters{display:flex;gap:.6rem;flex-wrap:wrap;margin:1.6rem 0 2rem}
+.mgal-filters button{font-family:inherit;font-size:.75rem;padding:.5rem 1.1rem;background:transparent;border:1px solid var(--border);border-radius:100px;color:var(--black);cursor:pointer;transition:background .18s ease,border-color .18s ease,color .18s ease}
+.mgal-filters button:hover{border-color:var(--nude)}
+.mgal-filters button.active{background:var(--black);border-color:var(--black);color:var(--white)}
+.mgal{column-count:4;column-gap:14px}
+@media(max-width:1100px){.mgal{column-count:3}}
+@media(max-width:780px){.mgal{column-count:2}}
+@media(max-width:480px){.mgal{column-count:1}}
+.mgal-card{break-inside:avoid;margin-bottom:14px;position:relative;overflow:hidden;border-radius:2px}
+.mgal-card .frame{width:100%;display:block;position:relative}
+.mgal-card img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;display:block;transition:transform .4s ease}
+.mgal-card:hover img{transform:scale(1.04)}
+.mgal-card .info{position:absolute;left:0;right:0;bottom:0;padding:14px 16px;background:linear-gradient(180deg,rgba(17,17,17,0) 0%,rgba(17,17,17,.8) 100%);color:#fff;opacity:0;transform:translateY(6px);transition:opacity .22s ease,transform .22s ease}
+.mgal-card:hover .info{opacity:1;transform:translateY(0)}
+.mgal-card .info .n{font-size:.85rem;font-weight:600;margin:0 0 2px}
+.mgal-card .info .m{font-size:.68rem;color:var(--nude);letter-spacing:.03em}
+.mgal-card.hidden{display:none}
+.why-gift-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;max-width:1200px;margin:3rem auto 0}
+.wg-card{padding:1.5rem 0;border-top:2px solid var(--border);transition:var(--tr);text-align:center;display:flex;flex-direction:column;align-items:center}
+.wg-card:hover{border-top-color:var(--nude)}
+.wg-icon{font-size:1.4rem;margin-bottom:.8rem;display:block}
+.wg-icon-img{width:150px;height:150px;object-fit:contain;margin:0 auto 1.2rem;display:block}
+.wg-t{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:600;color:var(--black);margin-bottom:.5rem}
+.wg-d{font-size:.8rem;color:var(--muted);line-height:1.6;font-weight:300}
+@media(max-width:780px){.gift-big-grid{grid-template-columns:1fr}.why-gift-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:500px){.why-gift-grid{grid-template-columns:1fr}}
+
+/* ---- occasion category grid ---- */
+.occ-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:2rem}
+.occ-card{background:var(--white);padding:2.2rem 1.8rem;transition:var(--tr)}
+.occ-card:hover{background:var(--cream)}
+.occ-num{font-family:var(--font-sans);font-size:1.6rem;color:var(--nude);display:block;margin-bottom:.9rem;font-weight:300;letter-spacing:1px}
+.occ-t{font-size:1.05rem;font-weight:600;color:var(--black);margin-bottom:.5rem}
+.occ-d{font-size:.84rem;color:var(--muted);line-height:1.7;font-weight:300}
+@media(max-width:900px){.occ-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.occ-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav id="navbar" class="solid-nav">
+  <a href="index.html" class="nav-logo" aria-label="Trancz Fashion - Home"><img src="logo.png" alt="Trancz Fashion"></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="corporate.html" class="current">Corporate Gifting</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+<div class="page-hero has-bg" style="background-image:url('c.jpeg')">
+  <div class="page-hero-inner">
+    <div class="page-hero-tag">Corporate Solutions</div>
+    <h1 class="page-hero-title">Gifting <em>Solutions</em></h1>
+    <p class="page-hero-sub">Premium customized apparel for corporates, teams, events, and brand promotions. Branded clothing that reflects your company's values and identity.</p>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap">
+      <a href="https://wa.me/918097283931?text=Hi%2C+I+need+corporate+gifting+from+Trancz+Fashion" target="_blank" class="btn-black">Get a Quote</a>
+      <a href="contact.html" class="btn-outline">Contact Us</a>
+    </div>
+  </div>
+</div>
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker">
+    <span class="ticker-item"><span class="ticker-dot"></span>Premium Garment Manufacturer</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Private Label Solutions</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Low MOQ</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Pattern Making</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Fabric Sourcing</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>HD Print &middot; DTF &middot; Puff &middot; Foil</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>On-Time Delivery</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>GST Registered &middot; Mumbai, India</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Corporate Gifting Solutions</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Premium Garment Manufacturer</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Private Label Solutions</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Low MOQ from 1,000 pcs</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Pattern Making</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Fabric Sourcing</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>HD Print &middot; DTF &middot; Puff &middot; Foil</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>On-Time Delivery</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>GST Registered &middot; Mumbai, India</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Corporate Gifting Solutions</span>
+  </div>
+</div>
+<section style="background:var(--white);padding:1.5rem 5% 2.5rem">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="reveal"><span class="sec-tag">Made For The Occasion</span><h2 class="sec-title">Apparel For Every <em>Corporate Need</em></h2></div>
+    <div class="occ-grid">
+      <div class="occ-card reveal">
+        <span class="occ-num">01</span>
+        <div class="occ-t">Onboarding & Welcome Kits</div>
+        <div class="occ-d">Branded hoodies and tees for a new hire's first day — a small touch that makes a strong first impression.</div>
+      </div>
+      <div class="occ-card reveal">
+        <span class="occ-num">02</span>
+        <div class="occ-t">Event & Conference Merch</div>
+        <div class="occ-d">Custom tees, polos and jackets for launches, expos and offsites — printed and delivered on your timeline.</div>
+      </div>
+      <div class="occ-card reveal">
+        <span class="occ-num">03</span>
+        <div class="occ-t">Team Uniforms</div>
+        <div class="occ-d">Polos, jackets and track pants for daily wear — consistent fit and branding across your whole team.</div>
+      </div>
+      <div class="occ-card reveal">
+        <span class="occ-num">04</span>
+        <div class="occ-t">Festival & Group Tees</div>
+        <div class="occ-d">Matching tees for Ganpati, Janmashtami, Friendship Day and office celebrations — same design, made for the whole group.</div>
+      </div>
+      <div class="occ-card reveal">
+        <span class="occ-num">05</span>
+        <div class="occ-t">Client & Partner Gifting</div>
+        <div class="occ-d">Premium hoodies and sweatshirts, custom-branded, for clients and partners who matter.</div>
+      </div>
+      <div class="occ-card reveal">
+        <span class="occ-num">06</span>
+        <div class="occ-t">Sample Before Bulk</div>
+        <div class="occ-d">See the fit, fabric and print on a real sample before you commit to a bulk order.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--cream);padding:1.5rem 5%">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="reveal" style="text-align:center"><span class="sec-tag">Why Trancz</span><h2 class="sec-title">Gifting That <em>Speaks</em><br/>for Your Brand</h2></div>
+    <div class="why-gift-grid">
+      <div class="wg-card reveal"><img src="icon-branding.png" alt="Full custom branding icon" class="wg-icon-img"/><div class="wg-t">Full Custom Branding</div><div class="wg-d">Your logo, colours, and design executed perfectly on every piece through embroidery or print.</div></div>
+      <div class="wg-card reveal"><img src="icon-bulk.jpeg" alt="Bulk order ready icon" class="wg-icon-img"/><div class="wg-t">Bulk Order Ready</div><div class="wg-d">50 pieces or 5,000 — consistent quality and on-time delivery at every scale.</div></div>
+      <div class="wg-card reveal"><img src="icon-turnaround.png" alt="Fast turnaround icon" class="wg-icon-img"/><div class="wg-t">Fast Turnaround</div><div class="wg-d">Streamlined production ensures your gifts arrive on time for events, launches, and campaigns.</div></div>
+      <div class="wg-card reveal"><img src="icon-premium.png" alt="Premium quality icon" class="wg-icon-img"/><div class="wg-t">Premium Quality</div><div class="wg-d">High-quality fabrics and precision printing that reflects the standard of your brand.</div></div>
+    </div>
+  </div>
+</section>
+<section style="background:var(--nude);padding:1.5rem 5%;text-align:center">
+  <div class="reveal">
+    <h2 style="font-family:var(--font-serif);font-size:clamp(1.8rem,3vw,2.6rem);color:var(--black);font-weight:700;margin-bottom:.6rem">Looking for Customized<br/>Corporate Gifting?</h2>
+    <p style="color:rgba(17,17,17,.55);max-width:400px;margin:0 auto 1.5rem;font-size:.9rem;font-weight:300">Contact us today for pricing and timelines. Bulk orders welcome.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="https://wa.me/918097283931?text=Hi+Rohit%2C+I+need+corporate+gifting+solutions" target="_blank" class="btn-black">WhatsApp Us</a>
+      <a href="contact.html" class="btn-outline">Contact Sales</a>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+<a href="index.html" class="footer-logo" aria-label="Trancz Fashion - Home"><img src="wt.png" alt="Trancz Fashion"></a>      <p class="footer-desc">A leading garment manufacturing company based in Mumbai, India. Specializing in premium apparel production, fabric sourcing, and private label solutions.</p>
+      <div class="social-links">
+        <a href="https://instagram.com/tranczfashion" target="_blank" class="social-link" title="Instagram">ig</a>
+        <a href="https://wa.me/918097283931" target="_blank" class="social-link" title="WhatsApp">wa</a>
+        <a href="mailto:rohit@trancz.com" class="social-link" title="Email">✉</a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Quick Links</h4><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="corporate.html">Corporate Gifting</a></li><li><a href="contact.html">Contact Us</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+    <div class="footer-col"><h4>Services</h4><ul class="footer-links"><li><a href="services.html#sampling">Sampling &amp; Prototypes</a></li><li><a href="services.html#pattern-making">Pattern Making</a></li><li><a href="services.html#private-label">Private Label</a></li><li><a href="services.html#fabric-sourcing">Fabric Sourcing</a></li><li><a href="services.html#printing-services">Printing Services</a></li></ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul class="footer-links"><li><a href="https://wa.me/918097283931">+91 80972 83931</a></li><li><a href="mailto:rohit@trancz.com">rohit@trancz.com</a></li><li><a href="contact.html">Dombivli, Mumbai</a></li><li><a href="https://instagram.com/tranczfashion">@tranczfashion</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Trancz Fashion, Mumbai &mdash; GST Registered &mdash; Garment Manufacturer India</p>
+    <div class="footer-btm-links"><a href="#">Privacy</a><a href="#">Terms</a></div>
+  </div>
+</footer>
+<a href="https://wa.me/918097283931?text=Hi+Rohit%2C+I+would+like+to+enquire+about+Trancz+Fashion" target="_blank" class="wa-float" title="Chat on WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+<script>
+  const nb=document.getElementById('navbar');
+  window.addEventListener('scroll',()=>nb.classList.toggle('scrolled',scrollY>60));
+  const hb=document.getElementById('hamburger'),nl=document.getElementById('navLinks');
+  hb.addEventListener('click',()=>{hb.classList.toggle('open');nl.classList.toggle('open')});
+  nl.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{hb.classList.remove('open');nl.classList.remove('open')}));
+  const ro=new IntersectionObserver(entries=>entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*70);ro.unobserve(e.target)}}),{threshold:.08});
+  document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+</script>
+</body></html>
