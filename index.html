@@ -1,375 +1,473 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trancz Fashion - Home</title>
-
-  <!-- ✅ Font Awesome -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-  />
-
-  <style>
-    @font-face {
-      font-family: "Roboto Condensed";
-      src: url("Roboto-Condensed.ttf") format("truetype");
-      font-weight: 400;
-      font-style: normal;
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Trancz Fashion | Premium Garment Manufacturer Mumbai India</title>
+  <meta name="description" content="Trancz Fashion — leading garment manufacturer in Dombivli, Mumbai. Premium apparel production, private label solutions, fabric sourcing and printing. Founded by Rohit Jain."/>
+  <meta name="keywords" content="garment manufacturer Mumbai, private label clothing India, Trancz Fashion, Rohit Jain, apparel manufacturer Dombivli"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://www.trancz.com/"/>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Manufacturer","name":"Trancz Fashion","url":"https://www.trancz.com","telephone":"+918097283931","email":"rohit@trancz.com","address":{"@type":"PostalAddress","addressLocality":"Dombivli","addressRegion":"Maharashtra","addressCountry":"IN"},"founder":{"@type":"Person","name":"Rohit Jain"}}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --white:#FFFFFF;
+      --cream:#FAF7F2;
+      --stone:#F2EDE6;
+      --pebble:#EDE8E0;
+      --lgrey:#F5F4F3;
+      --mgrey:#E6E2DD;
+      --nude:#B89A74;
+      --nude2:#CEAF88;
+      --nude3:#E8D8C4;
+      --black:#111111;
+      --text:#1E1E1E;
+      --body:#3A3A3A;
+      --muted:#888880;
+      --border:#E2DDD7;
+      --font-serif:'Playfair Display',serif;
+      --font-sans:'Outfit',sans-serif;
+      --tr:all .3s cubic-bezier(.4,0,.2,1);
     }
-
-    html, body {
-      overflow-x: hidden;
-      margin: 0;
-      padding: 0;
+    html{scroll-behavior:smooth}
+    body{background:var(--white);color:var(--text);font-family:var(--font-sans);font-size:16px;line-height:1.7;overflow-x:hidden}
+    ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--lgrey)}::-webkit-scrollbar-thumb{background:var(--nude);border-radius:4px}
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;transition:var(--tr);background:rgba(255,255,255,.97);border-bottom:1px solid var(--border)}
+    nav.scrolled{background:rgba(255,255,255,.97);height:56px;border-bottom:1px solid var(--border)}
+    .logo{font-family:var(--font-serif);font-size:1.4rem;font-weight:700;color:var(--black);letter-spacing:3px;text-decoration:none;line-height:1}
+    .logo em{color:var(--nude);font-style:normal}
+    .nav-logo{display:flex;align-items:center;height:100%;text-decoration:none}
+    .nav-logo img{height:29px;width:auto;display:block}
+    @media(max-width:580px){.nav-logo img{height:32px}}
+    .nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+    .nav-links a{color:var(--body);text-decoration:none;font-size:.8rem;font-weight:400;letter-spacing:1.5px;text-transform:uppercase;transition:var(--tr);position:relative}
+    .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--nude);transition:var(--tr)}
+    .nav-links a:hover{color:var(--black)}.nav-links a:hover::after{width:100%}
+    .nav-links a.current{color:var(--black)}.nav-links a.current::after{width:100%}
+    .nav-cta{background:var(--black)!important;color:var(--white)!important;padding:.48rem 1.3rem!important;font-weight:500!important;letter-spacing:1px!important;font-size:.75rem!important;text-transform:uppercase!important}
+    .nav-cta::after{display:none!important}.nav-cta:hover{background:var(--nude)!important;color:var(--black)!important}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:1001}
+    .hamburger span{display:block;width:22px;height:1.5px;background:var(--black);transition:var(--tr)}
+    /* TICKER */
+    .ticker-wrap{
+      background:var(--black);
+      overflow:hidden;
+      padding:.65rem 0;
+      white-space:nowrap;
+      position:sticky;
+      top:52px;
+      z-index:999;
     }
-
-    body {
-      font-family: "Roboto Condensed", sans-serif;
-      color: #222;
-      line-height: 1.4;
-      background-color: #fff;
-    }
-
-    header {
-      background: #000;
-      color: #fff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 30px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      transition: opacity 0.3s ease;
-    }
-
-    header img {
-      height: 30px;
-      cursor: pointer;
-      transition: opacity 0.3s ease;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-    }
-
-    nav a {
-      margin-left: 25px;
-      color: #fff;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      text-decoration: none;
-    }
-
-    nav a:hover {
-      color: #ccc;
-    }
-
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 30px;
-      height: 25px;
-      cursor: pointer;
-      position: absolute;
-      top: 18px;
-      right: 25px;
-      z-index: 1100;
-    }
-
-    .menu-toggle span {
-      display: block;
-      height: 3px;
-      background: white;
-      border-radius: 2px;
-    }
-
-    @media (max-width: 900px) {
-      nav {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background: #000;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        padding: 20px 0;
-        text-align: center;
-      }
-
-      nav.active {
-        display: flex;
-      }
-
-      .menu-toggle {
-        display: flex;
-      }
-
-      nav a {
-        margin: 10px 0;
-        text-align: center;
-        font-size: 1.1rem;
-        border-bottom: 1px solid #333;
-      }
-
-      nav a:last-child {
-        border-bottom: none;
-      }
-
-      header.menu-open img {
-        opacity: 0;
-        pointer-events: none;
-      }
-    }
-
-    /* ---------- PAGE CONTENT STYLES ---------- */
-    .hero {
-      position: relative;
-      height: 70vh; /* reduced banner height */
-      background: url('banner.jpg') center/cover no-repeat;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.45);
-    }
-
-    .hero-content {
-      position: relative;
-      color: #fff;
-      text-align: center;
-      max-width: 900px;
-      padding: 20px;
-    }
-
-    .hero-content h1 {
-      font-size: 3rem;
-      font-weight: 600;
-      margin-bottom: 1px;
-    }
-
-    .hero-subtext {
-      font-size: 1.15rem;
-      max-width: 800px;
-      margin: 0 auto;
-      color: #ffffff;
-    }
-
-    section {
-      padding: 40px 10%;
-    }
-
-    section h2 {
-      text-align: center;
-      font-size: 2.4rem;
-      margin-top: 0;
-      margin-bottom: 1px;
-      letter-spacing: 1px;
-    }
-
-    section p {
-      text-align: center;
-      font-size: 1.05rem;
-      color: #444;
-      margin-bottom: 0.5px;
-    }
-
-    .split {
-      display: flex;
-      align-items: flex-start;
-      gap: 40px;
-      flex-wrap: wrap;
-    }
-
-    /* ✅ Desktop image widths (different for each section) */
-    .split img.process-img { width: 30%; }
-    .split img.facility-img { width: 30%; }
-    .split img.fashion-img { width: 30%; }
-
-    .split img {
-      border-radius: 0;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    }
-
-    .split .text {
-      flex: 1;
-    }
-
-    .split .text p {
-      margin-bottom: 1px;
-    }
-
-    .reverse {
-      flex-direction: row-reverse;
-    }
-
-    footer {
-      background: #000;
-      color: #fff;
-      text-align: center;
-      padding: 25px 10px;
-      font-size: 0.95rem;
-    }
-
-    footer a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      margin: 0 8px;
-    }
-
-    footer a:hover {
-      color: #ccc;
-    }
-
-    /* ✅ Mobile image widths (unique per section) */
-    @media(max-width: 900px) {
-      .split {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .split img {
-        margin: 0 auto;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-      }
-
-      .split img.process-img { width: 80%; }
-      .split img.facility-img { width: 80%; }
-      .split img.fashion-img { width: 70%; }
-
-      .hero {
-        height: 55vh;
-      }
-
-      .hero-content h1 {
-        font-size: 2rem;
-      }
-
-      section {
-        padding: 30px 8%;
-      }
-
-      section h2 {
-        margin-bottom: 1px;
-      }
-    }
+    .ticker-wrap{background:var(--black);overflow:hidden;padding:.65rem 0;white-space:nowrap}
+    .ticker{display:inline-flex;animation:ticker 40s linear infinite}
+    .ticker-item{display:inline-flex;align-items:center;gap:.7rem;color:var(--white);font-size:.72rem;font-weight:400;letter-spacing:2px;text-transform:uppercase;padding:0 2.5rem}
+    .ticker-dot{width:4px;height:4px;background:var(--nude);border-radius:50%;flex-shrink:0}
+    @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    /* SECTION BASE */
+    section{padding:6rem 5%}
+    .sec-tag{display:inline-block;color:var(--nude);font-size:.68rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;margin-bottom:.8rem}
+    .sec-title{font-family:var(--font-serif);font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--black);font-weight:700;line-height:1.2;margin-bottom:.9rem}
+    .sec-title em{color:var(--nude);font-style:italic}
+    .sec-sub{color:var(--muted);font-size:.93rem;max-width:540px;line-height:1.8;font-weight:300}
+    .divider{width:40px;height:1px;background:var(--nude);margin:1.2rem 0}
+    /* BUTTONS */
+    .btn-black{background:var(--black);color:var(--white);padding:.8rem 2rem;border:none;font-family:var(--font-sans);font-size:.8rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:var(--tr);display:inline-block}
+    .btn-black:hover{background:var(--nude);color:var(--black)}
+    .btn-outline{background:transparent;color:var(--black);padding:.8rem 2rem;border:1px solid var(--black);font-family:var(--font-sans);font-size:.8rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:var(--tr);display:inline-block}
+    .btn-outline:hover{background:var(--black);color:var(--white)}
+    .btn-nude{background:var(--nude);color:var(--black);padding:.8rem 2rem;border:none;font-family:var(--font-sans);font-size:.8rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:var(--tr);display:inline-block}
+    .btn-nude:hover{background:var(--nude2);color:var(--black)}
+    .btn-white-out{background:transparent;color:var(--white);padding:.8rem 2rem;border:1px solid rgba(255,255,255,.4);font-family:var(--font-sans);font-size:.8rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:var(--tr);display:inline-block}
+    .btn-white-out:hover{background:rgba(255,255,255,.1);border-color:var(--white)}
+    /* FOOTER */
+    footer{background:var(--black);padding:3rem 5% 2rem}
+    .footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3rem;max-width:1200px;margin:0 auto 3rem}
+    .footer-brand .logo{color:var(--white);display:block;margin-bottom:1rem}
+    .footer-brand .logo em{color:var(--nude)}
+    .footer-logo{display:inline-block;margin-bottom:.6rem}
+    .footer-logo img{height:60px;width:auto;display:block}
+    .footer-desc{font-size:.8rem;color:rgba(255,255,255,.35);line-height:1.8;margin-bottom:1.5rem;font-weight:300}
+    .social-links{display:flex;gap:.6rem}
+    .social-link{width:36px;height:36px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.35);text-decoration:none;font-size:.75rem;transition:var(--tr)}
+    .social-link:hover{background:var(--nude);color:var(--black);border-color:var(--nude)}
+    .footer-col h4{font-size:.68rem;font-weight:500;color:var(--white);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:1.2rem}
+    .footer-links{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+    .footer-links a{color:rgba(255,255,255,.32);text-decoration:none;font-size:.8rem;transition:var(--tr);font-weight:300}
+    .footer-links a:hover{color:var(--nude);padding-left:4px}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.07);padding-top:1.8rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;max-width:1200px;margin:0 auto}
+    .footer-bottom p{font-size:.74rem;color:rgba(255,255,255,.25);font-weight:300}
+    .footer-btm-links{display:flex;gap:1.5rem}
+    .footer-btm-links a{font-size:.74rem;color:rgba(255,255,255,.25);text-decoration:none;transition:var(--tr)}
+    .footer-btm-links a:hover{color:var(--nude)}
+    /* WHATSAPP */
+    .wa-float{position:fixed;bottom:2rem;right:2rem;z-index:999;background:#25d366;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:var(--trans);animation:bounceIn 1s 2s ease both}
+    .wa-float:hover{transform:scale(1.12);box-shadow:0 6px 28px rgba(37,211,102,.55)}
+    .wa-float svg{width:28px;height:28px;fill:white}
+    /* ANIMATIONS */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    /* RESPONSIVE */
+    @media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:680px){section{padding:4rem 5%}.nav-links{display:none}.nav-links.open{display:flex;flex-direction:column;position:fixed;inset:0;background:var(--white);align-items:center;justify-content:center;gap:2.5rem;z-index:1000}.nav-links.open a{font-size:1rem}.hamburger{display:flex}.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4px,5px)}.hamburger.open span:nth-child(2){opacity:0}.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-5px)}.footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column;text-align:center}.btn-black,.btn-outline{padding:.55rem 1.3rem;font-size:.7rem}}
   </style>
+<style>
+/* ── HERO ── */
+#hero{min-height:80vh;background:var(--white);display:flex;align-items:center;position:relative;overflow:hidden;padding-top:65px}
+
+.hero-content{position:relative;z-index:2;padding:0 5%;max-width:660px}
+.hero-overline{display:inline-flex;align-items:center;gap:.7rem;font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--nude);margin-bottom:1.5rem;animation:fadeUp .8s ease both;font-weight:500}
+.hero-overline::before{content:'';display:block;width:30px;height:1px;background:var(--nude)}
+.hero-h1{font-family:var(--font-serif);font-size:clamp(2.6rem,5.5vw,5rem);font-weight:700;color:var(--black);line-height:1.05;margin-bottom:1.4rem;animation:fadeUp .8s .15s ease both;letter-spacing:-1px}
+.hero-h1 em{font-style:italic;color:var(--nude)}
+.hero-sub{font-size:1rem;color:var(--muted);max-width:460px;margin-bottom:2.8rem;animation:fadeUp .8s .3s ease both;line-height:1.8;font-weight:300}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp .8s .45s ease both}
+.hero-right{position:absolute;right:5%;top:0;bottom:0;width:40%;overflow:hidden}
+.hero-right img{width:100%;height:100%;object-fit:cover;object-position:center;filter:grayscale(20%)}
+.hero-right::before{content:'';position:absolute;left:0;top:0;bottom:0;width:120px;background:linear-gradient(to right,var(--white),transparent);z-index:1}
+.hero-scroll{position:absolute;bottom:3rem;left:5%;display:flex;align-items:center;gap:.7rem;color:var(--muted);font-size:.65rem;letter-spacing:2.5px;text-transform:uppercase;z-index:2;animation:fadeUp 1s .8s ease both}
+.hero-scroll-line{width:40px;height:1px;background:linear-gradient(to right,var(--nude),transparent)}
+/* ── BRAND STRIP ── */
+.brand-strip{background:var(--cream);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.5rem 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem}
+.strip-stat{text-align:center}
+.strip-n{font-family:var(--font-serif);font-size:1.8rem;color:var(--black);font-weight:700;line-height:1}
+.strip-n em{color:var(--nude);font-style:normal}
+.strip-l{font-size:.65rem;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-top:.2rem}
+.strip-sep{width:1px;height:40px;background:var(--border)}
+/* ── ABOUT ── */
+#about{background:var(--white);padding-top:2rem;padding-bottom:2rem}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;max-width:1200px;margin:0 auto}
+.about-img-wrap{position:relative}
+.about-img-main{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;filter:grayscale(15%)}
+.about-img-caption{position:absolute;bottom:-1px;left:-1px;right:-1px;background:var(--black);color:var(--white);padding:.9rem 1.2rem;display:flex;align-items:center;justify-content:space-between}
+.aic-text{font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.aic-num{font-family:var(--font-serif);font-size:1.4rem;color:var(--nude);font-weight:700}
+.about-feats{margin-top:2.2rem;display:flex;flex-direction:column;gap:.1rem}
+.about-feat{display:flex;align-items:flex-start;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--border)}
+.about-feat:last-child{border-bottom:none}
+.feat-num{font-family:var(--font-serif);font-size:.9rem;color:var(--nude);font-weight:700;flex-shrink:0;min-width:20px;margin-top:.1rem}
+.feat-t{font-size:.9rem;font-weight:600;color:var(--black);margin-bottom:.2rem}
+.feat-d{font-size:.8rem;color:var(--muted);line-height:1.6;font-weight:300}
+/* ── FACILITY ── */
+#facility{background:var(--black);padding:3rem 5%}
+.facility-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+.fac-left .sec-tag{color:var(--nude2)}
+.fac-left .sec-title{color:var(--white)}
+.fac-left .sec-title em{color:var(--nude2)}
+.fac-left .sec-sub{color:rgba(255,255,255,.45)}
+.fac-left .divider{background:var(--nude)}
+.fac-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08)}
+.fstat{background:var(--black);padding:2rem 1.5rem;position:relative}
+.fstat::after{content:'';position:absolute;bottom:0;left:1.5rem;width:0;height:1px;background:var(--nude);transition:.4s ease}
+.fstat:hover::after{width:calc(100% - 3rem)}
+.fstat-n{font-family:var(--font-serif);font-size:2.8rem;color:var(--white);font-weight:700;line-height:1}
+.fstat-n em{color:var(--nude);font-style:normal}
+.fstat-l{font-size:.68rem;color:rgba(255,255,255,.4);letter-spacing:1.5px;text-transform:uppercase;margin-top:.5rem}
+/* ── SERVICES ── */
+#services-home{background:var(--cream);padding-top:2rem;padding-bottom:2rem}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);max-width:1200px;margin:3rem auto 0;border:1px solid var(--border)}
+.svc-card--teaser{background:var(--cream)!important}
+.svc-card--teaser .svc-num{color:var(--black)}
+.teaser-pills{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.8rem}
+.teaser-pill{background:var(--white);border:1px solid var(--border);color:var(--body);font-size:.68rem;font-weight:500;letter-spacing:.3px;padding:.25rem .6rem;border-radius:20px}
+.teaser-more{color:var(--nude);font-weight:600;font-size:.8rem;margin-top:.9rem;display:inline-block}
+.svc-card{background:var(--white);padding:2.2rem;transition:var(--tr);position:relative}
+.svc-card::before{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--nude);transition:.4s ease}
+.svc-card:hover{background:var(--cream)}.svc-card:hover::before{width:100%}
+.svc-num{font-family:var(--font-serif);font-size:.85rem;color:var(--nude);font-weight:700;margin-bottom:1.2rem;display:block;letter-spacing:1px}
+.svc-icon-img{width:100%;aspect-ratio:1/1;height:auto;border-radius:0;object-fit:cover;display:block;margin:0 0 1.2rem}
+.svc-title{font-size:.95rem;font-weight:600;color:var(--black);margin-bottom:.6rem;line-height:1.3}
+.svc-desc{font-size:.8rem;color:var(--muted);line-height:1.7;font-weight:300}
+/* ── GIFTING ── */
+#gifting-home{background:var(--white);padding-top:2rem;padding-bottom:2rem}
+.gifting-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;max-width:1200px;margin:0 auto}
+.gift-products{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);margin-top:2rem}
+.gift-card{background:var(--white);padding:1.8rem 1.5rem;transition:var(--tr);cursor:pointer}
+.gift-card:hover{background:var(--stone)}
+.gift-card-icon{font-size:1.6rem;margin-bottom:.8rem;display:block}
+.gift-card-name{font-size:.9rem;font-weight:600;color:var(--black);margin-bottom:.3rem}
+.gift-card-desc{font-size:.78rem;color:var(--muted);line-height:1.5;font-weight:300}
+/* ── WHY ── */
+#why{background:var(--stone);padding-top:2rem;padding-bottom:1.5rem}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1200px;margin:3rem auto 0}
+.why-card{background:var(--white);padding:2rem;position:relative;border:1px solid var(--border);transition:var(--tr);text-align:center}
+.why-card:hover{border-color:var(--nude);transform:translateY(-3px);box-shadow:0 12px 32px rgba(184,154,116,.12)}
+.why-icon{width:130px;height:130px;margin:0 auto 1.2rem;display:block;background:var(--stone,#f2f2f2);border:1px dashed var(--border,#ccc);border-radius:8px}
+.why-t{font-family:var(--font-serif);font-size:1.15rem;font-weight:700;color:var(--black);margin-bottom:.5rem;letter-spacing:.3px}
+.why-d{font-family:var(--font-sans);font-size:.85rem;color:var(--muted);line-height:1.7;font-weight:400}
+/* ── PROCESS ── */
+#process{position:relative;overflow:hidden;padding:3.5rem 5% 2.5rem}
+.process-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1589793463357-5fb813435467?w=1600&q=70&auto=format&fit=crop');background-size:cover;background-position:center}
+.process-overlay{position:absolute;inset:0;background:rgba(17,17,17,.92)}
+.process-inner{max-width:1100px;margin:0 auto;position:relative;z-index:2}
+.process-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:4rem;position:relative}
+.process-steps::before{content:'';position:absolute;top:18px;left:12%;right:12%;height:1px;background:rgba(184,154,116,.3);z-index:0}
+.process-step{text-align:center;position:relative;z-index:1;padding:0 .5rem}
+.step-num{width:54px;height:54px;background:var(--black);border:1px solid rgba(184,154,116,.5);display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-size:1.2rem;color:var(--nude);font-weight:700;margin:0 auto 1.2rem;transition:var(--tr)}
+.process-step:hover .step-num{background:var(--nude);color:var(--black);border-color:var(--nude)}
+.step-t{font-size:1.05rem;font-weight:500;color:var(--white);margin-bottom:.4rem;letter-spacing:.5px}
+.step-d{font-size:.88rem;color:rgba(255,255,255,.4);line-height:1.6;font-weight:300}
+/* ── FAQ ── */
+#faq{background:var(--white);padding-top:2rem;padding-bottom:2rem}
+.faq-inner{max-width:760px;margin:3rem auto 0}
+.faq-item{border-bottom:1px solid var(--border);overflow:hidden}
+.faq-item:first-child{border-top:1px solid var(--border)}
+.faq-q{padding:1.3rem 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:.92rem;font-weight:500;color:var(--black);letter-spacing:.2px}
+.faq-icon{width:22px;height:22px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.9rem;color:var(--muted);transition:var(--tr);flex-shrink:0}
+.faq-a{max-height:0;overflow:hidden;font-size:.85rem;color:var(--muted);line-height:1.8;transition:max-height .35s ease,padding .35s ease;font-weight:300}
+.faq-item.open .faq-a{max-height:200px;padding-bottom:1.3rem}
+.faq-item.open .faq-icon{background:var(--black);color:var(--white);border-color:var(--black);transform:rotate(45deg)}
+/* ── CTA ── */
+#cta{background:var(--nude);padding:3rem 5%;text-align:center}
+.cta-title{font-family:var(--font-serif);font-size:clamp(2rem,4vw,3.2rem);color:var(--black);font-weight:700;margin-bottom:.7rem;line-height:1.15}
+.cta-sub{color:rgba(17,17,17,.55);max-width:440px;margin:0 auto 2.5rem;font-size:.95rem;font-weight:300}
+.cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+@media(max-width:1000px){.hero-right{display:block;position:absolute;inset:0;width:100%;height:100%;right:0;left:0;top:0;bottom:0;z-index:0}.hero-right::before{width:100%;background:linear-gradient(rgba(184,154,116,.78),rgba(184,154,116,.85))}.hero-right img{filter:grayscale(30%)}.hero-overline{color:#3a2f22}.hero-h1 em{color:#3a2f22}.hero-sub{color:#3a352c}.about-grid{grid-template-columns:1fr;gap:3rem}.facility-inner{grid-template-columns:1fr;gap:3rem}.gifting-grid{grid-template-columns:1fr;gap:3rem}.process-steps{grid-template-columns:repeat(3,1fr)}.process-steps::before{display:none}.why-grid{grid-template-columns:1fr 1fr}.services-grid{grid-template-columns:1fr 1fr}.brand-strip{justify-content:center}.strip-sep{display:none}}
+@media(max-width:580px){.services-grid{grid-template-columns:1fr}.why-grid{grid-template-columns:1fr}.fac-stats{grid-template-columns:1fr}.process-steps{grid-template-columns:1fr 1fr}.gift-products{grid-template-columns:1fr}}
+</style>
 </head>
-
 <body>
-  <header id="header">
-    <a href="index.html">
-      <img src="trancz-white-logo.png" alt="Trancz Fashion Logo">
-    </a>
-
-    <div class="menu-toggle" id="menu-toggle">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-
-  <nav id="navbar">
-  <a href="index.html">Home</a>
-  <a href="services.html">Services</a>
-  <a href="corporategifting.html">Corporate Gifting</a>
-  <a href="contact.html">Contact Us</a>
-  <a href="faq.html">FAQ</a>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo" aria-label="Trancz Fashion - Home"><img src="logo.png" alt="Trancz Fashion"></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html" class="current">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="corporate.html">Corporate Gifting</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
 </nav>
-  </header>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const menuToggle = document.getElementById("menu-toggle");
-      const navMenu = document.getElementById("navbar");
-      const header = document.getElementById("header");
-
-      menuToggle.addEventListener("click", () => {
-        navMenu.classList.toggle("active");
-        header.classList.toggle("menu-open");
-      });
-
-      navMenu.querySelectorAll("a").forEach(link => {
-        link.addEventListener("click", () => {
-          navMenu.classList.remove("active");
-          header.classList.remove("menu-open");
-        });
-      });
-    });
-  </script>
-
-  <section class="hero">
-    <div class="hero-content">
-      <h1>PREMIUM GARMENT & LABEL SOLUTIONS</h1>
-      <p class="hero-subtext">Quality, style, and relaibility from concept to creation.</p>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-overline">GST Registered &middot; Dombivli, Mumbai</div>
+    <h1 class="hero-h1">Premium<br/>Garment &amp;<br/><em>Label Solutions</em></h1>
+    <p class="hero-sub">Quality, style, and reliability from concept to creation. Your one-stop manufacturing partner for apparel, fabric sourcing, and private label solutions.</p>
+    <div class="hero-actions">
+      <a href="https://wa.me/918097283931?text=Hi+Rohit%2C+I+would+like+to+enquire+about+Trancz+Fashion" target="_blank" class="btn-black">WhatsApp Us</a>
+      <a href="services.html" class="btn-outline">Our Services</a>
     </div>
-  </section>
+  </div>
+  <div class="hero-right">
+    <img src="8.jpg" alt="Trancz Fashion manufacturing facility"/>
+  </div>
+</section>
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker">
+    <span class="ticker-item"><span class="ticker-dot"></span>Premium Garment Manufacturer</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Private Label Solutions</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Low MOQ</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Pattern Making</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Fabric Sourcing</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>HD Print &middot; DTF &middot; Puff &middot; Foil</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>On-Time Delivery</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>GST Registered &middot; Mumbai, India</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Corporate Gifting Solutions</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Premium Garment Manufacturer</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Private Label Solutions</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Low MOQ</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Pattern Making</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Fabric Sourcing</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>HD Print &middot; DTF &middot; Puff &middot; Foil</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>On-Time Delivery</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>GST Registered &middot; Mumbai, India</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Corporate Gifting Solutions</span>
+  </div>
+</div>
 
-  <section>
- 
-    <h2>Know About Us</h2>
-    <p>Trancz Fashion, based in Mumbai, India, is a <b>leading garment manufacturing company</b> specializing in premium apparel production, fabric sourcing, and private label solutions. Founded by <b>Rohit Jain</b>, Trancz Fashion is a <b>GST-registered</b> Indian manufacturer delivering high-quality, design-driven clothing for domestic brands and businesses. We specialize in end-to-end garment development — from concept and pattern design to stitching, finishing, and packaging — offering complete FOB and DDP solutions for fashion, lifestyle, and corporate clients.</p>
-  </section>
-
-  <section class="split">
-    <img src="process.jpg" alt="Process Image" class="process-img">
-    <div class="text">
-	 <div style="flex: 0 0 45%; max-width: 600px;">
-      <h2>Trancz's Vision and Mission</h2>
-	  <p style="text-align: justify;">
-      <p> Trancz Fashion  is focused on providing our customers with quality, fashion garments through hassle free process  at best possible Turn around time. Our systems, processes, management team, expertise makes us  <b>ONE-STOP</b> Solutions for  brands meeting their requierments right from sourcing, pattern making , sampling and production to finalizing delivery partners.
-	  <p>At Trancz Fashion, we understand that brands need a manufacturing partner who is <b>reliable, efficient, and aligned</b> with their creative vision. Delays, miscommunication, or inconsistent quality can slow down a brand’s growth and impact its reputation. That’s why we have built robust management structures, streamlined systems, and a culture of on-time delivery — ensuring every project runs smoothly from concept to final product.</p>
-	  </div>
-  </section>
-
-  <section class="split reverse">
-    <img src="facility.jpg" alt="Facility Image" class="facility-img">
-    <div class="text">
-	 <div style="flex: 0 0 45%; max-width: 600px;">
-      <h2>Our Facility</h2>
-	  <p style="text-align: justify;">
-      <p>Over the years, Trancz Fashion has collaborated with a wide range of streetwear and fast-fashion brandss, providing end-to-end services including fabric and textile sourcing, design development, size chart finalization, and pattern making.</p> 
-	  <p>We operate from a <b>4,500 sq. ft. office space, equipped with 35 modern machines</b> and a <b>dedicated team of 32 skilled professionals</b>, organized into Onboarding, Sampling, and Production departments to ensure seamless workflow.</p>
-	  <p>Our Production Team, comprising experienced karigars and bulk-cutting masters, delivers fast, efficient, and large-scale manufacturing without compromising on quality.</p>
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-img-wrap reveal">
+    <img class="about-img-main" src="2.jpeg" alt="Trancz Fashion manufacturing facility"/>
+      <div class="about-img-caption">
+        <span class="aic-text">Est. Mumbai, India</span>
+        <span class="aic-num">9+ Yrs</span>
+      </div>
     </div>
-  </section>
-
-  <section class="split">
-    <img src="fashion.jpg" alt="Fashion Image" class="fashion-img">
-    <div class="text">
-		 <div style="flex: 0 0 45%; max-width: 600px;">
-      <h2>We Know Fashion<br>Inside Out</h2>
-	    <p style="text-align: justify;">
-      <p>At Trancz Fashion, we have spent years mastering the intricacies of the clothing industry, understanding what it truly takes to build and grow a successful brand. We know how to turn a vision into a tangible, profitable reality.</p> 
-	  <p><b>Our structured approach, experienced team, and streamlined systems</b> make working with us efficient, reliable, and brand-friendly, so our clients can focus on growth while we handle execution. <p> 
-	  </div>
-  </section>
-
-  <footer>
-    <div class="footer-links">
-      <a href="https://instagram.com/tranczfashion" target="_blank">
-        <i class="fa-brands fa-instagram"></i> @tranczfashion
-      </a> |
-      <a href="https://wa.me/918097283931" target="_blank">
-        <i class="fa-brands fa-whatsapp"></i> 8097283931
-      </a> |
+    <div class="reveal">
+      <span class="sec-tag">About Trancz Fashion</span>
+      <h2 class="sec-title">Built on Craft,<br/>Driven by <em>Vision</em></h2>
+      <div class="divider"></div>
+      <p style="color:var(--muted);font-size:.9rem;line-height:1.85;margin-bottom:1rem;font-weight:300">Trancz Fashion, based in <strong style="color:var(--black);font-weight:600">Mumbai, India</strong>, is a leading garment manufacturing company specializing in premium apparel production, fabric sourcing, and private label solutions. Founded by <strong style="color:var(--black);font-weight:600">Rohit Jain</strong>, Trancz is a <strong style="color:var(--black);font-weight:600">GST-registered</strong> manufacturer delivering design-driven clothing for domestic brands and businesses.</p>
+      <p style="color:var(--muted);font-size:.9rem;line-height:1.85;margin-bottom:2rem;font-weight:300">We offer complete FOB and DDP solutions — from concept and pattern design to stitching, finishing, and packaging — for fashion, lifestyle, and corporate clients.</p>
+      <div class="about-feats">
+        <div class="about-feat"><span class="feat-num">01</span><div><div class="feat-t">4,500 sq.ft. Modern Facility</div><div class="feat-d">Equipped with 35 modern machines and 32 skilled professionals across Onboarding, Sampling, and Production departments.</div></div></div>
+        <div class="about-feat"><span class="feat-num">02</span><div><div class="feat-t">ONE-STOP Manufacturing Partner</div><div class="feat-d">Sourcing, pattern making, sampling, production, and delivery partnerships — all under one roof.</div></div></div>
+        <div class="about-feat"><span class="feat-num">03</span><div><div class="feat-t">FOB &amp; DDP Solutions</div><div class="feat-d">Complete export documentation and delivery for domestic and international clients. GST-registered, compliance-ready.</div></div></div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:2.2rem">
+        <a href="contact.html" class="btn-black">Get in Touch</a>
+        <a href="services.html" class="btn-outline">View Services</a>
+      </div>
     </div>
-    <div class="footer-email">
-      <a href="mailto:rohit@trancz.com" target="_blank">
-        <i class="fa-regular fa-envelope"></i> rohit@trancz.com
-      </a>
-    </div>
-  </footer>
-</body>
-</html>
+  </div>
+</section>
 
+<!-- FACILITY -->
+<section id="facility">
+  <div class="facility-inner">
+    <div class="fac-left reveal">
+      <span class="sec-tag">Our Facility</span>
+      <h2 class="sec-title">Where <em>Craft</em><br/>Meets Scale</h2>
+      <div class="divider"></div>
+      <p class="sec-sub" style="color:rgba(255,255,255,.4)">Over the years, Trancz Fashion has collaborated with streetwear and fast-fashion brands, providing end-to-end services. Our Production Team of experienced karigars and bulk-cutting masters delivers fast, efficient, large-scale manufacturing without compromising quality.</p>
+      <div style="margin-top:2rem"><a href="contact.html" class="btn-nude">Start a Project</a></div>
+    </div>
+    <div class="reveal">
+      <div class="fac-stats">
+        <div class="fstat"><div class="fstat-n">4,500</div><div class="fstat-l">sq.ft. Workspace</div></div>
+        <div class="fstat"><div class="fstat-n">35</div><div class="fstat-l">Modern Machines</div></div>
+        <div class="fstat"><div class="fstat-n">32</div><div class="fstat-l">Skilled Professionals</div></div>
+        <div class="fstat"><div class="fstat-n">3</div><div class="fstat-l">Departments: Onboarding, Sampling, Production</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services-home">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="reveal" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1.5rem">
+      <div><span class="sec-tag">What We Do</span><h2 class="sec-title">Our <em>Services</em></h2></div>
+    </div>
+    <div class="services-grid">
+      <div class="svc-card reveal"><img class="svc-icon-img" src="51.png"/><div class="svc-title">Sampling &amp; Prototype Development</div><div class="svc-desc">High-quality garment samples to finalize fits, fabrics, and design details before any bulk production begins.</div></div>
+      <div class="svc-card reveal"><img class="svc-icon-img" src="55.png"/><div class="svc-title">Private Label Manufacturing</div><div class="svc-desc">End-to-end private label solutions — design, sourcing, production, and branding under one roof.</div></div>
+      <div class="svc-card reveal"><img class="svc-icon-img" src="moq.png"/><div class="svc-title">Low MOQ for Startups</div><div class="svc-desc">Support emerging brands with low minimums starting from 1,000 pieces with flexible style combinations.</div></div>
+      <div class="svc-card svc-card--teaser reveal"><img class="svc-icon-img" src="52.png"/><div class="svc-title">Printing &amp; More</div><div class="svc-desc">HD Print, DTF, Foil and more — plus pattern making &amp; fabric sourcing.</div>
+        <div class="teaser-pills"><span class="teaser-pill">HD Print</span><span class="teaser-pill">DTF</span><span class="teaser-pill">Foil</span><span class="teaser-pill">+4 more</span></div>
+        <a href="services.html" class="teaser-more">See Everything →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GIFTING -->
+<section id="gifting-home">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="reveal" style="max-width:620px">
+      <span class="sec-tag">Corporate Gifting</span>
+      <h2 class="sec-title">Premium Gifting<br/><em>Solutions</em></h2>
+      <div class="divider"></div>
+      <p class="sec-sub">Premium customized apparel for corporates, teams, events, and brand promotions. High-quality branded clothing that makes a lasting impression.</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem">
+        <a href="corporate.html" class="btn-black">Explore Gifting</a>
+        <a href="https://wa.me/918097283931?text=Hi%2C+I+need+corporate+gifting+solutions" target="_blank" class="btn-outline">Get a Quote</a>
+      </div>
+    </div>
+    <div class="reveal" style="display:flex;justify-content:center;margin-top:2.5rem">
+      <a href="corporate.html" class="btn-black">View Full Collection</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why">
+  <div style="text-align:center;max-width:580px;margin:0 auto 1rem" class="reveal">
+    <span class="sec-tag">Why Trancz Fashion</span>
+    <h2 class="sec-title">Reliable, Efficient &amp;<br/><em>Brand-Aligned</em></h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card reveal"><div class="why-t">Fast Turnaround</div><div class="why-d">Streamlined systems and structured teams ensure quick production without quality compromise.</div></div>
+    <div class="why-card reveal"><div class="why-t">One-Stop Solution</div><div class="why-d">Sourcing, pattern making, sampling, production, delivery — everything under one roof.</div></div>
+    <div class="why-card reveal"><div class="why-t">Structured Management</div><div class="why-d">Three dedicated departments — Onboarding, Sampling, Production — for seamless workflow.</div></div>
+    <div class="why-card reveal"><div class="why-t">Startup Friendly</div><div class="why-d">Low MOQ — designed for emerging brands and growing businesses.</div></div>
+    <div class="why-card reveal"><div class="why-t">Creative Vision Aligned</div><div class="why-d">We understand brand identity. Delays and miscommunication are eliminated by design.</div></div>
+    <div class="why-card reveal"><div class="why-t">FOB &amp; DDP Ready</div><div class="why-d">Complete export documentation and delivery solutions for domestic and global clients.</div></div>
+  </div>
+</section>
+<!-- PROCESS -->
+<section id="process">
+  <div class="process-bg"></div><div class="process-overlay"></div>
+  <div class="process-inner">
+    <div class="reveal" style="text-align:center"><span class="sec-tag" style="color:var(--nude2)">How We Work</span><h2 class="sec-title" style="color:var(--white)">From Concept<br/>to <em style="color:var(--nude2)">Creation</em></h2><div class="divider" style="margin:1rem auto;background:var(--nude)"></div></div>
+    <div class="process-steps reveal">
+      <div class="process-step"><div class="step-num">01</div><div class="step-t">Onboarding</div><div class="step-d">Share your brief, references and requirements.</div></div>
+      <div class="process-step"><div class="step-num">02</div><div class="step-t">Pattern &amp; Sample</div><div class="step-d">Patterns and prototype for your approval.</div></div>
+      <div class="process-step"><div class="step-num">03</div><div class="step-t">Approval</div><div class="step-d">Review and refine until fully satisfied.</div></div>
+      <div class="process-step"><div class="step-num">04</div><div class="step-t">Production</div><div class="step-d">Bulk manufacturing with skilled karigars.</div></div>
+      <div class="process-step"><div class="step-num">05</div><div class="step-t">Delivery</div><div class="step-d">Packed and dispatched on time.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 2fr;gap:6rem;align-items:start" class="faq-layout">
+    <div class="reveal">
+      <span class="sec-tag">FAQ</span>
+      <h2 class="sec-title">Questions<br/>Answered</h2>
+      <div class="divider"></div>
+      <p class="sec-sub">Can't find your answer? WhatsApp Us directly.</p>
+      <div style="margin-top:1.5rem"><a href="https://wa.me/918097283931" target="_blank" class="btn-black">WhatsApp Us</a></div>
+    </div>
+    <div class="faq-inner reveal" style="margin:0">
+      <div class="faq-item"><div class="faq-q">What is your minimum order quantity?<span class="faq-icon">+</span></div><div class="faq-a">Our low MOQ starts from 1,000 pieces, making us ideal for startups and emerging brands. We offer flexible style and size combinations within this limit.</div></div>
+      <div class="faq-item"><div class="faq-q">What garment types do you manufacture?<span class="faq-icon">+</span></div><div class="faq-a">T-shirts, polo shirts, hoodies, caps, and more. We specialize in streetwear, fast-fashion, and corporate apparel including private label and corporate gifting products.</div></div>
+      <div class="faq-item"><div class="faq-q">Do you offer private label manufacturing?<span class="faq-icon">+</span></div><div class="faq-a">Yes — complete private label solutions including design, fabric sourcing, production, branding, and packaging, all under one roof.</div></div>
+      <div class="faq-item"><div class="faq-q">What printing techniques do you offer?<span class="faq-icon">+</span></div><div class="faq-a">HD Print, PUFF, DTF (Direct to Film), Foil printing, Spray, screen printing, and digital textile printing — all handled by our in-house karigars.</div></div>
+      <div class="faq-item"><div class="faq-q">What fabrics can you source?<span class="faq-icon">+</span></div><div class="faq-a">Cotton and performance textiles. We also collaborate with mills to develop custom fabrics tailored to your brand's requirements.</div></div>
+      <div class="faq-item"><div class="faq-q">Where are you located?<span class="faq-icon">+</span></div><div class="faq-a">We are based in Dombivli, Mumbai, Maharashtra, India, operating from a 4,500 sq.ft. facility with 35 modern machines and 32 team members.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="reveal">
+    <h2 class="cta-title">Ready to Build Your<br/>Dream Collection?</h2>
+    <p class="cta-sub">Connect with the Trancz team. We respond within 24 hours.</p>
+    <div class="cta-actions">
+      <a href="https://wa.me/918097283931?text=Hi+Rohit%2C+I+would+like+to+start+a+project+with+Trancz+Fashion" target="_blank" class="btn-black">WhatsApp Us</a>
+      <a href="contact.html" class="btn-outline">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="footer-logo" aria-label="Trancz Fashion - Home"><img src="wt.png" alt="Trancz Fashion"></a>
+      <p class="footer-desc">A leading garment manufacturing company based in Mumbai, India. Specializing in premium apparel production, fabric sourcing, and private label solutions.</p>
+      <div class="social-links">
+        <a href="https://instagram.com/tranczfashion" target="_blank" class="social-link" title="Instagram">ig</a>
+        <a href="https://wa.me/918097283931" target="_blank" class="social-link" title="WhatsApp">wa</a>
+        <a href="mailto:rohit@trancz.com" class="social-link" title="Email">✉</a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Quick Links</h4><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="corporate.html">Corporate Gifting</a></li><li><a href="contact.html">Contact Us</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+    <div class="footer-col"><h4>Services</h4><ul class="footer-links"><li><a href="services.html">Sampling &amp; Prototypes</a></li><li><a href="services.html">Pattern Making</a></li><li><a href="services.html">Private Label</a></li><li><a href="services.html">Fabric Sourcing</a></li><li><a href="services.html">Printing Services</a></li></ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul class="footer-links"><li><a href="https://wa.me/918097283931">+91 80972 83931</a></li><li><a href="mailto:rohit@trancz.com">rohit@trancz.com</a></li><li><a href="contact.html">Dombivli, Mumbai</a></li><li><a href="https://instagram.com/tranczfashion">@tranczfashion</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Trancz Fashion, Mumbai &mdash; GST Registered &mdash; Garment Manufacturer India</p>
+    <div class="footer-btm-links"><a href="#">Privacy</a><a href="#">Terms</a></div>
+  </div>
+</footer>
+<a href="https://wa.me/918097283931?text=Hi+Rohit%2C+I+would+like+to+enquire+about+Trancz+Fashion" target="_blank" class="wa-float" title="Chat on WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+<script>
+  const nb=document.getElementById('navbar');
+  window.addEventListener('scroll',()=>nb.classList.toggle('scrolled',scrollY>60));
+  const hb=document.getElementById('hamburger'),nl=document.getElementById('navLinks');
+  hb.addEventListener('click',()=>{hb.classList.toggle('open');nl.classList.toggle('open')});
+  nl.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{hb.classList.remove('open');nl.classList.remove('open')}));
+  const ro=new IntersectionObserver(entries=>entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*70);ro.unobserve(e.target)}}),{threshold:.08});
+  document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+</script>
+<script>
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    item.querySelector('.faq-q').addEventListener('click',()=>item.classList.toggle('open'));
+  });
+</script>
+<style>
+  @media(max-width:780px){.faq-layout{grid-template-columns:1fr!important;gap:3rem}}
+</style>
+</body></html>
