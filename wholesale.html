@@ -179,6 +179,7 @@
 .pprice b{font-size:1.05rem;color:var(--black);font-weight:600}
 .pprice small{font-size:.74rem;color:var(--muted)}
 .setchips{display:flex;flex-wrap:wrap;gap:.35rem}.setchips span{border:1px solid var(--border);padding:.15rem .5rem;font-size:.8rem;background:var(--cream)}.setchips b{font-weight:600;margin-right:.25rem}
+.pbo{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.4rem}.pbo span{font-size:.62rem;letter-spacing:1px;text-transform:uppercase;border:1px solid var(--nude);color:var(--black);padding:.05rem .4rem}
 .pset{font-size:.74rem;color:var(--body);margin-top:.35rem}
 .empty{padding:3rem;text-align:center;color:var(--muted);border:1px dashed var(--border)}
 /* modal */
@@ -393,17 +394,21 @@
     $('grid').innerHTML=list.map(p=>`<div class="pcard" data-id="${p.id}">
       <div class="pimg">${p.images[0]?`<img src="${esc(p.images[0])}" alt="${esc(p.name)}" loading="lazy"/>`:''}${p.images.length>1?`<span class="cnt">${p.images.length} photos</span>`:''}</div>
       <div class="pbody"><div class="pcat">${esc(p.category||'')}</div><div class="pname">${esc(p.name)}</div><div class="pcode">${esc(p.code||'')}</div>
-      ${setN(p)?`<div class="pset">Set of ${setN(p)} · ${esc(setTxt(p))}</div>`:''}<div class="pprice"><b>${inr(p.price)}<small style="font-weight:400"> /pc</small></b><small>${p.moq?'MOQ '+p.moq+' set'+(p.moq>1?'s':''):''}</small></div></div></div>`).join('');
+      ${bo(p).includes('set')&&setN(p)?`<div class="pset">Set of ${setN(p)} · ${esc(setTxt(p))}</div>`:''}<div class="pbo">${bo(p).map(x=>`<span>${BO[x]||x}</span>`).join('')}</div><div class="pprice"><b>${inr(p.price)}<small style="font-weight:400"> /pc</small></b><small>${bo(p).includes('set')&&p.moq?'MOQ '+p.moq+' set'+(p.moq>1?'s':''):(p.loose_moq?'MOQ '+p.loose_moq+' pcs':'')}</small></div></div></div>`).join('');
     $('empty').classList.toggle('ws-hidden',list.length>0);
   }
+  const BO={set:'Sets',size:'Size-wise',random:'Random sizes'};
+  function bo(p){return (p.buy_options&&p.buy_options.length)?p.buy_options:['set'];}
+  function moqTxt(p){const a=[];if(bo(p).includes('set')&&p.moq)a.push(p.moq+' set'+(p.moq>1?'s':'')+(setN(p)?' ('+p.moq*setN(p)+' pcs)':''));if((bo(p).includes('size')||bo(p).includes('random'))&&p.loose_moq)a.push(p.loose_moq+' pcs size-wise / random');return a.join(' or ');}
   function setN(p){return (p.set_sizes||[]).reduce((a,x)=>a+(+x.qty||0),0);}
+  function n0(p){return bo(p).includes('set')?setN(p):0;}
   function setTxt(p){return (p.set_sizes||[]).map(x=>x.size+' '+x.qty).join(' · ');}
   function openP(id){
     cur=products.find(p=>p.id===id);if(!cur)return;idx=0;
     $('mCat').textContent=cur.category||'';$('mName').textContent=cur.name;$('mCode').textContent=cur.code?'Code: '+cur.code:'';
-    $('mPrice').innerHTML=cur.price!=null?`${inr(cur.price)} <small style="font-size:.75rem;color:var(--muted);font-weight:400">/ pc</small>${cur.mrp?`<s>MRP ${inr(cur.mrp)}</s>`:''}${setN(cur)?`<div style="font-size:.9rem;font-weight:500;margin-top:.2rem">${inr(cur.price*setN(cur))} <small style="font-size:.75rem;color:var(--muted);font-weight:400">/ set of ${setN(cur)}</small></div>`:''}`:'';
-    const n=setN(cur);
-    const rows=[['Set contents',n?`<div class="setchips">${cur.set_sizes.map(x=>`<span><b>${esc(x.size)}</b>${esc(x.qty)}</span>`).join('')}</div>`:''],['Pieces per set',n?n+' pcs':''],['MOQ',cur.moq?esc(cur.moq)+' set'+(cur.moq>1?'s':'')+(n?' ('+cur.moq*n+' pcs)':''):''],['Fabric',esc(cur.fabric||'')],['GSM',esc(cur.gsm||'')],['Colours',esc(cur.colours||'')],['Sizes',!n?esc(cur.sizes||''):'']].filter(r=>r[1]);
+    $('mPrice').innerHTML=cur.price!=null?`${inr(cur.price)} <small style="font-size:.75rem;color:var(--muted);font-weight:400">/ pc</small>${cur.mrp?`<s>MRP ${inr(cur.mrp)}</s>`:''}${n0(cur)?`<div style="font-size:.9rem;font-weight:500;margin-top:.2rem">${inr(cur.price*setN(cur))} <small style="font-size:.75rem;color:var(--muted);font-weight:400">/ set of ${setN(cur)}</small></div>`:''}`:'';
+    const n=bo(cur).includes('set')?setN(cur):0;
+    const rows=[['Order as',bo(cur).map(x=>BO[x]||x).join(' / ')],['Set contents',n?`<div class="setchips">${cur.set_sizes.map(x=>`<span><b>${esc(x.size)}</b>${esc(x.qty)}</span>`).join('')}</div>`:''],['Pieces per set',n?n+' pcs':''],['MOQ',esc(moqTxt(cur))],['Fabric',esc(cur.fabric||'')],['GSM',esc(cur.gsm||'')],['Colours',esc(cur.colours||'')],['Sizes',!n?esc(cur.sizes||''):'']].filter(r=>r[1]);
     $('mSpec').innerHTML=rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('');
     $('mDesc').textContent=cur.description||'';
     $('mThumbs').innerHTML=cur.images.map((u,i)=>`<img src="${esc(u)}" data-i="${i}" alt=""/>`).join('');
