@@ -78,11 +78,14 @@ table.t{width:100%;border-collapse:collapse;background:#fff;border:1px solid var
 <div id="vAuth" class="hidden">
   <img src="logo.png" alt="Trancz" style="height:26px;margin-bottom:1.2rem"/>
   <h1>Wholesale Admin</h1>
-  <p class="muted" style="margin-bottom:1.2rem">Log in with your TRANCZ OPS admin account.</p>
+  <p class="muted" style="margin-bottom:1.2rem">Admin login (tranczonline@gmail.com / mis@trancz.com / rohit@trancz.com).</p>
   <form id="fAuth">
     <div class="fg"><label>Email</label><input id="ae" type="email" autocomplete="username" required/></div>
     <div class="fg"><label>Password</label><input id="ap" type="password" autocomplete="current-password" required/></div>
     <button class="btn" style="width:100%">Log In</button>
+    <div style="display:flex;justify-content:space-between;margin-top:.8rem;font-size:.8rem">
+      <a href="#" id="aSignup" class="muted">First time? Set password</a><a href="#" id="aForgot" class="muted">Forgot password</a>
+    </div>
     <div class="err" id="aErr"></div>
   </form>
 </div>
@@ -171,8 +174,8 @@ table.t{width:100%;border-collapse:collapse;background:#fff;border:1px solid var
 </div></div>
 
 <script>
-const SB_URL='https://scgzkihxgvelfwzmopil.supabase.co';
-const SB_KEY='sb_publishable_MHLq-tSP_JIZX-cGICvMQQ_tvKXwqZg';
+const SB_URL='https://craitfppqliewfhcelmo.supabase.co';
+const SB_KEY='sb_publishable_LhYEmbPvFKTPS9OvzDQsaQ_JxTC1_BR';
 const BUCKET='wholesale';
 const BUYER_URL=location.origin+location.pathname.replace(/wholesale-admin\.html$/,'wholesale.html');
 const sb=supabase.createClient(SB_URL,SB_KEY,{auth:{storageKey:'trancz-ws-admin'}});
@@ -195,8 +198,8 @@ function th(cols,state){return '<tr>'+cols.map(c=>c.k?`<th data-k="${c.k}">${c.l
 async function boot(){
   const {data:{session}}=await sb.auth.getSession();
   if(!session){$('vAuth').classList.remove('hidden');$('vApp').classList.add('hidden');return;}
-  const {data:ok}=await sb.rpc('is_super_admin');
-  if(!ok){await sb.auth.signOut();$('aErr').textContent='This account is not a super admin.';$('vAuth').classList.remove('hidden');$('vApp').classList.add('hidden');return;}
+  const {data:ok}=await sb.rpc('ws_is_admin');
+  if(!ok){await sb.auth.signOut();$('aErr').textContent='This email is not a wholesale admin.';$('vAuth').classList.remove('hidden');$('vApp').classList.add('hidden');return;}
   $('who').textContent=session.user.email;
   $('vAuth').classList.add('hidden');$('vApp').classList.remove('hidden');
   loadProducts();loadRequests();loadBuyers();
@@ -204,6 +207,17 @@ async function boot(){
 $('fAuth').addEventListener('submit',async e=>{e.preventDefault();$('aErr').textContent='';
   const {error}=await sb.auth.signInWithPassword({email:$('ae').value.trim(),password:$('ap').value});
   if(error){$('aErr').textContent=error.message;return;}boot();});
+$('aSignup').onclick=async e=>{e.preventDefault();const em=$('ae').value.trim(),pw=$('ap').value;$('aErr').style.color='';
+  if(!em||pw.length<6){$('aErr').textContent='Enter your admin email and a new password (min 6 chars), then click this again.';return;}
+  const {error}=await sb.auth.signUp({email:em,password:pw,options:{emailRedirectTo:location.href.split('#')[0]}});
+  if(error){$('aErr').textContent=error.message;return;}
+  $('aErr').style.color='var(--green)';$('aErr').textContent='Check your email and click the confirm link, then log in here.';};
+$('aForgot').onclick=async e=>{e.preventDefault();const em=$('ae').value.trim();$('aErr').style.color='';
+  if(!em){$('aErr').textContent='Enter your admin email first.';return;}
+  const {error}=await sb.auth.resetPasswordForEmail(em,{redirectTo:location.href.split('#')[0]});
+  if(error){$('aErr').textContent=error.message;return;}
+  $('aErr').style.color='var(--green)';$('aErr').textContent='Password reset link sent to your email.';};
+sb.auth.onAuthStateChange(async(ev)=>{if(ev==='PASSWORD_RECOVERY'){const pw=prompt('Enter a new admin password (min 6 chars):');if(pw){const {error}=await sb.auth.updateUser({password:pw});toast(error?error.message:'Password updated');}boot();}});
 $('bLogout').onclick=async()=>{await sb.auth.signOut();location.reload();};
 document.querySelectorAll('.menu a').forEach(a=>a.onclick=()=>{document.querySelectorAll('.menu a').forEach(x=>x.classList.toggle('on',x===a));['products','requests','buyers'].forEach(v=>$('sec-'+v).classList.toggle('hidden',v!==a.dataset.v));});
 
