@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Wholesale | Trancz Fashion</title>
+  <meta name="robots" content="noindex, nofollow"/>
+  <link rel="icon" type="image/png" href="logo.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --white:#FFFFFF;
+      --cream:#FAF7F2;
+      --stone:#F2EDE6;
+      --pebble:#EDE8E0;
+      --lgrey:#F5F4F3;
+      --mgrey:#E6E2DD;
+      --nude:#B89A74;
+      --nude2:#CEAF88;
+      --nude3:#E8D8C4;
+      --black:#111111;
+      --text:#1E1E1E;
+      --body:#3A3A3A;
+      --muted:#888880;
+      --border:#E2DDD7;
+      --font-serif:'Playfair Display',serif;
+      --font-sans:'Outfit',sans-serif;
+      --tr:all .3s cubic-bezier(.4,0,.2,1);
+    }
+    html{scroll-behavior:smooth}
+    body{background:var(--white);color:var(--text);font-family:var(--font-sans);font-size:16px;line-height:1.7;overflow-x:hidden}
+    ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--lgrey)}::-webkit-scrollbar-thumb{background:var(--nude);border-radius:4px}
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;transition:var(--tr);background:#FFFFFF;border-bottom:1px solid var(--border)}
+    nav.scrolled{background:#FFFFFF;height:56px;border-bottom:1px solid var(--border)}
+    .logo{font-family:var(--font-serif);font-size:1.4rem;font-weight:700;color:var(--black);letter-spacing:3px;text-decoration:none;line-height:1}
+    .logo em{color:var(--nude);font-style:normal}
+    .nav-logo{display:flex;align-items:center;height:100%;text-decoration:none}
+    .nav-logo img{height:29px;width:auto;display:block}
+    @media(max-width:580px){.nav-logo img{height:22px}}
+    .nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+    .nav-links a{color:var(--body);text-decoration:none;font-size:.8rem;font-weight:400;letter-spacing:1.5px;text-transform:uppercase;transition:var(--tr);position:relative}
+    .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--nude);transition:var(--tr)}
+    .nav-links a:hover{color:var(--black)}.nav-links a:hover::after{width:100%}
+    .nav-links a.current{color:var(--black)}.nav-links a.current::after{width:100%}
+    .nav-cta{background:var(--black)!important;color:var(--white)!important;padding:.48rem 1.3rem!important;font-weight:500!important;letter-spacing:1px!important;font-size:.75rem!important;text-transform:uppercase!important}
+    .nav-cta::after{display:none!important}.nav-cta:hover{background:var(--nude)!important;color:var(--black)!important}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:1001}
+    .hamburger span{display:block;width:22px;height:1.5px;background:var(--black);transition:var(--tr)}
+    /* TICKER */
+    .ticker-wrap{
+      background:var(--black);
+      overflow:hidden;
+      padding:.65rem 0;
+      white-space:nowrap;
+      position:sticky;
+      top:52px;
+      z-index:999;
+    }
+    .ticker{display:inline-flex;animation:ticker 40s linear infinite}
+    .ticker-item{display:inline-flex;align-items:center;gap:.7rem;color:var(--white);font-size:.72rem;font-weight:400;letter-spacing:2px;text-transform:uppercase;padding:0 2.5rem}
+    .ticker-dot{width:4px;height:4px;background:var(--nude);border-radius:50%;flex-shrink:0}
+    @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    /* SECTION BASE */
+    section{padding:3rem 5%}
+    .sec-tag{display:inline-block;color:var(--nude);font-size:.68rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;margin-bottom:.8rem}
+    .sec-title{font-family:var(--font-serif);font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--black);font-weight:700;line-height:1.2;margin-bottom:.9rem}
+    .sec-title em{color:var(--nude);font-style:italic}
+    .sec-sub{color:var(--muted);font-size:.93rem;max-width:540px;line-height:1.8;font-weight:300}
+    .divider{width:40px;height:1px;background:var(--nude);margin:1.2rem 0}
+    /* BUTTONS */
+    .btn-black{background:var(--black);color:var(--white);padding:.8rem 2rem;border:none;font-family:var(--font-sans);font-size:.8rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:var(--tr);display:inline-block}
+    .btn-black:hover{background:var(--nude);color:var(--black)}
+    .btn-outline{background:transparent;color:var(--black);padding:.8rem 2rem;border:1px solid var(--black);font-family:var(--font-sans);font-size:.8rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:var(--tr);display:inline-block}
+    .btn-outline:hover{background:var(--black);color:var(--white)}
+    .hero-btn-row{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.8rem}
+    .btn-nude{background:var(--nude);color:var(--black);padding:.8rem 2rem;border:none;font-family:var(--font-sans);font-size:.8rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:var(--tr);display:inline-block}
+    .btn-nude:hover{background:var(--nude2);color:var(--black)}
+    .btn-white-out{background:transparent;color:var(--white);padding:.8rem 2rem;border:1px solid rgba(255,255,255,.4);font-family:var(--font-sans);font-size:.8rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:var(--tr);display:inline-block}
+    .btn-white-out:hover{background:rgba(255,255,255,.1);border-color:var(--white)}
+    /* FOOTER */
+    footer{background:var(--black);padding:2.5rem 5% 2rem}
+    .footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3rem;max-width:1200px;margin:0 auto 1.5rem}
+    .footer-brand .logo{color:var(--white);display:block;margin-bottom:1rem}
+    .footer-brand .logo em{color:var(--nude)}
+	.footer-logo{display:inline-block;margin-bottom:1rem}
+.footer-logo img{height:60px;width:auto;display:block}
+    .footer-desc{font-size:.8rem;color:rgba(255,255,255,.35);line-height:1.8;margin-bottom:1.5rem;font-weight:300}
+    .social-links{display:flex;gap:.6rem}
+    .social-link{width:36px;height:36px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.35);text-decoration:none;font-size:.75rem;transition:var(--tr)}
+    .social-link:hover{background:var(--nude);color:var(--black);border-color:var(--nude)}
+    .footer-col h4{font-size:.68rem;font-weight:500;color:var(--white);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:1.2rem}
+    .footer-links{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+    .footer-links a{color:rgba(255,255,255,.32);text-decoration:none;font-size:.8rem;transition:var(--tr);font-weight:300}
+    .footer-links a:hover{color:var(--nude);padding-left:4px}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.07);padding-top:1.8rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;max-width:1200px;margin:0 auto}
+    .footer-bottom p{font-size:.74rem;color:rgba(255,255,255,.25);font-weight:300}
+    .footer-btm-links{display:flex;gap:1.5rem}
+    .footer-btm-links a{font-size:.74rem;color:rgba(255,255,255,.25);text-decoration:none;transition:var(--tr)}
+    .footer-btm-links a:hover{color:var(--nude)}
+    /* WHATSAPP */
+    .wa-float{position:fixed;bottom:2rem;right:2rem;z-index:999;background:#25d366;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:var(--trans);animation:bounceIn 1s 2s ease both}
+    .wa-float:hover{transform:scale(1.12);box-shadow:0 6px 28px rgba(37,211,102,.55)}
+    .wa-float svg{width:28px;height:28px;fill:white}
+    /* ANIMATIONS */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    /* RESPONSIVE */
+    @media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:680px){section{padding:3rem 5%}.nav-links{display:none}.nav-links.open{display:flex;flex-direction:column;position:fixed;inset:0;background:var(--white);align-items:center;justify-content:center;gap:2.5rem;z-index:1000}.nav-links.open a{font-size:1rem}.hamburger{display:flex}.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4px,5px)}.hamburger.open span:nth-child(2){opacity:0}.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-5px)}.footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column;text-align:center}.hero-btn-row a{flex:0 0 auto;text-align:center;padding:.55rem 1.3rem;font-size:.7rem}.btn-black,.btn-outline{padding:.55rem 1.3rem;font-size:.7rem}}
+  </style>
+<style>
+.page-hero{background:linear-gradient(rgba(17,17,17,.55),rgba(17,17,17,.55)),url("ch.jpeg") center top/cover no-repeat;margin-top:64px;padding:1rem 5% 1.5rem;border-bottom:1px solid var(--border)}
+.page-hero .page-hero-title{color:#fff}
+.page-hero .page-hero-sub{color:rgba(255,255,255,.85);margin-bottom:.6rem}
+.page-hero .page-hero-tag{color:var(--nude2)}
+.page-hero .btn-outline{color:#fff;border-color:#fff}
+.page-hero .btn-outline:hover{background:#fff;color:var(--black)}
+.page-hero .hero-btn-row{margin-top:1.2rem}
+.page-hero .page-hero-line{margin:.5rem 0 .8rem}
+.page-hero-inner{max-width:1200px;margin:0 auto}
+.page-hero-tag{display:inline-block;color:var(--nude);font-size:.68rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;margin-bottom:.8rem}
+.page-hero-title{font-family:var(--font-serif);font-size:clamp(2.2rem,5vw,4rem);color:var(--black);font-weight:700;line-height:1.1;margin-bottom:.8rem;letter-spacing:-1px}
+.page-hero-title em{font-style:italic;color:var(--nude)}
+.page-hero-sub{color:var(--muted);font-size:.95rem;max-width:500px;line-height:1.8;margin-bottom:1rem;font-weight:300}
+.page-hero-line{width:40px;height:1px;background:var(--nude);margin:.8rem 0 1.2rem}
+</style>
+<style>
+.ws-main{padding:2.5rem 5% 4rem;max-width:1300px;margin:0 auto}
+.ws-hidden{display:none!important}
+.ws-grid2{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:stretch}
+.ws-card{background:var(--cream);border:1px solid var(--border);padding:2rem}
+.ws-card h2{font-family:var(--font-serif);font-size:1.5rem;color:var(--black);margin-bottom:.4rem}
+.ws-card p.lead{color:var(--muted);font-size:.9rem;font-weight:300;margin-bottom:1.4rem}
+.fg{display:flex;flex-direction:column;gap:.35rem;margin-bottom:1rem}
+.fg label{font-size:.66rem;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;font-weight:500}
+.fg input,.fg select{background:var(--white);border:1px solid var(--border);color:var(--black);padding:.75rem 1rem;font-family:var(--font-sans);font-size:.92rem;outline:none;width:100%}
+.fg input:focus{border-color:var(--nude);box-shadow:0 0 0 3px rgba(184,154,116,.12)}
+.fg input[type=file]{padding:.6rem;background:var(--white)}
+.fg .hint{font-size:.75rem;color:var(--muted)}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.ws-btn{background:var(--black);color:var(--white);padding:.85rem 2rem;border:none;font-family:var(--font-sans);font-size:.78rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:var(--tr);text-decoration:none;display:inline-block}
+.ws-btn:hover{background:var(--nude);color:var(--black)}
+.ws-btn:disabled{opacity:.5;cursor:wait}
+.ws-btn.out{background:transparent;color:var(--black);border:1px solid var(--black)}
+.ws-btn.out:hover{background:var(--black);color:var(--white)}
+.ws-msg{font-size:.85rem;padding:.75rem 1rem;margin-top:1rem;display:none}
+.ws-msg.err{display:block;background:#fbeeee;border:1px solid #e9c4c4;color:#8a2a2a}
+.ws-msg.ok{display:block;background:rgba(100,150,80,.08);border:1px solid rgba(100,150,80,.25);color:#3a6020}
+.ws-list{list-style:none;margin:0 0 1.5rem;padding:0}
+.ws-list li{padding:.55rem 0;border-bottom:1px solid var(--border);font-size:.9rem;display:flex;gap:.7rem}
+.ws-list li span{color:var(--nude);font-weight:600}
+.ws-dl{font-size:.85rem;color:var(--black);text-decoration:underline;text-underline-offset:3px}
+.hp{position:absolute;left:-9999px;opacity:0}
+/* catalogue */
+.cat-bar{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
+.cat-hello{font-size:.9rem;color:var(--muted)}
+.cat-hello b{color:var(--black);font-weight:500}
+.cat-tools{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center}
+.cat-tools input[type=search]{border:1px solid var(--border);padding:.65rem 1rem;font-family:var(--font-sans);font-size:.88rem;min-width:220px;outline:none}
+.ms{position:relative}
+.ms>button{border:1px solid var(--border);background:var(--white);padding:.65rem 1rem;font-family:var(--font-sans);font-size:.85rem;cursor:pointer;min-width:170px;text-align:left}
+.ms-pop{position:absolute;top:100%;right:0;background:var(--white);border:1px solid var(--border);box-shadow:0 8px 24px rgba(0,0,0,.08);padding:.5rem;z-index:20;min-width:220px;max-height:300px;overflow:auto}
+.ms-pop label{display:flex;gap:.5rem;align-items:center;padding:.35rem .4rem;font-size:.86rem;cursor:pointer}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1.5rem}
+.pcard{cursor:pointer;background:var(--white);border:1px solid var(--border);transition:var(--tr)}
+.pcard:hover{border-color:var(--nude);transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,0,0,.06)}
+.pimg{aspect-ratio:4/5;background:var(--lgrey);overflow:hidden;position:relative}
+.pimg img{width:100%;height:100%;object-fit:cover;display:block}
+.pimg .cnt{position:absolute;bottom:.5rem;right:.5rem;background:rgba(17,17,17,.7);color:#fff;font-size:.68rem;padding:.15rem .5rem}
+.pbody{padding:.9rem 1rem 1rem}
+.pcat{font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--nude);font-weight:600}
+.pname{font-family:var(--font-serif);font-size:1.05rem;color:var(--black);margin:.15rem 0 .25rem;line-height:1.3}
+.pcode{font-size:.75rem;color:var(--muted)}
+.pprice{display:flex;justify-content:space-between;align-items:baseline;margin-top:.6rem}
+.pprice b{font-size:1.05rem;color:var(--black);font-weight:600}
+.pprice small{font-size:.74rem;color:var(--muted)}
+.empty{padding:3rem;text-align:center;color:var(--muted);border:1px dashed var(--border)}
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(17,17,17,.6);z-index:2000;display:flex;align-items:center;justify-content:center;padding:1rem}
+.mbox{background:var(--white);max-width:980px;width:100%;max-height:92vh;overflow:auto;display:grid;grid-template-columns:1.1fr 1fr;position:relative}
+.mclose{position:absolute;top:.6rem;right:.8rem;background:none;border:none;font-size:1.8rem;cursor:pointer;line-height:1;z-index:2}
+.mgal{background:var(--lgrey)}
+.mgal .main{aspect-ratio:4/5;position:relative}
+.mgal .main img{width:100%;height:100%;object-fit:contain;display:block}
+.mgal .nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.85);border:none;width:38px;height:38px;cursor:pointer;font-size:1.2rem}
+.mgal .nav.l{left:.5rem}.mgal .nav.r{right:.5rem}
+.thumbs{display:flex;gap:.4rem;padding:.5rem;overflow-x:auto}
+.thumbs img{width:58px;height:72px;object-fit:cover;cursor:pointer;opacity:.55;border:1px solid transparent}
+.thumbs img.on{opacity:1;border-color:var(--black)}
+.minfo{padding:2rem}
+.minfo h3{font-family:var(--font-serif);font-size:1.6rem;color:var(--black);line-height:1.2;margin:.3rem 0}
+.mprice{font-size:1.4rem;font-weight:600;color:var(--black);margin:.8rem 0 .2rem}
+.mprice s{font-size:.9rem;color:var(--muted);font-weight:400;margin-left:.5rem}
+.spec{width:100%;border-collapse:collapse;margin:1rem 0 1.4rem;font-size:.88rem}
+.spec td{padding:.5rem 0;border-bottom:1px solid var(--border);vertical-align:top}
+.spec td:first-child{color:var(--muted);width:38%;font-size:.75rem;letter-spacing:1px;text-transform:uppercase}
+.mdesc{font-size:.9rem;color:var(--body);white-space:pre-line;margin-bottom:1.4rem}
+@media(max-width:800px){.ws-grid2,.fr{grid-template-columns:1fr}.mbox{grid-template-columns:1fr}.cat-tools input[type=search]{min-width:0;flex:1}}
+</style>
+</head>
+<body>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo" aria-label="Trancz Fashion - Home"><img src="logo.png" alt="Trancz Fashion"></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="corporate.html">Corporate Gifting</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-hero-tag">For Trade Buyers</div>
+    <h1 class="page-hero-title">Wholesale <em>Catalogue</em></h1>
+    <div class="page-hero-line"></div>
+    <p class="page-hero-sub">Private catalogue for registered wholesale buyers. Log in with the username and password shared by Trancz.</p>
+  </div>
+</div>
+
+<main class="ws-main">
+
+  <!-- LOGIN -->
+  <section id="vLogin" class="ws-grid2 ws-hidden" style="padding:0">
+    <div class="ws-card">
+      <h2>Buyer Login</h2>
+      <p class="lead">Enter the username and password given to you by Trancz.</p>
+      <form id="fLogin" autocomplete="on">
+        <div class="fg"><label for="lu">Username</label><input id="lu" name="username" autocomplete="username" required/></div>
+        <div class="fg"><label for="lp">Password</label><input id="lp" name="password" type="password" autocomplete="current-password" required/></div>
+        <button class="ws-btn" type="submit">Log In</button>
+        <div class="ws-msg" id="mLogin"></div>
+      </form>
+    </div>
+    <div class="ws-card" style="background:var(--white)">
+      <h2>New Buyer?</h2>
+      <p class="lead">Request access to our wholesale catalogue. Keep these ready:</p>
+      <ul class="ws-list">
+        <li><span>01</span>Business name &amp; contact person</li>
+        <li><span>02</span>Mobile number</li>
+        <li><span>03</span>GST number &amp; PAN number</li>
+        <li><span>04</span>Signed buyer form (PDF or photo) &mdash; <a class="ws-dl" href="wholesale-form.pdf" download>download form</a></li>
+      </ul>
+      <button class="ws-btn out" type="button" id="goReq">Request Access</button>
+    </div>
+  </section>
+
+  <!-- REQUEST ACCESS -->
+  <section id="vReq" class="ws-hidden" style="padding:0">
+    <div class="ws-card" style="max-width:760px;margin:0 auto">
+      <h2>Request Wholesale Access</h2>
+      <p class="lead">We verify every buyer. Once approved, we'll send your username and password on WhatsApp.</p>
+      <form id="fReq">
+        <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"/>
+        <div class="fr">
+          <div class="fg"><label for="rb">Business Name *</label><input id="rb" name="business_name" required/></div>
+          <div class="fg"><label for="rn">Person Name *</label><input id="rn" name="person_name" required/></div>
+        </div>
+        <div class="fr">
+          <div class="fg"><label for="rm">Mobile Number *</label><input id="rm" name="mobile" inputmode="numeric" maxlength="14" placeholder="10-digit mobile" required/></div>
+          <div class="fg"><label for="rg">GST Number *</label><input id="rg" name="gst" maxlength="15" placeholder="27ABCDE1234F1Z5" style="text-transform:uppercase" required/></div>
+        </div>
+        <div class="fr">
+          <div class="fg"><label for="rpn">PAN Number *</label><input id="rpn" name="pan" maxlength="10" placeholder="ABCDE1234F" style="text-transform:uppercase" required/></div>
+          <div class="fg"><label for="rf">Signed Form *</label><input id="rf" name="form" type="file" accept=".pdf,image/jpeg,image/png,image/webp" required/><span class="hint">PDF, JPG or PNG &middot; max 10 MB &middot; <a class="ws-dl" href="wholesale-form.pdf" download>download blank form</a></span></div>
+        </div>
+        <div style="display:flex;gap:.8rem;flex-wrap:wrap;margin-top:.4rem">
+          <button class="ws-btn" type="submit" id="bReq">Submit Request</button>
+          <button class="ws-btn out" type="button" id="backLogin">Back to Login</button>
+        </div>
+        <div class="ws-msg" id="mReq"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- CATALOGUE -->
+  <section id="vCat" class="ws-hidden" style="padding:0">
+    <div class="cat-bar">
+      <div class="cat-hello">Welcome, <b id="hName"></b><span id="hBiz"></span></div>
+      <div class="cat-tools">
+        <input type="search" id="q" placeholder="Search name, code, fabric…"/>
+        <div class="ms" id="msCat">
+          <button type="button" id="msBtn">All categories ▾</button>
+          <div class="ms-pop ws-hidden" id="msPop"></div>
+        </div>
+        <button class="ws-btn out" type="button" id="bOut" style="padding:.62rem 1.2rem">Log Out</button>
+      </div>
+    </div>
+    <div class="pgrid" id="grid"></div>
+    <div class="empty ws-hidden" id="empty">No products to show right now.</div>
+  </section>
+
+  <div id="vLoad" style="padding:3rem;text-align:center;color:var(--muted)">Loading…</div>
+</main>
+
+<div class="modal ws-hidden" id="modal">
+  <div class="mbox">
+    <button class="mclose" id="mClose" aria-label="Close">&times;</button>
+    <div class="mgal">
+      <div class="main"><img id="mImg" alt=""/><button class="nav l" id="mPrev">‹</button><button class="nav r" id="mNext">›</button></div>
+      <div class="thumbs" id="mThumbs"></div>
+    </div>
+    <div class="minfo">
+      <div class="pcat" id="mCat"></div>
+      <h3 id="mName"></h3>
+      <div class="pcode" id="mCode"></div>
+      <div class="mprice" id="mPrice"></div>
+      <table class="spec" id="mSpec"></table>
+      <div class="mdesc" id="mDesc"></div>
+      <a class="ws-btn" id="mWa" target="_blank" rel="noopener">Enquire on WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+<a href="index.html" class="footer-logo" aria-label="Trancz Fashion - Home"><img src="wt.png" alt="Trancz Fashion"></a>      <p class="footer-desc">A leading garment manufacturing company based in Mumbai, India. Specializing in premium apparel production, fabric sourcing, and private label solutions.</p>
+      <div class="social-links">
+        <a href="https://instagram.com/tranczfashion" target="_blank" class="social-link" title="Instagram">ig</a>
+        <a href="https://wa.me/918097283931" target="_blank" class="social-link" title="WhatsApp">wa</a>
+        <a href="mailto:rohit@trancz.com" class="social-link" title="Email">✉</a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Quick Links</h4><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="corporate.html">Corporate Gifting</a></li><li><a href="contact.html">Contact Us</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+    <div class="footer-col"><h4>Services</h4><ul class="footer-links"><li><a href="services.html">Sampling &amp; Prototypes</a></li><li><a href="services.html">Pattern Making</a></li><li><a href="services.html">Private Label</a></li><li><a href="services.html">Fabric Sourcing</a></li><li><a href="services.html">Printing Services</a></li></ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul class="footer-links"><li><a href="https://wa.me/918097283931">+91 80972 83931</a></li><li><a href="mailto:rohit@trancz.com">rohit@trancz.com</a></li><li><a href="contact.html">Dombivli, Mumbai</a></li><li><a href="https://instagram.com/tranczfashion">@tranczfashion</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Trancz Fashion, Mumbai &mdash; GST Registered &mdash; Garment Manufacturer India</p>
+    <div class="footer-btm-links"><a href="#">Privacy</a><a href="#">Terms</a></div>
+  </div>
+</footer>
+<a href="https://wa.me/918097283931?text=Hi+Rohit%2C+I+would+like+to+enquire+about+Trancz+Fashion" target="_blank" class="wa-float" title="Chat on WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+<script>
+  const nb=document.getElementById('navbar');
+  window.addEventListener('scroll',()=>nb.classList.toggle('scrolled',scrollY>60));
+  const hb=document.getElementById('hamburger'),nl=document.getElementById('navLinks');
+  hb.addEventListener('click',()=>{hb.classList.toggle('open');nl.classList.toggle('open')});
+  nl.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{hb.classList.remove('open');nl.classList.remove('open')}));
+  const ro=new IntersectionObserver(entries=>entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*70);ro.unobserve(e.target)}}),{threshold:.08});
+  document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+</script>
+<script>
+(function(){
+  const API='https://scgzkihxgvelfwzmopil.supabase.co/functions/v1/wholesale';
+  const TK='trancz_ws_token';
+  const $=id=>document.getElementById(id);
+  const store={get(){try{return localStorage.getItem(TK)}catch(e){return null}},set(v){try{localStorage.setItem(TK,v)}catch(e){}},del(){try{localStorage.removeItem(TK)}catch(e){}}};
+  let token=store.get()||null, products=[], cats=new Set(), cur=null, idx=0;
+  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const inr=n=>n==null||n===''?'':'₹'+Number(n).toLocaleString('en-IN',{maximumFractionDigits:2});
+  function show(v){['vLogin','vReq','vCat','vLoad'].forEach(x=>$(x).classList.toggle('ws-hidden',x!==v));}
+  function msg(el,text,ok){el.textContent=text;el.className='ws-msg '+(ok?'ok':'err');}
+  async function call(body){const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});return r.json();}
+
+  async function loadCat(){
+    show('vLoad');
+    try{
+      const d=await call({action:'catalog',token});
+      if(!d.ok){token=null;store.del();show('vLogin');return;}
+      $('hName').textContent=d.name||'';
+      $('hBiz').textContent=d.business?' · '+d.business:'';
+      products=d.products||[];
+      buildCats();render();show('vCat');
+    }catch(e){show('vLogin');msg($('mLogin'),'Could not connect. Please check your internet and try again.');}
+  }
+  function buildCats(){
+    const all=[...new Set(products.map(p=>p.category).filter(Boolean))].sort();
+    $('msPop').innerHTML=all.length?all.map(c=>`<label><input type="checkbox" value="${esc(c)}"/>${esc(c)}</label>`).join(''):'<div style="padding:.4rem;color:var(--muted);font-size:.85rem">No categories</div>';
+    $('msCat').style.display=all.length?'':'none';
+    cats=new Set();updMs();
+  }
+  function updMs(){$('msBtn').textContent=(cats.size?cats.size+' categor'+(cats.size>1?'ies':'y'):'All categories')+' ▾';}
+  function render(){
+    const q=$('q').value.trim().toLowerCase();
+    const list=products.filter(p=>(!cats.size||cats.has(p.category))&&(!q||[p.name,p.code,p.category,p.fabric,p.colours,p.description].join(' ').toLowerCase().includes(q)));
+    $('grid').innerHTML=list.map(p=>`<div class="pcard" data-id="${p.id}">
+      <div class="pimg">${p.images[0]?`<img src="${esc(p.images[0])}" alt="${esc(p.name)}" loading="lazy"/>`:''}${p.images.length>1?`<span class="cnt">${p.images.length} photos</span>`:''}</div>
+      <div class="pbody"><div class="pcat">${esc(p.category||'')}</div><div class="pname">${esc(p.name)}</div><div class="pcode">${esc(p.code||'')}</div>
+      <div class="pprice"><b>${inr(p.price)}</b><small>${p.moq?'MOQ '+p.moq+' pcs':''}</small></div></div></div>`).join('');
+    $('empty').classList.toggle('ws-hidden',list.length>0);
+  }
+  function openP(id){
+    cur=products.find(p=>p.id===id);if(!cur)return;idx=0;
+    $('mCat').textContent=cur.category||'';$('mName').textContent=cur.name;$('mCode').textContent=cur.code?'Code: '+cur.code:'';
+    $('mPrice').innerHTML=cur.price!=null?`${inr(cur.price)} <small style="font-size:.75rem;color:var(--muted);font-weight:400">/ pc</small>${cur.mrp?`<s>MRP ${inr(cur.mrp)}</s>`:''}`:'';
+    const rows=[['Fabric',cur.fabric],['GSM',cur.gsm],['Sizes',cur.sizes],['Colours',cur.colours],['MOQ',cur.moq?cur.moq+' pcs':'']].filter(r=>r[1]);
+    $('mSpec').innerHTML=rows.map(r=>`<tr><td>${r[0]}</td><td>${esc(r[1])}</td></tr>`).join('');
+    $('mDesc').textContent=cur.description||'';
+    $('mThumbs').innerHTML=cur.images.map((u,i)=>`<img src="${esc(u)}" data-i="${i}" alt=""/>`).join('');
+    const t=`Hi Trancz, I'm interested in ${cur.name}${cur.code?' ('+cur.code+')':''} from your wholesale catalogue.`;
+    $('mWa').href='https://wa.me/918097283931?text='+encodeURIComponent(t);
+    setImg(0);$('modal').classList.remove('ws-hidden');document.body.style.overflow='hidden';
+  }
+  function setImg(i){
+    if(!cur)return;const n=cur.images.length;
+    $('mPrev').style.display=$('mNext').style.display=n>1?'':'none';
+    $('mThumbs').style.display=n>1?'':'none';
+    if(!n){$('mImg').removeAttribute('src');return;}
+    idx=(i+n)%n;$('mImg').src=cur.images[idx];
+    $('mThumbs').querySelectorAll('img').forEach((im,k)=>im.classList.toggle('on',k===idx));
+  }
+  function closeM(){$('modal').classList.add('ws-hidden');document.body.style.overflow='';}
+
+  $('grid').addEventListener('click',e=>{const c=e.target.closest('.pcard');if(c)openP(c.dataset.id);});
+  $('mThumbs').addEventListener('click',e=>{if(e.target.dataset.i)setImg(+e.target.dataset.i);});
+  $('mPrev').onclick=()=>setImg(idx-1);$('mNext').onclick=()=>setImg(idx+1);
+  $('mClose').onclick=closeM;$('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeM();});
+  document.addEventListener('keydown',e=>{if($('modal').classList.contains('ws-hidden'))return;if(e.key==='Escape')closeM();if(e.key==='ArrowLeft')setImg(idx-1);if(e.key==='ArrowRight')setImg(idx+1);});
+  $('q').addEventListener('input',render);
+  $('msBtn').onclick=e=>{e.stopPropagation();$('msPop').classList.toggle('ws-hidden');};
+  $('msPop').addEventListener('click',e=>e.stopPropagation());
+  $('msPop').addEventListener('change',e=>{e.target.checked?cats.add(e.target.value):cats.delete(e.target.value);updMs();render();});
+  document.addEventListener('click',()=>$('msPop').classList.add('ws-hidden'));
+
+  $('fLogin').addEventListener('submit',async e=>{
+    e.preventDefault();const b=e.target.querySelector('button');b.disabled=true;$('mLogin').className='ws-msg';
+    try{const d=await call({action:'login',username:$('lu').value,password:$('lp').value});
+      if(d.ok){token=d.token;store.set(token);$('lp').value='';await loadCat();}else msg($('mLogin'),d.error||'Login failed');
+    }catch(err){msg($('mLogin'),'Could not connect. Please try again.');}
+    b.disabled=false;
+  });
+  $('bOut').onclick=async()=>{const t=token;token=null;store.del();show('vLogin');try{await call({action:'logout',token:t});}catch(e){}};
+  $('goReq').onclick=()=>{show('vReq');window.scrollTo({top:0,behavior:'smooth'});};
+  $('backLogin').onclick=()=>show('vLogin');
+
+  $('fReq').addEventListener('submit',async e=>{
+    e.preventDefault();const f=e.target,b=$('bReq'),m=$('mReq');m.className='ws-msg';
+    const gst=f.gst.value.trim().toUpperCase(),pan=f.pan.value.trim().toUpperCase(),mob=f.mobile.value.replace(/\D/g,'').replace(/^91(?=\d{10}$)/,'');
+    if(!/^[6-9]\d{9}$/.test(mob))return msg(m,'Please enter a valid 10-digit mobile number.');
+    if(!/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z][0-9A-Z]Z[0-9A-Z]$/.test(gst))return msg(m,'Please enter a valid 15-character GST number.');
+    if(!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(pan))return msg(m,'Please enter a valid 10-character PAN number.');
+    const file=f.form.files[0];if(!file)return msg(m,'Please upload the signed form.');
+    if(file.size>10*1024*1024)return msg(m,'File is too large (max 10 MB).');
+    const fd=new FormData(f);fd.set('gst',gst);fd.set('pan',pan);fd.set('mobile',mob);
+    b.disabled=true;b.textContent='Submitting…';
+    try{const r=await fetch(API,{method:'POST',body:fd});const d=await r.json();
+      if(d.ok){f.reset();msg(m,d.already?'We already have a request from this GST / mobile — our team will contact you soon.':'Thank you! Your request has been received. We will verify your details and send your login on WhatsApp.',true);}
+      else msg(m,d.error||'Could not submit. Please try again.');
+    }catch(err){msg(m,'Could not connect. Please try again.');}
+    b.disabled=false;b.textContent='Submit Request';
+  });
+
+  if(location.hash==='#request')show('vReq');
+  else if(token)loadCat();else show('vLogin');
+})();
+</script>
+</body></html>

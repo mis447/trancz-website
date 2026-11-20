@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Wholesale Admin | Trancz</title>
+<meta name="robots" content="noindex, nofollow"/>
+<link rel="icon" type="image/png" href="logo.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--cream:#FAF7F2;--lgrey:#F5F4F3;--nude:#B89A74;--nude3:#E8D8C4;--black:#111;--muted:#888880;--border:#E2DDD7;--red:#a33;--green:#3a6020}
+body{font-family:'Outfit',sans-serif;background:var(--lgrey);color:#1E1E1E;font-size:14px}
+.hidden{display:none!important}
+header{background:#fff;border-bottom:1px solid var(--border);height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;position:sticky;top:0;z-index:50}
+header img{height:24px}
+header .who{font-size:.8rem;color:var(--muted);display:flex;gap:1rem;align-items:center}
+.menu{display:flex;gap:.3rem;background:#fff;border-bottom:1px solid var(--border);padding:0 1.5rem;position:sticky;top:58px;z-index:49}
+.menu a{padding:.85rem 1rem;font-size:.78rem;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent;cursor:pointer}
+.menu a.on{color:var(--black);border-bottom-color:var(--nude)}
+.badge{background:var(--nude);color:#fff;border-radius:10px;padding:0 .45rem;font-size:.68rem;margin-left:.3rem}
+main{padding:1.5rem;max-width:1400px;margin:0 auto}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:1rem;flex-wrap:wrap}
+.bar h1{font-family:'Playfair Display',serif;font-size:1.5rem}
+.bar .tools{display:flex;gap:.6rem;flex-wrap:wrap}
+input,select,textarea{font-family:inherit;font-size:.9rem;border:1px solid var(--border);padding:.55rem .75rem;background:#fff;outline:none;width:100%}
+input:focus,textarea:focus,select:focus{border-color:var(--nude)}
+.tools input{width:240px}
+.btn{background:var(--black);color:#fff;border:none;padding:.6rem 1.1rem;font-family:inherit;font-size:.75rem;letter-spacing:1px;text-transform:uppercase;cursor:pointer;white-space:nowrap}
+.btn:hover{background:var(--nude);color:var(--black)}
+.btn.out{background:#fff;color:var(--black);border:1px solid var(--border)}
+.btn.out:hover{border-color:var(--black)}
+.btn.sm{padding:.35rem .6rem;font-size:.68rem}
+.btn.red{background:#fff;color:var(--red);border:1px solid #e6c6c6}
+.btn.red:hover{background:var(--red);color:#fff}
+.btn:disabled{opacity:.5;cursor:wait}
+table.t{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--border)}
+.t th{text-align:left;font-size:.68rem;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-weight:500;padding:.7rem .7rem;border-bottom:1px solid var(--border);cursor:pointer;user-select:none;white-space:nowrap;background:var(--cream)}
+.t th.ns{cursor:default}
+.t th .ar{opacity:.4;margin-left:.2rem}
+.t td{padding:.6rem .7rem;border-bottom:1px solid var(--border);vertical-align:middle}
+.t tr:hover td{background:#fcfbf9}
+.t .acts{display:flex;gap:.35rem;flex-wrap:wrap}
+.thumb{width:46px;height:56px;object-fit:cover;background:var(--lgrey);display:block}
+.pill{display:inline-block;padding:.1rem .55rem;font-size:.7rem;border-radius:10px;background:var(--lgrey)}
+.pill.g{background:#e7f1e1;color:var(--green)}.pill.r{background:#f6e3e3;color:var(--red)}.pill.y{background:#f8eedd;color:#8a5a12}
+.muted{color:var(--muted)}
+.wrap{overflow-x:auto}
+/* login */
+#vAuth{max-width:380px;margin:12vh auto;background:#fff;border:1px solid var(--border);padding:2rem}
+#vAuth h1{font-family:'Playfair Display',serif;margin-bottom:.3rem}
+.fg{display:flex;flex-direction:column;gap:.3rem;margin-bottom:.85rem}
+.fg label{font-size:.66rem;letter-spacing:1.3px;text-transform:uppercase;color:var(--muted);font-weight:500}
+.err{color:var(--red);font-size:.85rem;margin-top:.6rem}
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(17,17,17,.55);z-index:100;display:flex;align-items:flex-start;justify-content:center;padding:4vh 1rem;overflow:auto}
+.mbox{background:#fff;width:100%;max-width:820px;padding:1.6rem;position:relative}
+.mbox.sm{max-width:460px}
+.mbox h2{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:1rem}
+.mx{position:absolute;top:.6rem;right:.9rem;background:none;border:none;font-size:1.6rem;cursor:pointer}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:0 1rem}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 1rem}
+.imgs{display:flex;flex-wrap:wrap;gap:.6rem;margin:.4rem 0 1rem}
+.im{width:110px;border:1px solid var(--border);background:#fff;position:relative}
+.im img{width:110px;height:136px;object-fit:cover;display:block}
+.im .c{position:absolute;top:4px;left:4px;background:var(--black);color:#fff;font-size:.6rem;padding:.05rem .4rem;letter-spacing:1px}
+.im .ia{display:flex;justify-content:space-between;padding:.2rem}
+.im .ia button{background:none;border:none;cursor:pointer;font-size:.95rem;padding:.1rem .35rem}
+.drop{width:110px;height:162px;border:1px dashed var(--nude);display:flex;align-items:center;justify-content:center;text-align:center;font-size:.75rem;color:var(--muted);cursor:pointer;background:var(--cream)}
+.foot{display:flex;justify-content:flex-end;gap:.6rem;margin-top:.6rem;align-items:center}
+.cred{background:var(--cream);border:1px solid var(--border);padding:1rem;font-family:monospace;font-size:.95rem;line-height:1.8;margin:.6rem 0 1rem;white-space:pre-wrap}
+.toast{position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%);background:var(--black);color:#fff;padding:.6rem 1.2rem;font-size:.85rem;z-index:200}
+@media(max-width:700px){.g2,.g3{grid-template-columns:1fr}.tools input{width:100%}}
+</style>
+</head>
+<body>
+
+<div id="vAuth" class="hidden">
+  <img src="logo.png" alt="Trancz" style="height:26px;margin-bottom:1.2rem"/>
+  <h1>Wholesale Admin</h1>
+  <p class="muted" style="margin-bottom:1.2rem">Log in with your TRANCZ OPS admin account.</p>
+  <form id="fAuth">
+    <div class="fg"><label>Email</label><input id="ae" type="email" autocomplete="username" required/></div>
+    <div class="fg"><label>Password</label><input id="ap" type="password" autocomplete="current-password" required/></div>
+    <button class="btn" style="width:100%">Log In</button>
+    <div class="err" id="aErr"></div>
+  </form>
+</div>
+
+<div id="vApp" class="hidden">
+  <header>
+    <img src="logo.png" alt="Trancz"/>
+    <div class="who"><a href="wholesale.html" target="_blank" class="muted">Open buyer page ↗</a><span id="who"></span><button class="btn out sm" id="bLogout">Log out</button></div>
+  </header>
+  <nav class="menu">
+    <a data-v="products" class="on">Products</a>
+    <a data-v="requests">Access Requests <span class="badge hidden" id="reqBadge"></span></a>
+    <a data-v="buyers">Buyers</a>
+  </nav>
+  <main>
+    <section id="sec-products">
+      <div class="bar"><h1>Products</h1><div class="tools"><input type="search" id="pq" placeholder="Search products…"/><button class="btn" id="bAdd">+ Add Product</button></div></div>
+      <div class="wrap"><table class="t" id="tP"></table></div>
+    </section>
+    <section id="sec-requests" class="hidden">
+      <div class="bar"><h1>Access Requests</h1><div class="tools"><select id="rStatus" style="width:auto"><option value="pending">Pending</option><option value="approved">Approved</option><option value="rejected">Rejected</option><option value="">All</option></select></div></div>
+      <div class="wrap"><table class="t" id="tR"></table></div>
+    </section>
+    <section id="sec-buyers" class="hidden">
+      <div class="bar"><h1>Buyers</h1><div class="tools"><input type="search" id="bq" placeholder="Search buyers…"/><button class="btn" id="bAddBuyer">+ Add Buyer</button></div></div>
+      <div class="wrap"><table class="t" id="tB"></table></div>
+    </section>
+  </main>
+</div>
+
+<!-- product modal -->
+<div class="modal hidden" id="mP"><div class="mbox">
+  <button class="mx" data-close>&times;</button>
+  <h2 id="mPTitle">Add Product</h2>
+  <form id="fP">
+    <div class="g2">
+      <div class="fg"><label>Product Name *</label><input name="name" required/></div>
+      <div class="fg"><label>Code / SKU</label><input name="code"/></div>
+    </div>
+    <div class="g3">
+      <div class="fg"><label>Category</label><input name="category" list="catList"/><datalist id="catList"></datalist></div>
+      <div class="fg"><label>Wholesale Price (₹/pc)</label><input name="price" type="number" step="0.01" min="0"/></div>
+      <div class="fg"><label>MRP (₹)</label><input name="mrp" type="number" step="0.01" min="0"/></div>
+    </div>
+    <div class="g3">
+      <div class="fg"><label>Fabric</label><input name="fabric"/></div>
+      <div class="fg"><label>GSM</label><input name="gsm"/></div>
+      <div class="fg"><label>MOQ (pcs)</label><input name="moq" type="number" min="0" step="1"/></div>
+    </div>
+    <div class="g2">
+      <div class="fg"><label>Sizes</label><input name="sizes" placeholder="S, M, L, XL, XXL"/></div>
+      <div class="fg"><label>Colours</label><input name="colours" placeholder="Black, White, Navy"/></div>
+    </div>
+    <div class="fg"><label>Description</label><textarea name="description" rows="3"></textarea></div>
+    <div class="g3">
+      <div class="fg"><label>Sort Order</label><input name="sort" type="number" step="1" value="0"/></div>
+      <div class="fg"><label>Visible to buyers</label><select name="active"><option value="true">Yes</option><option value="false">No (hidden)</option></select></div>
+    </div>
+    <div class="fg"><label>Images (first = cover)</label></div>
+    <div class="imgs" id="imgs"></div>
+    <input type="file" id="imgIn" accept="image/*" multiple class="hidden"/>
+    <div class="foot"><span class="muted" id="pStat"></span><button type="button" class="btn out" data-close>Cancel</button><button class="btn" id="bSaveP">Save</button></div>
+  </form>
+</div></div>
+
+<!-- approve / add buyer modal -->
+<div class="modal hidden" id="mA"><div class="mbox sm">
+  <button class="mx" data-close>&times;</button>
+  <h2 id="mATitle">Approve</h2>
+  <form id="fA">
+    <div id="aExtra"></div>
+    <div class="fg"><label>Username</label><input name="username" required/></div>
+    <div class="fg"><label>Password</label><div style="display:flex;gap:.4rem"><input name="password" required minlength="6"/><button type="button" class="btn out sm" id="bGen">New</button></div></div>
+    <div class="err" id="aErr2"></div>
+    <div class="foot"><button type="button" class="btn out" data-close>Cancel</button><button class="btn" id="bA">Approve &amp; Create Login</button></div>
+  </form>
+</div></div>
+
+<!-- credentials modal -->
+<div class="modal hidden" id="mC"><div class="mbox sm">
+  <button class="mx" data-close>&times;</button>
+  <h2>Login Ready</h2>
+  <p class="muted">Send these to the buyer. The password is not shown again.</p>
+  <div class="cred" id="cText"></div>
+  <div class="foot"><button class="btn out" id="bCopy">Copy</button><a class="btn" id="bWa" target="_blank" rel="noopener" style="text-decoration:none">Send on WhatsApp</a></div>
+</div></div>
+
+<script>
+const SB_URL='https://scgzkihxgvelfwzmopil.supabase.co';
+const SB_KEY='sb_publishable_MHLq-tSP_JIZX-cGICvMQQ_tvKXwqZg';
+const BUCKET='wholesale';
+const BUYER_URL=location.origin+location.pathname.replace(/wholesale-admin\.html$/,'wholesale.html');
+const sb=supabase.createClient(SB_URL,SB_KEY,{auth:{storageKey:'trancz-ws-admin'}});
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const inr=n=>n==null?'':'₹'+Number(n).toLocaleString('en-IN',{maximumFractionDigits:2});
+const dt=s=>s?new Date(s).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'2-digit'}):'';
+function toast(t){const d=document.createElement('div');d.className='toast';d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),2600);}
+function openM(id){$(id).classList.remove('hidden');}
+function closeM(id){$(id).classList.add('hidden');}
+document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m||e.target.hasAttribute('data-close'))closeM(m.id);}));
+const genPw=()=>{const a='abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ23456789';let s='';const r=crypto.getRandomValues(new Uint32Array(8));for(const x of r)s+=a[x%a.length];return s;};
+
+/* sortable tables: click heading */
+function sortable(state,key){if(state.key===key)state.dir*=-1;else{state.key=key;state.dir=1;}}
+function sortRows(rows,state){if(!state.key)return rows;return [...rows].sort((a,b)=>{let x=a[state.key],y=b[state.key];if(x==null)x='';if(y==null)y='';if(typeof x==='number'||typeof y==='number')return((+x||0)-(+y||0))*state.dir;return String(x).localeCompare(String(y),'en',{numeric:true})*state.dir;});}
+function th(cols,state){return '<tr>'+cols.map(c=>c.k?`<th data-k="${c.k}">${c.l}<span class="ar">${state.key===c.k?(state.dir>0?'▲':'▼'):'↕'}</span></th>`:`<th class="ns">${c.l}</th>`).join('')+'</tr>';}
+
+/* ---------- auth ---------- */
+async function boot(){
+  const {data:{session}}=await sb.auth.getSession();
+  if(!session){$('vAuth').classList.remove('hidden');$('vApp').classList.add('hidden');return;}
+  const {data:ok}=await sb.rpc('is_super_admin');
+  if(!ok){await sb.auth.signOut();$('aErr').textContent='This account is not a super admin.';$('vAuth').classList.remove('hidden');$('vApp').classList.add('hidden');return;}
+  $('who').textContent=session.user.email;
+  $('vAuth').classList.add('hidden');$('vApp').classList.remove('hidden');
+  loadProducts();loadRequests();loadBuyers();
+}
+$('fAuth').addEventListener('submit',async e=>{e.preventDefault();$('aErr').textContent='';
+  const {error}=await sb.auth.signInWithPassword({email:$('ae').value.trim(),password:$('ap').value});
+  if(error){$('aErr').textContent=error.message;return;}boot();});
+$('bLogout').onclick=async()=>{await sb.auth.signOut();location.reload();};
+document.querySelectorAll('.menu a').forEach(a=>a.onclick=()=>{document.querySelectorAll('.menu a').forEach(x=>x.classList.toggle('on',x===a));['products','requests','buyers'].forEach(v=>$('sec-'+v).classList.toggle('hidden',v!==a.dataset.v));});
+
+/* ---------- products ---------- */
+let P=[],pSort={key:'sort',dir:1},thumbs={};
+async function signed(paths){const need=paths.filter(p=>p&&!thumbs[p]);if(need.length){const {data}=await sb.storage.from(BUCKET).createSignedUrls(need,3600*6);(data||[]).forEach(d=>{if(d.signedUrl)thumbs[d.path]=d.signedUrl;});}}
+async function loadProducts(){
+  const {data,error}=await sb.from('ws_products').select('*').order('sort').order('created_at',{ascending:false});
+  if(error)return toast(error.message);P=data;
+  await signed(P.map(p=>p.images[0]).filter(Boolean));
+  $('catList').innerHTML=[...new Set(P.map(p=>p.category).filter(Boolean))].map(c=>`<option value="${esc(c)}">`).join('');
+  renderP();
+}
+function renderP(){
+  const q=$('pq').value.trim().toLowerCase();
+  const rows=sortRows(P.filter(p=>!q||[p.name,p.code,p.category,p.fabric].join(' ').toLowerCase().includes(q)),pSort);
+  $('tP').innerHTML=th([{l:''},{l:'Name',k:'name'},{l:'Code',k:'code'},{l:'Category',k:'category'},{l:'Price',k:'price'},{l:'MOQ',k:'moq'},{l:'Photos'},{l:'Status',k:'active'},{l:'Sort',k:'sort'},{l:''}],pSort)+
+   (rows.length?rows.map(p=>`<tr><td>${p.images[0]&&thumbs[p.images[0]]?`<img class="thumb" src="${esc(thumbs[p.images[0]])}"/>`:'<div class="thumb"></div>'}</td>
+   <td><b>${esc(p.name)}</b></td><td>${esc(p.code)}</td><td>${esc(p.category)}</td><td>${inr(p.price)}</td><td>${p.moq??''}</td><td>${p.images.length}</td>
+   <td>${p.active?'<span class="pill g">Visible</span>':'<span class="pill">Hidden</span>'}</td><td>${p.sort}</td>
+   <td><div class="acts"><button class="btn out sm" data-edit="${p.id}">Edit</button><button class="btn red sm" data-del="${p.id}">Delete</button></div></td></tr>`).join('')
+   :'<tr><td colspan="10" class="muted" style="padding:2rem;text-align:center">No products yet. Click “+ Add Product”.</td></tr>');
+}
+$('tP').addEventListener('click',async e=>{
+  const h=e.target.closest('th[data-k]');if(h){sortable(pSort,h.dataset.k);return renderP();}
+  if(e.target.dataset.edit)editP(P.find(p=>p.id===e.target.dataset.edit));
+  if(e.target.dataset.del){const p=P.find(x=>x.id===e.target.dataset.del);
+    if(!confirm(`Delete "${p.name}" and its ${p.images.length} photo(s)?`))return;
+    if(p.images.length)await sb.storage.from(BUCKET).remove(p.images);
+    const {error}=await sb.from('ws_products').delete().eq('id',p.id);if(error)return toast(error.message);
+    toast('Deleted');loadProducts();}
+});
+$('pq').addEventListener('input',renderP);
+
+let edit=null,imgList=[],removed=[];
+function editP(p){
+  edit=p||null;removed=[];
+  const f=$('fP');f.reset();
+  $('mPTitle').textContent=p?'Edit Product':'Add Product';
+  const id=p?p.id:crypto.randomUUID();f.dataset.id=id;
+  ['name','code','category','price','mrp','fabric','gsm','moq','sizes','colours','description','sort'].forEach(k=>f[k].value=p&&p[k]!=null?p[k]:(k==='sort'?0:''));
+  f.active.value=p?String(p.active):'true';
+  imgList=(p?p.images:[]).map(path=>({path}));
+  signed(imgList.map(i=>i.path)).then(renderImgs);renderImgs();
+  $('pStat').textContent='';openM('mP');
+}
+$('bAdd').onclick=()=>editP(null);
+function renderImgs(){
+  $('imgs').innerHTML=imgList.map((im,i)=>`<div class="im">${i===0?'<span class="c">COVER</span>':''}<img src="${esc(im.preview||thumbs[im.path]||'')}"/>
+   <div class="ia"><button type="button" data-mv="${i}" data-d="-1" title="Move left">←</button><button type="button" data-rm="${i}" title="Remove" style="color:var(--red)">✕</button><button type="button" data-mv="${i}" data-d="1" title="Move right">→</button></div></div>`).join('')+
+   `<div class="drop" id="drop">+ Add photos<br/>(or drop here)</div>`;
+}
+$('imgs').addEventListener('click',e=>{
+  if(e.target.closest('#drop'))return $('imgIn').click();
+  const mv=e.target.dataset.mv;if(mv!=null){const i=+mv,j=i+(+e.target.dataset.d);if(j<0||j>=imgList.length)return;[imgList[i],imgList[j]]=[imgList[j],imgList[i]];return renderImgs();}
+  const rm=e.target.dataset.rm;if(rm!=null){const [x]=imgList.splice(+rm,1);if(x.path&&!x.blob)removed.push(x.path);renderImgs();}
+});
+$('imgs').addEventListener('dragover',e=>e.preventDefault());
+$('imgs').addEventListener('drop',e=>{e.preventDefault();addFiles(e.dataTransfer.files);});
+$('imgIn').addEventListener('change',e=>{addFiles(e.target.files);e.target.value='';});
+async function shrink(file){
+  const bmp=await createImageBitmap(file);const max=1600,s=Math.min(1,max/Math.max(bmp.width,bmp.height));
+  const c=document.createElement('canvas');c.width=Math.round(bmp.width*s);c.height=Math.round(bmp.height*s);
+  c.getContext('2d').drawImage(bmp,0,0,c.width,c.height);
+  return await new Promise(r=>c.toBlob(b=>r(b),'image/webp',.82));
+}
+async function addFiles(files){
+  for(const f of files){if(!f.type.startsWith('image/'))continue;
+    try{const blob=await shrink(f);imgList.push({blob,preview:URL.createObjectURL(blob)});}catch(err){toast('Could not read '+f.name);}
+  }renderImgs();
+}
+$('fP').addEventListener('submit',async e=>{
+  e.preventDefault();const f=e.target,id=f.dataset.id,b=$('bSaveP');b.disabled=true;
+  try{
+    const paths=[];let n=0;
+    for(const im of imgList){
+      if(im.blob){n++;$('pStat').textContent=`Uploading photo ${n}…`;
+        const path=`products/${id}/${crypto.randomUUID()}.webp`;
+        const {error}=await sb.storage.from(BUCKET).upload(path,im.blob,{contentType:'image/webp'});
+        if(error)throw error;im.path=path;delete im.blob;}
+      paths.push(im.path);
+    }
+    const num=v=>v===''?null:Number(v);
+    const row={id,name:f.name.value.trim(),code:f.code.value.trim()||null,category:f.category.value.trim()||null,price:num(f.price.value),mrp:num(f.mrp.value),
+      fabric:f.fabric.value.trim()||null,gsm:f.gsm.value.trim()||null,moq:num(f.moq.value),sizes:f.sizes.value.trim()||null,colours:f.colours.value.trim()||null,
+      description:f.description.value.trim()||null,sort:num(f.sort.value)||0,active:f.active.value==='true',images:paths,updated_at:new Date().toISOString()};
+    $('pStat').textContent='Saving…';
+    const {error}=await sb.from('ws_products').upsert(row);if(error)throw error;
+    if(removed.length)await sb.storage.from(BUCKET).remove(removed);
+    closeM('mP');toast('Saved');loadProducts();
+  }catch(err){$('pStat').textContent='Error: '+(err.message||err);}
+  b.disabled=false;
+});
+
+/* ---------- requests ---------- */
+let R=[],rSort={key:'created_at',dir:-1},approving=null;
+async function loadRequests(){
+  const {data,error}=await sb.from('ws_access_requests').select('*').order('created_at',{ascending:false});
+  if(error)return toast(error.message);R=data;
+  const pend=R.filter(r=>r.status==='pending').length;$('reqBadge').textContent=pend;$('reqBadge').classList.toggle('hidden',!pend);
+  renderR();
+}
+function renderR(){
+  const st=$('rStatus').value;const rows=sortRows(R.filter(r=>!st||r.status===st),rSort);
+  $('tR').innerHTML=th([{l:'Date',k:'created_at'},{l:'Business',k:'business_name'},{l:'Person',k:'person_name'},{l:'Mobile',k:'mobile'},{l:'GST',k:'gst'},{l:'PAN',k:'pan'},{l:'Form'},{l:'Status',k:'status'},{l:''}],rSort)+
+  (rows.length?rows.map(r=>`<tr><td>${dt(r.created_at)}</td><td><b>${esc(r.business_name)}</b></td><td>${esc(r.person_name)}</td>
+   <td><a href="https://wa.me/91${esc(r.mobile)}" target="_blank">${esc(r.mobile)}</a></td><td>${esc(r.gst)}</td><td>${esc(r.pan)}</td>
+   <td>${r.form_path?`<button class="btn out sm" data-form="${esc(r.form_path)}">View</button>`:''}</td>
+   <td><span class="pill ${r.status==='approved'?'g':r.status==='rejected'?'r':'y'}">${r.status}</span></td>
+   <td><div class="acts">${r.status==='pending'?`<button class="btn sm" data-ap="${r.id}">Approve</button><button class="btn red sm" data-rj="${r.id}">Reject</button>`:''}${r.status==='rejected'?`<button class="btn out sm" data-ap="${r.id}">Approve</button>`:''}<button class="btn red sm" data-delr="${r.id}" title="Delete request">🗑</button></div></td></tr>`).join('')
+   :'<tr><td colspan="9" class="muted" style="padding:2rem;text-align:center">No requests.</td></tr>');
+}
+$('rStatus').onchange=renderR;
+$('tR').addEventListener('click',async e=>{
+  const h=e.target.closest('th[data-k]');if(h){sortable(rSort,h.dataset.k);return renderR();}
+  const t=e.target;
+  if(t.dataset.form){const w=window.open('','_blank');const {data,error}=await sb.storage.from(BUCKET).createSignedUrl(t.dataset.form,600);if(error){w&&w.close();return toast(error.message);}w.location=data.signedUrl;}
+  if(t.dataset.ap){approving=R.find(r=>r.id===t.dataset.ap);const f=$('fA');f.username.value=approving.mobile;f.password.value=genPw();
+    $('mATitle').textContent='Approve '+approving.business_name;$('aExtra').innerHTML='';$('bA').textContent='Approve & Create Login';$('aErr2').textContent='';openM('mA');}
+  if(t.dataset.rj){if(!confirm('Reject this request?'))return;const {error}=await sb.from('ws_access_requests').update({status:'rejected',decided_at:new Date().toISOString()}).eq('id',t.dataset.rj);if(error)return toast(error.message);loadRequests();}
+  if(t.dataset.delr){const r=R.find(x=>x.id===t.dataset.delr);if(!confirm('Delete this request and its uploaded form?'))return;
+    if(r.form_path)await sb.storage.from(BUCKET).remove([r.form_path]);const {error}=await sb.from('ws_access_requests').delete().eq('id',r.id);if(error)return toast(error.message);loadRequests();}
+});
+$('bGen').onclick=()=>$('fA').password.value=genPw();
+$('fA').addEventListener('submit',async e=>{
+  e.preventDefault();const f=e.target,u=f.username.value.trim(),pw=f.password.value;$('aErr2').textContent='';$('bA').disabled=true;
+  let res,mobile,name;
+  if(approving){res=await sb.rpc('ws_admin_approve',{p_request:approving.id,p_username:u,p_password:pw});mobile=approving.mobile;name=approving.person_name;}
+  else{const g=k=>(f.querySelector(`[name=${k}]`)||{}).value?.trim()||null;
+    res=await sb.rpc('ws_admin_add_buyer',{p_username:u,p_password:pw,p_business:g('business'),p_person:g('person'),p_mobile:g('mobile'),p_gst:(g('gst')||'').toUpperCase()||null,p_pan:(g('pan')||'').toUpperCase()||null});mobile=g('mobile');name=g('person');}
+  $('bA').disabled=false;
+  if(res.error){$('aErr2').textContent=res.error.message;return;}
+  closeM('mA');showCreds(name,mobile,u,pw);loadRequests();loadBuyers();
+});
+function showCreds(name,mobile,u,pw){
+  const txt=`Hi ${name||''}, your Trancz wholesale access is ready.\n\nLink: ${BUYER_URL}\nUsername: ${u}\nPassword: ${pw}\n\nPlease don't share this login.`;
+  $('cText').textContent=txt;
+  const m=(mobile||'').replace(/\D/g,'');$('bWa').href=(m?`https://wa.me/91${m.slice(-10)}`:'https://wa.me/')+'?text='+encodeURIComponent(txt);
+  $('bCopy').onclick=()=>{navigator.clipboard.writeText(txt).then(()=>toast('Copied'));};
+  openM('mC');
+}
+
+/* ---------- buyers ---------- */
+let B=[],bSort={key:'created_at',dir:-1};
+async function loadBuyers(){
+  const {data,error}=await sb.from('ws_buyers').select('id,username,business_name,person_name,mobile,gst,pan,active,last_login,created_at').order('created_at',{ascending:false});
+  if(error)return toast(error.message);B=data;renderB();
+}
+function renderB(){
+  const q=$('bq').value.trim().toLowerCase();
+  const rows=sortRows(B.filter(b=>!q||[b.username,b.business_name,b.person_name,b.mobile,b.gst].join(' ').toLowerCase().includes(q)),bSort);
+  $('tB').innerHTML=th([{l:'Username',k:'username'},{l:'Business',k:'business_name'},{l:'Person',k:'person_name'},{l:'Mobile',k:'mobile'},{l:'GST',k:'gst'},{l:'Last Login',k:'last_login'},{l:'Status',k:'active'},{l:''}],bSort)+
+  (rows.length?rows.map(b=>`<tr><td><b>${esc(b.username)}</b></td><td>${esc(b.business_name)}</td><td>${esc(b.person_name)}</td><td>${esc(b.mobile)}</td><td>${esc(b.gst)}</td>
+   <td>${b.last_login?dt(b.last_login):'<span class="muted">never</span>'}</td><td>${b.active?'<span class="pill g">Active</span>':'<span class="pill r">Paused</span>'}</td>
+   <td><div class="acts"><button class="btn out sm" data-pw="${b.id}">Reset Password</button><button class="btn out sm" data-tg="${b.id}">${b.active?'Pause':'Activate'}</button><button class="btn red sm" data-delb="${b.id}">Delete</button></div></td></tr>`).join('')
+   :'<tr><td colspan="8" class="muted" style="padding:2rem;text-align:center">No buyers yet.</td></tr>');
+}
+$('bq').addEventListener('input',renderB);
+$('tB').addEventListener('click',async e=>{
+  const h=e.target.closest('th[data-k]');if(h){sortable(bSort,h.dataset.k);return renderB();}
+  const t=e.target,b=B.find(x=>x.id===(t.dataset.pw||t.dataset.tg||t.dataset.delb));if(!b)return;
+  if(t.dataset.pw){const pw=prompt('New password for '+b.username+' (min 6 chars):',genPw());if(!pw)return;
+    const {error}=await sb.rpc('ws_admin_set_password',{p_buyer:b.id,p_password:pw});if(error)return toast(error.message);showCreds(b.person_name,b.mobile,b.username,pw);}
+  if(t.dataset.tg){const {error}=await sb.from('ws_buyers').update({active:!b.active}).eq('id',b.id);if(error)return toast(error.message);loadBuyers();}
+  if(t.dataset.delb){if(!confirm('Delete buyer '+b.username+'? They will lose access.'))return;const {error}=await sb.from('ws_buyers').delete().eq('id',b.id);if(error)return toast(error.message);loadBuyers();}
+});
+$('bAddBuyer').onclick=()=>{approving=null;const f=$('fA');f.reset();f.password.value=genPw();$('mATitle').textContent='Add Buyer';$('bA').textContent='Create Login';$('aErr2').textContent='';
+  $('aExtra').innerHTML=`<div class="g2"><div class="fg"><label>Business</label><input name="business"/></div><div class="fg"><label>Person</label><input name="person"/></div></div>
+  <div class="g2"><div class="fg"><label>Mobile</label><input name="mobile"/></div><div class="fg"><label>GST</label><input name="gst"/></div></div><div class="fg"><label>PAN</label><input name="pan"/></div>`;openM('mA');};
+
+boot();
+</script>
+</body></html>
