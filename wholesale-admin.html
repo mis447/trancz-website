@@ -67,6 +67,13 @@ table.t{width:100%;border-collapse:collapse;background:#fff;border:1px solid var
 .im .ia{display:flex;justify-content:space-between;padding:.2rem}
 .im .ia button{background:none;border:none;cursor:pointer;font-size:.95rem;padding:.1rem .35rem}
 .drop{width:110px;height:162px;border:1px dashed var(--nude);display:flex;align-items:center;justify-content:center;text-align:center;font-size:.75rem;color:var(--muted);cursor:pointer;background:var(--cream)}
+.setb{border:1px solid var(--border);background:var(--cream);padding:.8rem;margin-bottom:1rem}
+.setrow{display:flex;flex-wrap:wrap;gap:.5rem;align-items:flex-end}
+.setc{display:flex;flex-direction:column;width:76px;background:#fff;border:1px solid var(--border)}
+.setc input{border:none;text-align:center;padding:.35rem .2rem}
+.setc input.sz{font-weight:600;border-bottom:1px solid var(--border);text-transform:uppercase}
+.setc button{border:none;background:none;color:var(--red);cursor:pointer;font-size:.75rem;padding:.15rem}
+.setsum{font-size:.85rem;margin-top:.6rem}
 .foot{display:flex;justify-content:flex-end;gap:.6rem;margin-top:.6rem;align-items:center}
 .cred{background:var(--cream);border:1px solid var(--border);padding:1rem;font-family:monospace;font-size:.95rem;line-height:1.8;margin:.6rem 0 1rem;white-space:pre-wrap}
 .toast{position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%);background:var(--black);color:#fff;padding:.6rem 1.2rem;font-size:.85rem;z-index:200}
@@ -127,18 +134,22 @@ table.t{width:100%;border-collapse:collapse;background:#fff;border:1px solid var
     </div>
     <div class="g3">
       <div class="fg"><label>Category</label><input name="category" list="catList"/><datalist id="catList"></datalist></div>
-      <div class="fg"><label>Wholesale Price (₹/pc)</label><input name="price" type="number" step="0.01" min="0"/></div>
+      <div class="fg"><label>Price per piece (₹)</label><input name="price" type="number" step="0.01" min="0"/></div>
       <div class="fg"><label>MRP (₹)</label><input name="mrp" type="number" step="0.01" min="0"/></div>
     </div>
     <div class="g3">
       <div class="fg"><label>Fabric</label><input name="fabric"/></div>
       <div class="fg"><label>GSM</label><input name="gsm"/></div>
-      <div class="fg"><label>MOQ (pcs)</label><input name="moq" type="number" min="0" step="1"/></div>
+      <div class="fg"><label>MOQ (sets)</label><input name="moq" type="number" min="0" step="1"/></div>
     </div>
     <div class="g2">
-      <div class="fg"><label>Sizes</label><input name="sizes" placeholder="S, M, L, XL, XXL"/></div>
       <div class="fg"><label>Colours</label><input name="colours" placeholder="Black, White, Navy"/></div>
+      <div></div>
     </div>
+    <div class="fg"><label>Set contents (pieces per size in one set)</label></div>
+    <div class="setb"><div class="setrow" id="setRow"></div>
+      <div style="display:flex;gap:.5rem;margin-top:.6rem;flex-wrap:wrap"><button type="button" class="btn out sm" id="bAddSize">+ Size</button><button type="button" class="btn out sm" data-preset="S,M,L,XL">S–XL 1 each</button><button type="button" class="btn out sm" data-preset="S,M,L,XL,XXL">S–XXL 1 each</button><button type="button" class="btn out sm" data-preset="S,M,M,L,L,XL">S1 M2 L2 XL1</button></div>
+      <div class="setsum" id="setSum"></div></div>
     <div class="fg"><label>Description</label><textarea name="description" rows="3"></textarea></div>
     <div class="g3">
       <div class="fg"><label>Sort Order</label><input name="sort" type="number" step="1" value="0"/></div>
@@ -234,12 +245,12 @@ async function loadProducts(){
 function renderP(){
   const q=$('pq').value.trim().toLowerCase();
   const rows=sortRows(P.filter(p=>!q||[p.name,p.code,p.category,p.fabric].join(' ').toLowerCase().includes(q)),pSort);
-  $('tP').innerHTML=th([{l:''},{l:'Name',k:'name'},{l:'Code',k:'code'},{l:'Category',k:'category'},{l:'Price',k:'price'},{l:'MOQ',k:'moq'},{l:'Photos'},{l:'Status',k:'active'},{l:'Sort',k:'sort'},{l:''}],pSort)+
+  $('tP').innerHTML=th([{l:''},{l:'Name',k:'name'},{l:'Code',k:'code'},{l:'Category',k:'category'},{l:'Price/pc',k:'price'},{l:'Set'},{l:'MOQ (sets)',k:'moq'},{l:'Photos'},{l:'Status',k:'active'},{l:'Sort',k:'sort'},{l:''}],pSort)+
    (rows.length?rows.map(p=>`<tr><td>${p.images[0]&&thumbs[p.images[0]]?`<img class="thumb" src="${esc(thumbs[p.images[0]])}"/>`:'<div class="thumb"></div>'}</td>
-   <td><b>${esc(p.name)}</b></td><td>${esc(p.code)}</td><td>${esc(p.category)}</td><td>${inr(p.price)}</td><td>${p.moq??''}</td><td>${p.images.length}</td>
+   <td><b>${esc(p.name)}</b></td><td>${esc(p.code)}</td><td>${esc(p.category)}</td><td>${inr(p.price)}</td><td>${(p.set_sizes||[]).length?`<b>${p.set_sizes.reduce((a,x)=>a+(+x.qty||0),0)} pcs</b><br/><span class="muted">${esc(setText(p.set_sizes))}</span>`:''}</td><td>${p.moq??''}</td><td>${p.images.length}</td>
    <td>${p.active?'<span class="pill g">Visible</span>':'<span class="pill">Hidden</span>'}</td><td>${p.sort}</td>
    <td><div class="acts"><button class="btn out sm" data-edit="${p.id}">Edit</button><button class="btn red sm" data-del="${p.id}">Delete</button></div></td></tr>`).join('')
-   :'<tr><td colspan="10" class="muted" style="padding:2rem;text-align:center">No products yet. Click “+ Add Product”.</td></tr>');
+   :'<tr><td colspan="11" class="muted" style="padding:2rem;text-align:center">No products yet. Click “+ Add Product”.</td></tr>');
 }
 $('tP').addEventListener('click',async e=>{
   const h=e.target.closest('th[data-k]');if(h){sortable(pSort,h.dataset.k);return renderP();}
@@ -252,19 +263,34 @@ $('tP').addEventListener('click',async e=>{
 });
 $('pq').addEventListener('input',renderP);
 
-let edit=null,imgList=[],removed=[];
+let edit=null,imgList=[],removed=[],setList=[];
+function cleanSet(){return setList.map(x=>({size:String(x.size||'').trim().toUpperCase(),qty:parseInt(x.qty)||0})).filter(x=>x.size&&x.qty>0);}
+function setText(arr){return arr.map(x=>x.size+' '+x.qty).join(' · ');}
+function renderSet(){
+  $('setRow').innerHTML=setList.map((x,i)=>`<div class="setc"><input class="sz" data-i="${i}" data-k="size" value="${esc(x.size)}" placeholder="Size"/><input data-i="${i}" data-k="qty" type="number" min="0" step="1" value="${esc(x.qty)}" placeholder="Qty"/><button type="button" data-rmsz="${i}">remove</button></div>`).join('');
+  updSetSum();
+}
+function updSetSum(){const c=cleanSet(),n=c.reduce((a,x)=>a+x.qty,0),pr=Number($('fP').price.value)||0;
+  $('setSum').innerHTML=n?`<b>Set of ${n} pcs</b> — ${esc(setText(c))}${pr?` &nbsp;·&nbsp; Set price <b>${inr(pr*n)}</b>`:''}`:'<span class="muted">Enter quantity per size (leave 0 / blank for sizes not in the set).</span>';}
+document.addEventListener('DOMContentLoaded',()=>{});
 function editP(p){
   edit=p||null;removed=[];
   const f=$('fP');f.reset();
   $('mPTitle').textContent=p?'Edit Product':'Add Product';
   const id=p?p.id:crypto.randomUUID();f.dataset.id=id;
-  ['name','code','category','price','mrp','fabric','gsm','moq','sizes','colours','description','sort'].forEach(k=>f[k].value=p&&p[k]!=null?p[k]:(k==='sort'?0:''));
+  ['name','code','category','price','mrp','fabric','gsm','moq','colours','description','sort'].forEach(k=>f[k].value=p&&p[k]!=null?p[k]:(k==='sort'?0:''));
   f.active.value=p?String(p.active):'true';
+  setList=(p&&Array.isArray(p.set_sizes)&&p.set_sizes.length)?p.set_sizes.map(x=>({size:x.size,qty:x.qty})):['S','M','L','XL'].map(sz=>({size:sz,qty:''}));renderSet();
   imgList=(p?p.images:[]).map(path=>({path}));
   signed(imgList.map(i=>i.path)).then(renderImgs);renderImgs();
   $('pStat').textContent='';openM('mP');
 }
 $('bAdd').onclick=()=>editP(null);
+$('setRow').addEventListener('input',e=>{const i=e.target.dataset.i;if(i==null)return;setList[+i][e.target.dataset.k]=e.target.value;updSetSum();});
+$('setRow').addEventListener('click',e=>{const i=e.target.dataset.rmsz;if(i==null)return;setList.splice(+i,1);renderSet();});
+$('bAddSize').onclick=()=>{setList.push({size:'',qty:''});renderSet();const ins=$('setRow').querySelectorAll('input.sz');ins[ins.length-1].focus();};
+document.querySelectorAll('[data-preset]').forEach(b=>b.onclick=()=>{const m={};b.dataset.preset.split(',').forEach(z=>m[z]=(m[z]||0)+1);setList=Object.entries(m).map(([size,qty])=>({size,qty}));renderSet();});
+$('fP').price.addEventListener('input',updSetSum);
 function renderImgs(){
   $('imgs').innerHTML=imgList.map((im,i)=>`<div class="im">${i===0?'<span class="c">COVER</span>':''}<img src="${esc(im.preview||thumbs[im.path]||'')}"/>
    <div class="ia"><button type="button" data-mv="${i}" data-d="-1" title="Move left">←</button><button type="button" data-rm="${i}" title="Remove" style="color:var(--red)">✕</button><button type="button" data-mv="${i}" data-d="1" title="Move right">→</button></div></div>`).join('')+
@@ -302,7 +328,7 @@ $('fP').addEventListener('submit',async e=>{
     }
     const num=v=>v===''?null:Number(v);
     const row={id,name:f.name.value.trim(),code:f.code.value.trim()||null,category:f.category.value.trim()||null,price:num(f.price.value),mrp:num(f.mrp.value),
-      fabric:f.fabric.value.trim()||null,gsm:f.gsm.value.trim()||null,moq:num(f.moq.value),sizes:f.sizes.value.trim()||null,colours:f.colours.value.trim()||null,
+      fabric:f.fabric.value.trim()||null,gsm:f.gsm.value.trim()||null,moq:num(f.moq.value),set_sizes:cleanSet(),sizes:cleanSet().map(x=>x.size).join(', ')||null,colours:f.colours.value.trim()||null,
       description:f.description.value.trim()||null,sort:num(f.sort.value)||0,active:f.active.value==='true',images:paths,updated_at:new Date().toISOString()};
     $('pStat').textContent='Saving…';
     const {error}=await sb.from('ws_products').upsert(row);if(error)throw error;
