@@ -245,7 +245,6 @@
         <li><span>01</span>Business name &amp; contact person</li>
         <li><span>02</span>Mobile number</li>
         <li><span>03</span>GST number &amp; PAN number</li>
-        <li><span>04</span>Signed buyer form (PDF or photo) &mdash; <a class="ws-dl" href="wholesale-form.pdf" download>download form</a></li>
       </ul>
       <button class="ws-btn out" type="button" id="goReq">Sign Up</button>
     </div>
@@ -268,7 +267,7 @@
         </div>
         <div class="fr">
           <div class="fg"><label for="rpn">PAN Number *</label><input id="rpn" name="pan" maxlength="10" placeholder="ABCDE1234F" style="text-transform:uppercase" required/></div>
-          <div class="fg"><label for="rf">Signed Form *</label><input id="rf" name="form" type="file" accept=".pdf,image/jpeg,image/png,image/webp" required/><span class="hint">PDF, JPG or PNG &middot; max 10 MB &middot; <a class="ws-dl" href="wholesale-form.pdf" download>download blank form</a></span></div>
+          <div></div>
         </div>
         <div class="fr">
           <div class="fg"><label for="ru">Choose Username *</label><input id="ru" name="username" autocomplete="username" maxlength="30" placeholder="e.g. shopname" required/><span class="hint">4&ndash;30 letters / numbers, no spaces</span></div>
@@ -449,11 +448,9 @@
     if(!/^[a-z0-9._-]{4,30}$/.test(un))return msg(m,'Username: 4-30 letters/numbers, no spaces.');
     if(f.password.value.length<6)return msg(m,'Password must be at least 6 characters.');
     if(f.password.value!==$('rp2').value)return msg(m,'Passwords do not match.');
-    const file=f.form.files[0];if(!file)return msg(m,'Please upload the signed form.');
-    if(file.size>10*1024*1024)return msg(m,'File is too large (max 10 MB).');
-    const fd=new FormData(f);fd.set('gst',gst);fd.set('pan',pan);fd.set('mobile',mob);fd.set('username',un);
+    const body={action:'signup',business_name:f.business_name.value,person_name:f.person_name.value,mobile:mob,gst,pan,username:un,password:f.password.value,website:f.website.value};
     b.disabled=true;b.textContent='Submitting…';
-    try{const r=await fetch(API,{method:'POST',body:fd});const d=await r.json();
+    try{const d=await call(body);
       if(d.ok){f.reset();msg(m,d.already?'We already have a request from this GST / mobile — our team will contact you soon.':'Thank you! Your sign-up is received. Once Trancz approves it, log in with the username and password you just chose.',true);}
       else msg(m,d.error||'Could not submit. Please try again.');
     }catch(err){msg(m,'Could not connect. Please try again.');}
