@@ -148,10 +148,9 @@ table.t{width:100%;border-collapse:collapse;background:#fff;border:1px solid var
     </div>
     <div class="fg"><label>How can buyers order this?</label></div>
     <div class="setb" style="display:flex;gap:1.4rem;flex-wrap:wrap;align-items:center">
-      <label style="display:flex;gap:.4rem;align-items:center"><input type="checkbox" name="bo_set" style="width:auto"/> In sets</label>
-      <label style="display:flex;gap:.4rem;align-items:center"><input type="checkbox" name="bo_size" style="width:auto"/> Size-wise (buyer picks sizes)</label>
-      <label style="display:flex;gap:.4rem;align-items:center"><input type="checkbox" name="bo_random" style="width:auto"/> Random / assorted sizes</label>
-      <label style="display:flex;gap:.4rem;align-items:center" id="looseWrap">Min. pcs (size-wise / random) <input name="loose_moq" type="number" min="0" step="1" style="width:90px"/></label>
+      <label style="display:flex;gap:.4rem;align-items:center"><input type="checkbox" name="bo_set" style="width:auto"/> Set-wise</label>
+      <label style="display:flex;gap:.4rem;align-items:center"><input type="checkbox" name="bo_size" style="width:auto"/> Free hand (buyer picks sizes &amp; qty)</label>
+      <label style="display:flex;gap:.4rem;align-items:center" id="looseWrap">Min. pcs (free hand) <input name="loose_moq" type="number" min="0" step="1" style="width:90px"/></label>
     </div>
     <div id="setWrap"><div class="fg"><label>Set contents (pieces per size in one set)</label></div>
     <div class="setb"><div class="setrow" id="setRow"></div>
@@ -271,8 +270,8 @@ $('tP').addEventListener('click',async e=>{
 $('pq').addEventListener('input',renderP);
 
 let edit=null,imgList=[],removed=[],setList=[];
-function updBo(){const f=$('fP');$('setWrap').style.display=f.bo_set.checked?'':'none';$('looseWrap').style.display=(f.bo_size.checked||f.bo_random.checked)?'flex':'none';}
-const BO_LABEL={set:'Set',size:'Size-wise',random:'Random'};
+function updBo(){const f=$('fP');$('setWrap').style.display=f.bo_set.checked?'':'none';$('looseWrap').style.display=f.bo_size.checked?'flex':'none';}
+const BO_LABEL={set:'Set-wise',size:'Free hand'};
 function cleanSet(){return setList.map(x=>({size:String(x.size||'').trim().toUpperCase(),qty:parseInt(x.qty)||0})).filter(x=>x.size&&x.qty>0);}
 function setText(arr){return arr.map(x=>x.size+' '+x.qty).join(' · ');}
 function renderSet(){
@@ -290,7 +289,7 @@ function editP(p){
   ['name','code','category','price','mrp','fabric','gsm','moq','colours','description','sort'].forEach(k=>f[k].value=p&&p[k]!=null?p[k]:(k==='sort'?0:''));
   f.active.value=p?String(p.active):'true';
   const bo=(p&&p.buy_options&&p.buy_options.length)?p.buy_options:['set'];
-  f.bo_set.checked=bo.includes('set');f.bo_size.checked=bo.includes('size');f.bo_random.checked=bo.includes('random');
+  f.bo_set.checked=bo.includes('set');f.bo_size.checked=bo.includes('size');
   f.loose_moq.value=p&&p.loose_moq!=null?p.loose_moq:'';updBo();
   setList=(p&&Array.isArray(p.set_sizes)&&p.set_sizes.length)?p.set_sizes.map(x=>({size:x.size,qty:x.qty})):['S','M','L','XL'].map(sz=>({size:sz,qty:''}));renderSet();
   imgList=(p?p.images:[]).map(path=>({path}));
@@ -303,7 +302,7 @@ $('setRow').addEventListener('click',e=>{const i=e.target.dataset.rmsz;if(i==nul
 $('bAddSize').onclick=()=>{setList.push({size:'',qty:''});renderSet();const ins=$('setRow').querySelectorAll('input.sz');ins[ins.length-1].focus();};
 document.querySelectorAll('[data-preset]').forEach(b=>b.onclick=()=>{const m={};b.dataset.preset.split(',').forEach(z=>m[z]=(m[z]||0)+1);setList=Object.entries(m).map(([size,qty])=>({size,qty}));renderSet();});
 $('fP').price.addEventListener('input',updSetSum);
-['bo_set','bo_size','bo_random'].forEach(n=>$('fP')[n].addEventListener('change',updBo));
+['bo_set','bo_size'].forEach(n=>$('fP')[n].addEventListener('change',updBo));
 function renderImgs(){
   $('imgs').innerHTML=imgList.map((im,i)=>`<div class="im">${i===0?'<span class="c">COVER</span>':''}<img src="${esc(im.preview||thumbs[im.path]||'')}"/>
    <div class="ia"><button type="button" data-mv="${i}" data-d="-1" title="Move left">←</button><button type="button" data-rm="${i}" title="Remove" style="color:var(--red)">✕</button><button type="button" data-mv="${i}" data-d="1" title="Move right">→</button></div></div>`).join('')+
@@ -330,9 +329,9 @@ async function addFiles(files){
 }
 $('fP').addEventListener('submit',async e=>{
   e.preventDefault();const f=e.target,id=f.dataset.id,b=$('bSaveP');
-  const bo=[f.bo_set.checked&&'set',f.bo_size.checked&&'size',f.bo_random.checked&&'random'].filter(Boolean);
+  const bo=[f.bo_set.checked&&'set',f.bo_size.checked&&'size'].filter(Boolean);
   if(!bo.length){$('pStat').textContent='Tick at least one way to order.';return;}
-  if(bo.includes('set')&&!cleanSet().length){$('pStat').textContent='Enter set contents (qty per size), or untick "In sets".';return;}
+  if(bo.includes('set')&&!cleanSet().length){$('pStat').textContent='Enter set contents (qty per size), or untick "Set-wise".';return;}
   b.disabled=true;
   try{
     const paths=[];let n=0;
@@ -345,7 +344,7 @@ $('fP').addEventListener('submit',async e=>{
     }
     const num=v=>v===''?null:Number(v);
     const row={id,name:f.name.value.trim(),code:f.code.value.trim()||null,category:f.category.value.trim()||null,price:num(f.price.value),mrp:num(f.mrp.value),
-      fabric:f.fabric.value.trim()||null,gsm:f.gsm.value.trim()||null,moq:num(f.moq.value),set_sizes:bo.includes('set')?cleanSet():[],buy_options:bo,loose_moq:(bo.includes('size')||bo.includes('random'))?num(f.loose_moq.value):null,sizes:cleanSet().map(x=>x.size).join(', ')||null,colours:f.colours.value.trim()||null,
+      fabric:f.fabric.value.trim()||null,gsm:f.gsm.value.trim()||null,moq:num(f.moq.value),set_sizes:bo.includes('set')?cleanSet():[],buy_options:bo,loose_moq:bo.includes('size')?num(f.loose_moq.value):null,sizes:cleanSet().map(x=>x.size).join(', ')||null,colours:f.colours.value.trim()||null,
       description:f.description.value.trim()||null,sort:num(f.sort.value)||0,active:f.active.value==='true',images:paths,updated_at:new Date().toISOString()};
     $('pStat').textContent='Saving…';
     const {error}=await sb.from('ws_products').upsert(row);if(error)throw error;

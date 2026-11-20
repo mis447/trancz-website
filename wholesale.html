@@ -397,9 +397,9 @@
       ${bo(p).includes('set')&&setN(p)?`<div class="pset">Set of ${setN(p)} · ${esc(setTxt(p))}</div>`:''}<div class="pbo">${bo(p).map(x=>`<span>${BO[x]||x}</span>`).join('')}</div><div class="pprice"><b>${inr(p.price)}<small style="font-weight:400"> /pc</small></b><small>${bo(p).includes('set')&&p.moq?'MOQ '+p.moq+' set'+(p.moq>1?'s':''):(p.loose_moq?'MOQ '+p.loose_moq+' pcs':'')}</small></div></div></div>`).join('');
     $('empty').classList.toggle('ws-hidden',list.length>0);
   }
-  const BO={set:'Sets',size:'Size-wise',random:'Random sizes'};
+  const BO={set:'Set-wise',size:'Free hand'};
   function bo(p){return (p.buy_options&&p.buy_options.length)?p.buy_options:['set'];}
-  function moqTxt(p){const a=[];if(bo(p).includes('set')&&p.moq)a.push(p.moq+' set'+(p.moq>1?'s':'')+(setN(p)?' ('+p.moq*setN(p)+' pcs)':''));if((bo(p).includes('size')||bo(p).includes('random'))&&p.loose_moq)a.push(p.loose_moq+' pcs size-wise / random');return a.join(' or ');}
+  function moqTxt(p){const a=[];if(bo(p).includes('set')&&p.moq)a.push(p.moq+' set'+(p.moq>1?'s':'')+(setN(p)?' ('+p.moq*setN(p)+' pcs)':''));if(bo(p).includes('size')&&p.loose_moq)a.push(p.loose_moq+' pcs free hand');return a.join(' or ');}
   function setN(p){return (p.set_sizes||[]).reduce((a,x)=>a+(+x.qty||0),0);}
   function n0(p){return bo(p).includes('set')?setN(p):0;}
   function setTxt(p){return (p.set_sizes||[]).map(x=>x.size+' '+x.qty).join(' · ');}
