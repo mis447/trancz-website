@@ -167,8 +167,8 @@ table.t{width:100%;border-collapse:collapse;background:#fff;border:1px solid var
 <!-- credentials modal -->
 <div class="modal hidden" id="mC"><div class="mbox sm">
   <button class="mx" data-close>&times;</button>
-  <h2>Login Ready</h2>
-  <p class="muted">Send these to the buyer. The password is not shown again.</p>
+  <h2>Access Granted</h2>
+  <p class="muted">Send this to the buyer on WhatsApp.</p>
   <div class="cred" id="cText"></div>
   <div class="foot"><button class="btn out" id="bCopy">Copy</button><a class="btn" id="bWa" target="_blank" rel="noopener" style="text-decoration:none">Send on WhatsApp</a></div>
 </div></div>
@@ -322,19 +322,24 @@ async function loadRequests(){
 }
 function renderR(){
   const st=$('rStatus').value;const rows=sortRows(R.filter(r=>!st||r.status===st),rSort);
-  $('tR').innerHTML=th([{l:'Date',k:'created_at'},{l:'Business',k:'business_name'},{l:'Person',k:'person_name'},{l:'Mobile',k:'mobile'},{l:'GST',k:'gst'},{l:'PAN',k:'pan'},{l:'Form'},{l:'Status',k:'status'},{l:''}],rSort)+
-  (rows.length?rows.map(r=>`<tr><td>${dt(r.created_at)}</td><td><b>${esc(r.business_name)}</b></td><td>${esc(r.person_name)}</td>
+  $('tR').innerHTML=th([{l:'Date',k:'created_at'},{l:'Username',k:'username'},{l:'Business',k:'business_name'},{l:'Person',k:'person_name'},{l:'Mobile',k:'mobile'},{l:'GST',k:'gst'},{l:'PAN',k:'pan'},{l:'Form'},{l:'Status',k:'status'},{l:''}],rSort)+
+  (rows.length?rows.map(r=>`<tr><td>${dt(r.created_at)}</td><td>${esc(r.username||'')}</td><td><b>${esc(r.business_name)}</b></td><td>${esc(r.person_name)}</td>
    <td><a href="https://wa.me/91${esc(r.mobile)}" target="_blank">${esc(r.mobile)}</a></td><td>${esc(r.gst)}</td><td>${esc(r.pan)}</td>
    <td>${r.form_path?`<button class="btn out sm" data-form="${esc(r.form_path)}">View</button>`:''}</td>
    <td><span class="pill ${r.status==='approved'?'g':r.status==='rejected'?'r':'y'}">${r.status}</span></td>
-   <td><div class="acts">${r.status==='pending'?`<button class="btn sm" data-ap="${r.id}">Approve</button><button class="btn red sm" data-rj="${r.id}">Reject</button>`:''}${r.status==='rejected'?`<button class="btn out sm" data-ap="${r.id}">Approve</button>`:''}<button class="btn red sm" data-delr="${r.id}" title="Delete request">🗑</button></div></td></tr>`).join('')
-   :'<tr><td colspan="9" class="muted" style="padding:2rem;text-align:center">No requests.</td></tr>');
+   <td><div class="acts">${r.status==='pending'?`<button class="btn sm" data-ap="${r.id}">Grant Access</button><button class="btn red sm" data-rj="${r.id}">Reject</button>`:''}${r.status==='rejected'?`<button class="btn out sm" data-ap="${r.id}">Grant Access</button>`:''}<button class="btn red sm" data-delr="${r.id}" title="Delete request">🗑</button></div></td></tr>`).join('')
+   :'<tr><td colspan="10" class="muted" style="padding:2rem;text-align:center">No requests.</td></tr>');
 }
 $('rStatus').onchange=renderR;
 $('tR').addEventListener('click',async e=>{
   const h=e.target.closest('th[data-k]');if(h){sortable(rSort,h.dataset.k);return renderR();}
   const t=e.target;
   if(t.dataset.form){const w=window.open('','_blank');const {data,error}=await sb.storage.from(BUCKET).createSignedUrl(t.dataset.form,600);if(error){w&&w.close();return toast(error.message);}w.location=data.signedUrl;}
+  if(t.dataset.ap&&R.find(r=>r.id===t.dataset.ap).username){const r=R.find(x=>x.id===t.dataset.ap);
+    if(!confirm(`Grant wholesale access to ${r.business_name} (username: ${r.username})?`))return;
+    const {error}=await sb.rpc('ws_admin_approve',{p_request:r.id,p_username:null,p_password:null});
+    if(error)return toast(error.message);
+    loadRequests();loadBuyers();showGranted(r);return;}
   if(t.dataset.ap){approving=R.find(r=>r.id===t.dataset.ap);const f=$('fA');f.username.value=approving.mobile;f.password.value=genPw();
     $('mATitle').textContent='Approve '+approving.business_name;$('aExtra').innerHTML='';$('bA').textContent='Approve & Create Login';$('aErr2').textContent='';openM('mA');}
   if(t.dataset.rj){if(!confirm('Reject this request?'))return;const {error}=await sb.from('ws_access_requests').update({status:'rejected',decided_at:new Date().toISOString()}).eq('id',t.dataset.rj);if(error)return toast(error.message);loadRequests();}
@@ -352,6 +357,13 @@ $('fA').addEventListener('submit',async e=>{
   if(res.error){$('aErr2').textContent=res.error.message;return;}
   closeM('mA');showCreds(name,mobile,u,pw);loadRequests();loadBuyers();
 });
+function showGranted(r){
+  const txt=`Hi ${r.person_name||''}, your Trancz wholesale access is approved.\n\nLink: ${BUYER_URL}\nUsername: ${r.username}\nPassword: the one you chose while signing up.`;
+  $('cText').textContent=txt;
+  const m=(r.mobile||'').replace(/\D/g,'');$('bWa').href=(m?`https://wa.me/91${m.slice(-10)}`:'https://wa.me/')+'?text='+encodeURIComponent(txt);
+  $('bCopy').onclick=()=>{navigator.clipboard.writeText(txt).then(()=>toast('Copied'));};
+  openM('mC');
+}
 function showCreds(name,mobile,u,pw){
   const txt=`Hi ${name||''}, your Trancz wholesale access is ready.\n\nLink: ${BUYER_URL}\nUsername: ${u}\nPassword: ${pw}\n\nPlease don't share this login.`;
   $('cText').textContent=txt;

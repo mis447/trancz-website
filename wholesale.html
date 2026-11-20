@@ -240,22 +240,22 @@
     </div>
     <div class="ws-card" style="background:var(--white)">
       <h2>New Buyer?</h2>
-      <p class="lead">Request access to our wholesale catalogue. Keep these ready:</p>
+      <p class="lead">Sign up for our wholesale catalogue. Keep these ready:</p>
       <ul class="ws-list">
         <li><span>01</span>Business name &amp; contact person</li>
         <li><span>02</span>Mobile number</li>
         <li><span>03</span>GST number &amp; PAN number</li>
         <li><span>04</span>Signed buyer form (PDF or photo) &mdash; <a class="ws-dl" href="wholesale-form.pdf" download>download form</a></li>
       </ul>
-      <button class="ws-btn out" type="button" id="goReq">Request Access</button>
+      <button class="ws-btn out" type="button" id="goReq">Sign Up</button>
     </div>
   </section>
 
   <!-- REQUEST ACCESS -->
   <section id="vReq" class="ws-hidden" style="padding:0">
     <div class="ws-card" style="max-width:760px;margin:0 auto">
-      <h2>Request Wholesale Access</h2>
-      <p class="lead">We verify every buyer. Once approved, we'll send your username and password on WhatsApp.</p>
+      <h2>Wholesale Buyer Sign Up</h2>
+      <p class="lead">Choose your own username and password. We verify every buyer &mdash; you can log in as soon as Trancz approves your account.</p>
       <form id="fReq">
         <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"/>
         <div class="fr">
@@ -270,8 +270,16 @@
           <div class="fg"><label for="rpn">PAN Number *</label><input id="rpn" name="pan" maxlength="10" placeholder="ABCDE1234F" style="text-transform:uppercase" required/></div>
           <div class="fg"><label for="rf">Signed Form *</label><input id="rf" name="form" type="file" accept=".pdf,image/jpeg,image/png,image/webp" required/><span class="hint">PDF, JPG or PNG &middot; max 10 MB &middot; <a class="ws-dl" href="wholesale-form.pdf" download>download blank form</a></span></div>
         </div>
+        <div class="fr">
+          <div class="fg"><label for="ru">Choose Username *</label><input id="ru" name="username" autocomplete="username" maxlength="30" placeholder="e.g. shopname" required/><span class="hint">4&ndash;30 letters / numbers, no spaces</span></div>
+          <div class="fg"><label for="rp">Choose Password *</label><input id="rp" name="password" type="password" autocomplete="new-password" minlength="6" required/></div>
+        </div>
+        <div class="fr">
+          <div class="fg"><label for="rp2">Confirm Password *</label><input id="rp2" type="password" autocomplete="new-password" minlength="6" required/></div>
+          <div></div>
+        </div>
         <div style="display:flex;gap:.8rem;flex-wrap:wrap;margin-top:.4rem">
-          <button class="ws-btn" type="submit" id="bReq">Submit Request</button>
+          <button class="ws-btn" type="submit" id="bReq">Sign Up</button>
           <button class="ws-btn out" type="button" id="backLogin">Back to Login</button>
         </div>
         <div class="ws-msg" id="mReq"></div>
@@ -437,15 +445,19 @@
     if(!/^[6-9]\d{9}$/.test(mob))return msg(m,'Please enter a valid 10-digit mobile number.');
     if(!/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z][0-9A-Z]Z[0-9A-Z]$/.test(gst))return msg(m,'Please enter a valid 15-character GST number.');
     if(!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(pan))return msg(m,'Please enter a valid 10-character PAN number.');
+    const un=f.username.value.trim().toLowerCase();
+    if(!/^[a-z0-9._-]{4,30}$/.test(un))return msg(m,'Username: 4-30 letters/numbers, no spaces.');
+    if(f.password.value.length<6)return msg(m,'Password must be at least 6 characters.');
+    if(f.password.value!==$('rp2').value)return msg(m,'Passwords do not match.');
     const file=f.form.files[0];if(!file)return msg(m,'Please upload the signed form.');
     if(file.size>10*1024*1024)return msg(m,'File is too large (max 10 MB).');
-    const fd=new FormData(f);fd.set('gst',gst);fd.set('pan',pan);fd.set('mobile',mob);
+    const fd=new FormData(f);fd.set('gst',gst);fd.set('pan',pan);fd.set('mobile',mob);fd.set('username',un);
     b.disabled=true;b.textContent='Submitting…';
     try{const r=await fetch(API,{method:'POST',body:fd});const d=await r.json();
-      if(d.ok){f.reset();msg(m,d.already?'We already have a request from this GST / mobile — our team will contact you soon.':'Thank you! Your request has been received. We will verify your details and send your login on WhatsApp.',true);}
+      if(d.ok){f.reset();msg(m,d.already?'We already have a request from this GST / mobile — our team will contact you soon.':'Thank you! Your sign-up is received. Once Trancz approves it, log in with the username and password you just chose.',true);}
       else msg(m,d.error||'Could not submit. Please try again.');
     }catch(err){msg(m,'Could not connect. Please try again.');}
-    b.disabled=false;b.textContent='Submit Request';
+    b.disabled=false;b.textContent='Sign Up';
   });
 
   if(location.hash==='#request')show('vReq');
