@@ -220,7 +220,7 @@
     <div class="page-hero-tag">For Trade Buyers</div>
     <h1 class="page-hero-title">Wholesale <em>Catalogue</em></h1>
     <div class="page-hero-line"></div>
-    <p class="page-hero-sub">Private catalogue for registered wholesale buyers. Log in with the username and password shared by Trancz.</p>
+    <p class="page-hero-sub">Private catalogue for registered wholesale buyers. Log in with your registered email ID and password.</p>
   </div>
 </div>
 
@@ -230,9 +230,9 @@
   <section id="vLogin" class="ws-grid2 ws-hidden" style="padding:0">
     <div class="ws-card">
       <h2>Buyer Login</h2>
-      <p class="lead">Enter the username and password given to you by Trancz.</p>
+      <p class="lead">Log in with the email ID and password you signed up with.</p>
       <form id="fLogin" autocomplete="on">
-        <div class="fg"><label for="lu">Username</label><input id="lu" name="username" autocomplete="username" required/></div>
+        <div class="fg"><label for="lu">Email ID</label><input id="lu" name="username" type="email" autocomplete="username" required/></div>
         <div class="fg"><label for="lp">Password</label><input id="lp" name="password" type="password" autocomplete="current-password" required/></div>
         <button class="ws-btn" type="submit">Log In</button>
         <div class="ws-msg" id="mLogin"></div>
@@ -243,7 +243,7 @@
       <p class="lead">Sign up for our wholesale catalogue. Keep these ready:</p>
       <ul class="ws-list">
         <li><span>01</span>Business name &amp; contact person</li>
-        <li><span>02</span>Mobile number</li>
+        <li><span>02</span>Mobile number &amp; email ID</li>
         <li><span>03</span>GST number &amp; PAN number</li>
       </ul>
       <button class="ws-btn out" type="button" id="goReq">Sign Up</button>
@@ -254,7 +254,7 @@
   <section id="vReq" class="ws-hidden" style="padding:0">
     <div class="ws-card" style="max-width:760px;margin:0 auto">
       <h2>Wholesale Buyer Sign Up</h2>
-      <p class="lead">Choose your own username and password. We verify every buyer &mdash; you can log in as soon as Trancz approves your account.</p>
+      <p class="lead">Your email ID will be your login ID. We verify every buyer &mdash; you can log in as soon as Trancz approves your account.</p>
       <form id="fReq">
         <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"/>
         <div class="fr">
@@ -270,7 +270,7 @@
           <div></div>
         </div>
         <div class="fr">
-          <div class="fg"><label for="ru">Choose Username *</label><input id="ru" name="username" autocomplete="username" maxlength="30" placeholder="e.g. shopname" required/><span class="hint">4&ndash;30 letters / numbers, no spaces</span></div>
+          <div class="fg"><label for="ru">Email ID *</label><input id="ru" name="username" type="email" autocomplete="username" maxlength="120" placeholder="you@business.com" required/><span class="hint">This will be your login ID</span></div>
           <div class="fg"><label for="rp">Choose Password *</label><input id="rp" name="password" type="password" autocomplete="new-password" minlength="6" required/></div>
         </div>
         <div class="fr">
@@ -445,13 +445,13 @@
     if(!/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z][0-9A-Z]Z[0-9A-Z]$/.test(gst))return msg(m,'Please enter a valid 15-character GST number.');
     if(!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(pan))return msg(m,'Please enter a valid 10-character PAN number.');
     const un=f.username.value.trim().toLowerCase();
-    if(!/^[a-z0-9._-]{4,30}$/.test(un))return msg(m,'Username: 4-30 letters/numbers, no spaces.');
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(un))return msg(m,'Please enter a valid email ID.');
     if(f.password.value.length<6)return msg(m,'Password must be at least 6 characters.');
     if(f.password.value!==$('rp2').value)return msg(m,'Passwords do not match.');
     const body={action:'signup',business_name:f.business_name.value,person_name:f.person_name.value,mobile:mob,gst,pan,username:un,password:f.password.value,website:f.website.value};
     b.disabled=true;b.textContent='Submitting…';
     try{const d=await call(body);
-      if(d.ok){f.reset();msg(m,d.already?'We already have a request from this GST / mobile — our team will contact you soon.':'Thank you! Your sign-up is received. Once Trancz approves it, log in with the username and password you just chose.',true);}
+      if(d.ok){f.reset();msg(m,d.already?'We already have a request from this GST / mobile — our team will contact you soon.':'Thank you! Your sign-up is received. Once Trancz approves it, log in with your email ID and the password you just chose.',true);}
       else msg(m,d.error||'Could not submit. Please try again.');
     }catch(err){msg(m,'Could not connect. Please try again.');}
     b.disabled=false;b.textContent='Sign Up';

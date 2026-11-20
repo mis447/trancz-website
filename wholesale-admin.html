@@ -322,7 +322,7 @@ async function loadRequests(){
 }
 function renderR(){
   const st=$('rStatus').value;const rows=sortRows(R.filter(r=>!st||r.status===st),rSort);
-  $('tR').innerHTML=th([{l:'Date',k:'created_at'},{l:'Username',k:'username'},{l:'Business',k:'business_name'},{l:'Person',k:'person_name'},{l:'Mobile',k:'mobile'},{l:'GST',k:'gst'},{l:'PAN',k:'pan'},{l:'Form'},{l:'Status',k:'status'},{l:''}],rSort)+
+  $('tR').innerHTML=th([{l:'Date',k:'created_at'},{l:'Email (Login)',k:'username'},{l:'Business',k:'business_name'},{l:'Person',k:'person_name'},{l:'Mobile',k:'mobile'},{l:'GST',k:'gst'},{l:'PAN',k:'pan'},{l:'Form'},{l:'Status',k:'status'},{l:''}],rSort)+
   (rows.length?rows.map(r=>`<tr><td>${dt(r.created_at)}</td><td>${esc(r.username||'')}</td><td><b>${esc(r.business_name)}</b></td><td>${esc(r.person_name)}</td>
    <td><a href="https://wa.me/91${esc(r.mobile)}" target="_blank">${esc(r.mobile)}</a></td><td>${esc(r.gst)}</td><td>${esc(r.pan)}</td>
    <td>${r.form_path?`<button class="btn out sm" data-form="${esc(r.form_path)}">View</button>`:''}</td>
@@ -336,7 +336,7 @@ $('tR').addEventListener('click',async e=>{
   const t=e.target;
   if(t.dataset.form){const w=window.open('','_blank');const {data,error}=await sb.storage.from(BUCKET).createSignedUrl(t.dataset.form,600);if(error){w&&w.close();return toast(error.message);}w.location=data.signedUrl;}
   if(t.dataset.ap&&R.find(r=>r.id===t.dataset.ap).username){const r=R.find(x=>x.id===t.dataset.ap);
-    if(!confirm(`Grant wholesale access to ${r.business_name} (username: ${r.username})?`))return;
+    if(!confirm(`Grant wholesale access to ${r.business_name} (login: ${r.username})?`))return;
     const {error}=await sb.rpc('ws_admin_approve',{p_request:r.id,p_username:null,p_password:null});
     if(error)return toast(error.message);
     loadRequests();loadBuyers();showGranted(r);return;}
@@ -358,7 +358,7 @@ $('fA').addEventListener('submit',async e=>{
   closeM('mA');showCreds(name,mobile,u,pw);loadRequests();loadBuyers();
 });
 function showGranted(r){
-  const txt=`Hi ${r.person_name||''}, your Trancz wholesale access is approved.\n\nLink: ${BUYER_URL}\nUsername: ${r.username}\nPassword: the one you chose while signing up.`;
+  const txt=`Hi ${r.person_name||''}, your Trancz wholesale access is approved.\n\nLink: ${BUYER_URL}\nLogin: ${r.username}\nPassword: the one you chose while signing up.`;
   $('cText').textContent=txt;
   const m=(r.mobile||'').replace(/\D/g,'');$('bWa').href=(m?`https://wa.me/91${m.slice(-10)}`:'https://wa.me/')+'?text='+encodeURIComponent(txt);
   $('bCopy').onclick=()=>{navigator.clipboard.writeText(txt).then(()=>toast('Copied'));};
@@ -381,7 +381,7 @@ async function loadBuyers(){
 function renderB(){
   const q=$('bq').value.trim().toLowerCase();
   const rows=sortRows(B.filter(b=>!q||[b.username,b.business_name,b.person_name,b.mobile,b.gst].join(' ').toLowerCase().includes(q)),bSort);
-  $('tB').innerHTML=th([{l:'Username',k:'username'},{l:'Business',k:'business_name'},{l:'Person',k:'person_name'},{l:'Mobile',k:'mobile'},{l:'GST',k:'gst'},{l:'Last Login',k:'last_login'},{l:'Status',k:'active'},{l:''}],bSort)+
+  $('tB').innerHTML=th([{l:'Email (Login)',k:'username'},{l:'Business',k:'business_name'},{l:'Person',k:'person_name'},{l:'Mobile',k:'mobile'},{l:'GST',k:'gst'},{l:'Last Login',k:'last_login'},{l:'Status',k:'active'},{l:''}],bSort)+
   (rows.length?rows.map(b=>`<tr><td><b>${esc(b.username)}</b></td><td>${esc(b.business_name)}</td><td>${esc(b.person_name)}</td><td>${esc(b.mobile)}</td><td>${esc(b.gst)}</td>
    <td>${b.last_login?dt(b.last_login):'<span class="muted">never</span>'}</td><td>${b.active?'<span class="pill g">Active</span>':'<span class="pill r">Paused</span>'}</td>
    <td><div class="acts"><button class="btn out sm" data-pw="${b.id}">Reset Password</button><button class="btn out sm" data-tg="${b.id}">${b.active?'Pause':'Activate'}</button><button class="btn red sm" data-delb="${b.id}">Delete</button></div></td></tr>`).join('')
